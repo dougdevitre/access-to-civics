@@ -107,12 +107,38 @@ npm run dev                              # game shell at :5173
 receiving federal funds to hold an educational program on the U.S. Constitution that day.
 Scope backward from it. See `docs/04-distribution-and-cut-list.md`.
 
-## Status
+## Status: prototype
 
-Playable demo, live via Vercel from `main`. Missouri is the pilot state. No clause text has
-been ingested yet — every clause record is deliberately `text: null` and the Mirror cards say
-so honestly. The ingest pipeline, gloss layer, and additional states are the next milestones
-(see `docs/07-roadmap.md`).
+Playable and live via Vercel from `main`, and clearly labelled a prototype in the app.
+Missouri is the pilot: eleven of its clauses are ingested from the official Revisor pages
+with sha256 provenance and carry human-reviewed glosses at two reading levels. Every other
+state appears as a verified citation with its words still pending — nothing is ever
+hand-typed. See `docs/07-roadmap.md`.
+
+## Help us get your state right
+
+**We have already been wrong.** An August 2026 review of our own citations found two errors:
+Virginia's modern universal-suffrage clause was cited as authority for a landowner-only
+franchise, and New Hampshire's state education-duty clause was attached to the local-funding
+option — reversing what the *Claremont* cases hold it to mean. Both are fixed, and
+`npm run gates` now fails if any citation from a state we have not ingested lacks a human
+verification record. We assume there are more we have not caught.
+
+If you know your state's constitution — as a revisor, law librarian, secretary of state
+office, bar association LRE committee, historian, teacher, or student — we would be glad of
+your help:
+
+| What | Where |
+|---|---|
+| Check a citation | `data/seed/citation-verification.json` lists every un-ingested citation with sources, reasoning, and caveats |
+| Correct a framing | A citation can be accurate and still misrepresent what a provision means in practice. This is the harder failure and the one we most need help with. |
+| Flag a clause needing care | `data/seed/clause-sensitivity.json` — some history needs adult framing before a child reads it |
+| Add your state | `src/ingest/adapters/missouri.ts` is the model, about a hundred lines |
+
+Open an issue and we will credit you unless you'd rather we didn't. The one thing we cannot
+accept is constitutional text by email or hand-typed: words enter only through the pipeline,
+from an official source, with a checksum. That rule is what makes the rest trustworthy, and
+it applies to us too.
 
 ## License
 

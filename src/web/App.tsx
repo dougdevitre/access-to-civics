@@ -120,7 +120,10 @@ export default function App() {
       <>
         <header className="hero">
           <p className="hero-mark" aria-hidden="true">⬤</p>
-          <p className="eyebrow">{NEUTRAL.pilot(bundle.state_name)}</p>
+          <p className="eyebrow">
+            <span className="badge">{NEUTRAL.prototypeBadge}</span>{' '}
+            {NEUTRAL.pilot(bundle.state_name)}
+          </p>
           <h1 ref={headingRef} tabIndex={-1}>{NEUTRAL.title}</h1>
           <p className="lede">{NEUTRAL.tagline}</p>
           <ul className="facts">
@@ -155,10 +158,19 @@ export default function App() {
           </div>
         </section>
 
+        <p className="prototype-note">{NEUTRAL.prototypeNote}</p>
+
         <p className="teacher-line">
           {NEUTRAL.teacherLead}{' '}
           <button type="button" className="linklike" onClick={() => setView('teachers')}>
             {NEUTRAL.teacherCta}
+          </button>
+        </p>
+
+        <p className="teacher-line">
+          {NEUTRAL.helpLead}{' '}
+          <button type="button" className="linklike" onClick={() => setView('grownups')}>
+            {NEUTRAL.helpCta}
           </button>
         </p>
       </>,

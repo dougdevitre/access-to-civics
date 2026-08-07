@@ -142,6 +142,9 @@ test('trust pages are reachable and accessible', async ({ page }) => {
 
   await page.getByRole('button', { name: 'For grown-ups' }).click();
   await expect(page.getByText(/question by question/i)).toBeVisible();
+  // The collaboration request names the errors we already made, on purpose.
+  await expect(page.getByRole('heading', { name: 'Help us get your state right' })).toBeVisible();
+  await expect(page.getByText(/we have already been wrong/i)).toBeVisible();
   await expectNoSeriousViolations(page, 'grown-ups');
 
   await page.getByRole('button', { name: 'Teachers & families' }).click();
@@ -160,6 +163,9 @@ test('home page orients a newcomer before any choice is made', async ({ page }) 
   // Both audiences have a distinct entry point.
   await expect(page.getByRole('button', { name: 'Open the rule book' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Start with the teacher guide' })).toBeVisible();
+  // Honest about what this is, and open about wanting to be corrected.
+  await expect(page.getByText('Prototype')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Help us get it right' })).toBeVisible();
   await expectNoSeriousViolations(page, 'home');
 });
 

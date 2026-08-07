@@ -349,7 +349,14 @@ button:active { transform: translateY(1px); }
 .home-card h2 { margin-top: 0; }
 .home-card .options { margin-bottom: 0; }
 
-.teacher-line { color: var(--iron); margin-top: 2rem; }
+.teacher-line { color: var(--iron); margin-top: 1rem; }
+.prototype-note { color: var(--iron); margin-top: 2rem; }
+.badge {
+  display: inline-block;
+  border: 1px solid var(--iron);
+  padding: 0 .4rem;
+  letter-spacing: .1em;
+}
 
 /* Footer is wayfinding, not a call to action — quieter than anything in the page body. */
 .site-footer button {

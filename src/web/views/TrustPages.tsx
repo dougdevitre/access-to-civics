@@ -125,6 +125,59 @@ export function GrownUps() {
         <li>Report a vulnerability or concern: open an issue at the repository below.</li>
       </ul>
 
+      <h3>Help us get your state right</h3>
+      <p>
+        <strong>Charter is a prototype.</strong> Missouri is the only state whose
+        constitutional text has been ingested; every other state appears as a citation with
+        the words still pending. We are asking the people who would know to check our work,
+        because we have already been wrong.
+      </p>
+      <p>
+        In August 2026 a review of our own citations found two errors. We cited Virginia’s
+        modern universal-suffrage clause as authority for a landowner-only franchise — the
+        opposite of what it says. And we attached New Hampshire’s state education-duty clause
+        to the local-funding option, reversing what the <em>Claremont</em> cases hold it to
+        mean. Both are corrected, and a build gate now blocks any citation from a state we
+        have not ingested unless a human has verified it. We assume there are others we have
+        not caught.
+      </p>
+      <p>We would especially welcome help from:</p>
+      <ul className="promise-list">
+        <li>State revisors of statutes, law librarians, and secretary of state offices</li>
+        <li>Bar association law-related education committees</li>
+        <li>Constitutional historians and law faculty</li>
+        <li>Teachers, librarians, and students in the state — you will spot a wrong framing faster than anyone</li>
+      </ul>
+      <p>Four things help most, in order of value:</p>
+      <ul className="promise-list">
+        <li>
+          <strong>Check a citation.</strong> Every clause we cite from a state we have not
+          ingested is listed in <code>data/seed/citation-verification.json</code> with our
+          sources, our reasoning, and our caveats. Tell us where we are wrong.
+        </li>
+        <li>
+          <strong>Tell us when the framing is wrong.</strong> This is the harder failure. A
+          citation can be perfectly accurate and still misrepresent what a provision means in
+          practice — that is exactly what happened with New Hampshire.
+        </li>
+        <li>
+          <strong>Flag a clause that needs care.</strong> Some history needs adult framing
+          before a child reads it. Our sensitivity review is a judgment call and we would
+          rather hear that we got it wrong from you than from a family.
+        </li>
+        <li>
+          <strong>Contribute an adapter for your state</strong> so its real words can appear.
+          The Missouri one is about a hundred lines and every state is welcome.
+        </li>
+      </ul>
+      <p>
+        The way to reach us is an issue on the repository below. We will credit you unless
+        you would rather we did not. One thing we cannot accept: constitutional text sent by
+        email or typed in by hand. Words enter only through the pipeline, from an official
+        source, with a checksum — that rule is what makes the rest of this trustworthy, and
+        it applies to us too.
+      </p>
+
       <h3>Content integrity and nonpartisanship</h3>
       <p>
         No constitutional text is ever hand-typed, paraphrased, or generated: the words of a
@@ -230,6 +283,17 @@ export function TeachersFamilies() {
         says the rule has a hard history and points to you. The 11–14 band sees the same
         material inside explicit framing. You always have the room; nothing lands on a child
         cold.
+      </p>
+
+      <h3>This is a prototype — please tell us what is wrong</h3>
+      <p>
+        Missouri is the only state whose constitutional text has been ingested so far; other
+        states show a citation with the words still pending. We have already found and fixed
+        two citations that misrepresented a state’s constitution, and we expect there are
+        more. If something looks wrong to you — a citation, a framing, a gloss, or a clause
+        that needs more care before a child reads it — the grown-ups page explains how to
+        reach us. A teacher noticing "that is not what that clause means" is the single most
+        valuable thing that can happen to this project right now.
       </p>
 
       <h3>Practical notes</h3>

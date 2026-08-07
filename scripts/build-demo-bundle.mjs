@@ -107,6 +107,18 @@ const reflections = parseCsvRecords(readFileSync('data/seed/reflections.csv', 'u
 const sensitivityFile = JSON.parse(readFileSync('data/seed/clause-sensitivity.json', 'utf8'));
 const sensitivityByUrn = sensitivityFile.clauses;
 
+// --- verified citations for states with no adapter yet ---
+// Some citations cannot be derived from the URN: New Hampshire articles have no sections,
+// and a superseded constitution needs its year. The verification record carries the
+// authoritative display string, so a human-checked citation always beats a derived one.
+const verifiedCitations = {};
+if (existsSync('data/seed/citation-verification.json')) {
+  const record = JSON.parse(readFileSync('data/seed/citation-verification.json', 'utf8'));
+  for (const entry of record.verified ?? []) {
+    if (entry.urn && entry.citation) verifiedCitations[entry.urn] = entry.citation;
+  }
+}
+
 // --- clauses: sample corpus first, then URN-derived stubs for anything still missing ---
 const sample = JSON.parse(readFileSync('data/seed/mo/clauses.sample.json', 'utf8'));
 const clauses = {};
@@ -128,7 +140,7 @@ for (const node of nodes.values()) {
       clauses[ref] = {
         urn: ref,
         state: URN_RE.exec(ref)?.[1]?.toUpperCase() ?? '??',
-        citation: citationFromUrn(ref),
+        citation: verifiedCitations[ref] ?? citationFromUrn(ref),
         heading: null,
         text: null,
         text_status: 'unfetched',
@@ -158,7 +170,7 @@ if (existsSync('data/published')) {
         clauses[published.urn] = {
           urn: published.urn,
           state: published.state,
-          citation: citationFromUrn(published.urn),
+          citation: verifiedCitations[published.urn] ?? citationFromUrn(published.urn),
           heading: published.article?.heading ?? null,
           text: null,
           text_status: 'unfetched',

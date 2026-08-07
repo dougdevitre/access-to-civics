@@ -27,12 +27,6 @@
     "urn:const:us:mo:art-08:sec-02": {
       "sensitivity": "none"
     },
-    "urn:const:us:va:art-02:sec-01": {
-      "sensitivity": "historical_harm",
-      "note": "Property-based suffrage restriction. The history of who was excluded from voting (by property, race, and sex) requires adult framing.",
-      "mediated_8_10": true,
-      "teacher_note_8_10": "This rule has a hard history. Rules like it kept many people from voting for a long time. Your teacher can tell you more."
-    },
     "urn:const:us:mo:art-01:sec-05": {
       "sensitivity": "teacher_mediated",
       "note": "Religious freedom clause as amended 2012, including right-to-pray and school provisions. Faith content benefits from adult framing in the younger band.",
@@ -62,6 +56,12 @@
     },
     "urn:const:us:nh:art-100:sec-01": {
       "sensitivity": "none"
+    },
+    "urn:const:us:va:art-03:sec-14": {
+      "sensitivity": "historical_harm",
+      "note": "1830 Virginia freehold franchise. The clause restricted voting by property, race and sex; it needs adult framing and never renders raw for the youngest band.",
+      "mediated_8_10": true,
+      "teacher_note_8_10": "This is an old rule from long ago. It let only some men vote. Your teacher can tell you more."
     }
   }
 }

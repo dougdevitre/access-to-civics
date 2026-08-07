@@ -116,9 +116,30 @@ describe('demo bundle', () => {
   });
 
   it('flags the Virginia landowner-suffrage clause as historical harm', () => {
-    const va = bundle.clauses['urn:const:us:va:art-02:sec-01'];
+    const va = bundle.clauses['urn:const:us:va:art-03:sec-14'];
     expect(va?.sensitivity).toBe('historical_harm');
     expect(va?.mediated_8_10).toBe(true);
+    // It must cite the 1830 constitution that actually had a freehold franchise, not the
+    // modern Article II Section 1, which sets universal adult suffrage.
+    expect(va?.citation).toContain('1830');
+    expect(bundle.clauses['urn:const:us:va:art-02:sec-01']).toBeUndefined();
+  });
+
+  it('carries a human-verified citation for every clause from an un-ingested state', () => {
+    const record = JSON.parse(readFileSync('data/seed/citation-verification.json', 'utf8')) as {
+      verified: { urn: string; citation: string }[];
+    };
+    const verified = new Map(record.verified.map((v) => [v.urn, v.citation]));
+    for (const d of bundle.decisions) {
+      for (const o of d.options) {
+        for (const ref of o.clause_refs) {
+          const clause = bundle.clauses[ref];
+          if (clause?.text !== null) continue; // ingested: provenance covers it
+          expect(verified.has(ref), `${ref} cited with no verification record`).toBe(true);
+          expect(clause?.citation).toBe(verified.get(ref));
+        }
+      }
+    }
   });
 
   it('carries the D02-B ref the old CSV parser silently dropped', () => {

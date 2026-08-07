@@ -1,41 +1,94 @@
 {
-  "$comment": "Audit trail for clause citations that are referenced by decision nodes but whose state has no ingest adapter yet. These clauses render as honest 'text pending' cards — the app never shows words for them — but the citation itself must still be right, because a child sees it and a teacher may follow the link. Each entry records how the citation was verified and when. When a state's adapter lands, its entries move to the published corpus and this record becomes the pre-ingest history.",
+  "$comment": "Audit trail AND display source of truth for clause citations whose state has no ingest adapter yet. These clauses render as honest 'text pending' cards \u2014 the app never shows words for them \u2014 but the citation itself must be right, because a child sees it and a teacher may follow it. The bundle builder uses the `citation` string here in preference to the one it derives mechanically from the URN, because some citations cannot be derived: New Hampshire articles have no sections, and a superseded constitution needs its year. Each entry records how it was verified and when.",
   "verified": [
     {
-      "urn": "urn:const:us:fl:art-11:sec-05e",
-      "citation": "Florida Constitution, Article XI, Section 5(e)",
-      "subject": "60% voter approval required for a constitutional amendment",
+      "urn": "urn:const:us:de:art-16:sec-01",
+      "citation": "Delaware Constitution, Article XVI, Section 1",
+      "subject": "amendment by two successive legislatures, with no popular ratification vote",
       "verified_on": "2026-08-07",
-      "method": "web research against flsenate.gov (official) and secondary mirrors; page fetch was blocked from the build environment, so the quote was corroborated across independent search extractions rather than retrieved first-party",
+      "method": "web research against official Delaware code and mirrors; page fetch blocked from the build environment, corroborated across independent search extractions",
       "sources": [
-        "https://www.flsenate.gov/laws/constitution",
-        "https://codes.findlaw.com/fl/florida-constitution1968-revision/fl-const-art-11-sect-5/"
+        "https://delcode.delaware.gov/constitution/constitution-17.html",
+        "https://codes.findlaw.com/de/constitution-of-the-state-of-delaware/de-const-art-16-sect-1/"
       ],
-      "caveat": "The 60% rule is the general threshold. Article XI, Section 7 requires two-thirds for amendments imposing a new state tax or fee. The game option is written as the general rule, not as an absolute."
+      "caveat": "Delaware is the only state where the legislature amends the constitution without a vote of the people. Article XVI Section 2 provides a convention route, also legislature-initiated; neither is a citizen initiative."
+    },
+    {
+      "urn": "urn:const:us:ca:art-02:sec-08",
+      "citation": "California Constitution, Article II, Section 8",
+      "subject": "the citizen initiative power",
+      "verified_on": "2026-08-07",
+      "method": "web research against Justia and official mirrors; page fetch blocked, corroborated across independent search extractions",
+      "sources": [
+        "https://law.justia.com/constitution/california/article-ii/section-8/"
+      ],
+      "caveat": null
+    },
+    {
+      "urn": "urn:const:us:tx:art-05:sec-02",
+      "citation": "Texas Constitution, Article V, Section 2",
+      "subject": "election of Supreme Court justices by the qualified voters",
+      "verified_on": "2026-08-07",
+      "method": "web research against the official Texas statutes PDF and Justia; page fetch blocked, corroborated across independent search extractions",
+      "sources": [
+        "https://statutes.capitol.texas.gov/Docs/CN/pdf/CN.5/CN.5.2.pdf",
+        "https://law.justia.com/constitution/texas/sections/cn000500-000200.html"
+      ],
+      "caveat": "Section 2 elects the Supreme Court specifically. Texas elects its other courts under Sections 4, 6, 7, 15 and 18; Section 7 (district judges) would broaden the support if the option is ever reworded beyond the high court."
+    },
+    {
+      "urn": "urn:const:us:nh:art-83:sec-01",
+      "citation": "New Hampshire Constitution, Part Second, Article 83",
+      "subject": "the state duty to cherish public schools (Encouragement of Literature)",
+      "verified_on": "2026-08-07",
+      "method": "web research against nh.gov, Justia, and the Claremont line of cases; page fetch blocked, corroborated across independent search extractions",
+      "sources": [
+        "https://www.nh.gov/glance/state-constitution/encouragement-literature-trade-etc",
+        "https://law.justia.com/cases/new-hampshire/supreme-court/1997/school.html"
+      ],
+      "caveat": "CORRECTED 2026-08-07. This clause was previously attached to the local-funding option, which inverted it. Claremont v. Governor (1997, 2002) holds that Article 83 places the duty to fund an adequate education on the STATE, and struck down reliance on local property taxes. It belongs with the state-funding option, alongside Missouri Article IX Section 1(a). New Hampshire articles have no sections; the URN carries a sec- component only because the URN grammar requires one."
     },
     {
       "urn": "urn:const:us:nh:art-100:sec-01",
       "citation": "New Hampshire Constitution, Part Second, Article 100",
       "subject": "two-thirds of voters required to ratify a constitutional amendment",
       "verified_on": "2026-08-07",
-      "method": "web research against nh.gov and Justia; page fetch blocked from the build environment, corroborated across independent search extractions",
+      "method": "web research against nh.gov and Justia; page fetch blocked, corroborated across independent search extractions",
       "sources": [
         "https://www.nh.gov/glance/state-constitution/part-2-oaths-and-subscriptions-exclusion-offices",
         "https://law.justia.com/constitution/new-hampshire/"
       ],
-      "caveat": "Two-thirds is the ratification threshold at the polls. The three-fifths figure sometimes quoted is the separate legislative threshold for proposing an amendment."
+      "caveat": "Two-thirds is the ratification threshold at the polls. The three-fifths figure sometimes quoted is the separate legislative threshold for proposing. New Hampshire articles have no sections; the URN carries a sec- component only because the grammar requires one."
+    },
+    {
+      "urn": "urn:const:us:fl:art-11:sec-05e",
+      "citation": "Florida Constitution, Article XI, Section 5(e)",
+      "subject": "60% voter approval required for a constitutional amendment",
+      "verified_on": "2026-08-07",
+      "method": "web research against flsenate.gov and mirrors; page fetch blocked, corroborated across independent search extractions",
+      "sources": [
+        "https://www.flsenate.gov/laws/constitution",
+        "https://codes.findlaw.com/fl/florida-constitution1968-revision/fl-const-art-11-sect-5/"
+      ],
+      "caveat": "The 60% rule is the general threshold. Article XI Section 7 requires two-thirds for amendments imposing a new state tax or fee."
+    },
+    {
+      "urn": "urn:const:us:va:art-03:sec-14",
+      "citation": "Virginia Constitution of 1830, Article III, Section 14 (superseded)",
+      "subject": "freehold property qualification for voting",
+      "verified_on": "2026-08-07",
+      "method": "web research against archival transcriptions of the 1830 Virginia constitution; page fetch blocked, corroborated across independent search extractions",
+      "sources": [
+        "https://archive.wvculture.org/hiStory/government/1830constitution01a.html",
+        "https://vagovernmentmatters.org/primary-sources/518.html"
+      ],
+      "caveat": "REPLACES urn:const:us:va:art-02:sec-01, which was WRONG: the modern Article II Section 1 sets universal adult suffrage (citizen, eighteen, resident) and contains no property qualification, so it was being cited as authority for the opposite of what it says. The 1830 constitution is the honest source for a freehold franchise; Virginia was the last state to drop one, in 1851. The URN is undated because the exact effective date was not verified \u2014 the vintage is carried in the citation string instead. The clause also restricted the franchise by race and sex, which is why it is flagged historical_harm and never renders raw for the 8-10 band."
     }
   ],
   "unverified": [
     {
-      "$note": "Referenced by seed decisions since the original scaffold, not yet re-verified in this session. Each renders as a pending card with no text. Verify before any classroom pilot.",
-      "urns": [
-        "urn:const:us:de:art-16:sec-01",
-        "urn:const:us:ca:art-02:sec-08",
-        "urn:const:us:tx:art-05:sec-02",
-        "urn:const:us:nh:art-83:sec-01",
-        "urn:const:us:va:art-02:sec-01"
-      ]
+      "$note": "All previously-inherited citations have now been verified. Any future ref added without an entry above should be treated as unverified until checked.",
+      "urns": []
     }
   ]
 }

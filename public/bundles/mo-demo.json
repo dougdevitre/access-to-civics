@@ -187,7 +187,7 @@
           "label": "Only people who own land",
           "label_8_10": "Only people who own land",
           "clause_refs": [
-            "urn:const:us:va:art-02:sec-01"
+            "urn:const:us:va:art-03:sec-14"
           ],
           "favors": [
             "landowners"
@@ -579,7 +579,7 @@
     "urn:const:us:de:art-16:sec-01": {
       "urn": "urn:const:us:de:art-16:sec-01",
       "state": "DE",
-      "citation": "Delaware Constitution, Article 16, Section 1",
+      "citation": "Delaware Constitution, Article XVI, Section 1",
       "heading": null,
       "text": null,
       "text_status": "unfetched",
@@ -589,7 +589,7 @@
     "urn:const:us:ca:art-02:sec-08": {
       "urn": "urn:const:us:ca:art-02:sec-08",
       "state": "CA",
-      "citation": "California Constitution, Article 2, Section 8",
+      "citation": "California Constitution, Article II, Section 8",
       "heading": null,
       "text": null,
       "text_status": "unfetched",
@@ -599,7 +599,7 @@
     "urn:const:us:tx:art-05:sec-02": {
       "urn": "urn:const:us:tx:art-05:sec-02",
       "state": "TX",
-      "citation": "Texas Constitution, Article 5, Section 2",
+      "citation": "Texas Constitution, Article V, Section 2",
       "heading": null,
       "text": null,
       "text_status": "unfetched",
@@ -624,24 +624,24 @@
     "urn:const:us:nh:art-83:sec-01": {
       "urn": "urn:const:us:nh:art-83:sec-01",
       "state": "NH",
-      "citation": "New Hampshire Constitution, Article 83, Section 1",
+      "citation": "New Hampshire Constitution, Part Second, Article 83",
       "heading": null,
       "text": null,
       "text_status": "unfetched",
       "source_url": null,
       "sensitivity": "none"
     },
-    "urn:const:us:va:art-02:sec-01": {
-      "urn": "urn:const:us:va:art-02:sec-01",
+    "urn:const:us:va:art-03:sec-14": {
+      "urn": "urn:const:us:va:art-03:sec-14",
       "state": "VA",
-      "citation": "Virginia Constitution, Article 2, Section 1",
+      "citation": "Virginia Constitution of 1830, Article III, Section 14 (superseded)",
       "heading": null,
       "text": null,
       "text_status": "unfetched",
       "source_url": null,
       "sensitivity": "historical_harm",
       "mediated_8_10": true,
-      "teacher_note_8_10": "This rule has a hard history. Rules like it kept many people from voting for a long time. Your teacher can tell you more."
+      "teacher_note_8_10": "This is an old rule from long ago. It let only some men vote. Your teacher can tell you more."
     },
     "urn:const:us:mo:art-08:sec-02": {
       "urn": "urn:const:us:mo:art-08:sec-02",
@@ -676,7 +676,7 @@
     "urn:const:us:fl:art-11:sec-05e": {
       "urn": "urn:const:us:fl:art-11:sec-05e",
       "state": "FL",
-      "citation": "Florida Constitution, Article 11, Section 5e",
+      "citation": "Florida Constitution, Article XI, Section 5(e)",
       "heading": null,
       "text": null,
       "text_status": "unfetched",
@@ -686,7 +686,7 @@
     "urn:const:us:nh:art-100:sec-01": {
       "urn": "urn:const:us:nh:art-100:sec-01",
       "state": "NH",
-      "citation": "New Hampshire Constitution, Article 100, Section 1",
+      "citation": "New Hampshire Constitution, Part Second, Article 100",
       "heading": null,
       "text": null,
       "text_status": "unfetched",

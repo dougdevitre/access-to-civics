@@ -54,9 +54,10 @@ test('ages 8-10 class mode: full playthrough with mediated history card', async 
       await expectNoSeriousViolations(page, '8-10 mirror');
     }
     if (node === 3) {
-      // The Virginia landowner clause never renders raw for 8-10.
-      await expect(page.getByText(/hard history/i)).toBeVisible();
-      await expect(page.getByText(/Virginia Constitution/)).toBeVisible();
+      // The Virginia freehold clause never renders raw for 8-10, and the citation points at
+      // the 1830 constitution that actually had one — not the modern universal-suffrage clause.
+      await expect(page.getByText(/old rule from long ago/i)).toBeVisible();
+      await expect(page.getByText(/Virginia Constitution of 1830/)).toBeVisible();
     }
     await page.getByRole('button', { name: 'Next question' }).click();
   }

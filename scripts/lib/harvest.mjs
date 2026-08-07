@@ -141,14 +141,25 @@ export async function harvestState({ state, sectionUrl, fileFor, render = false 
     );
     if (status !== 200) failures++;
     if (!markerFound) {
-      console.warn(`[harvest] WARNING: expected marker "${target.expect}" not found in ${file}`);
+      // A failure, not a warning. Every source so far has had a way of answering 200 with
+      // something that is not the document: an application shell (Texas), an empty body for a
+      // bad id (Nebraska), the wrong article at a correct-looking URL (Delaware). The marker is
+      // the only check that catches all three, so it has to be able to stop the harvest — this
+      // used to warn, and three Texas shells were committed as provenance because of it. The
+      // artifact still uploads on failure, so a bad harvest is diagnosable without a re-run.
+      console.error(
+        `[harvest] FAILED: expected marker "${target.expect}" not found in ${file} — ` +
+          `${Buffer.byteLength(body)} bytes fetched from ${url}. These bytes are not the document; ` +
+          `fix the URL or the marker rather than committing them.`,
+      );
+      failures++;
     }
     await sleep(1500);
   }
 
   writeFileSync(`${rawDir}/manifest.json`, JSON.stringify(manifest, null, 2) + '\n');
   console.log(
-    `[harvest] wrote ${rawDir}/manifest.json (${manifest.documents.length} documents, ${failures} HTTP failure(s))`,
+    `[harvest] wrote ${rawDir}/manifest.json (${manifest.documents.length} documents, ${failures} failure(s))`,
   );
   return failures;
 }

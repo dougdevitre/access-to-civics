@@ -78,6 +78,10 @@ the manifest. Your script supplies only the URL for a target. Options worth know
 The workflow commits the raw bytes to `ingest/<st>-raw` with a sha256 manifest. That is the L0
 layer, and it is what every later claim is anchored to.
 
+**A missing marker fails the harvest** and nothing is committed. If that happens, the run still
+uploads what it fetched as an artifact, so you can look at the bytes and decide whether the URL
+was wrong or the marker was. Do not weaken the marker to get past it.
+
 ## Step 3 — Write the adapter (L1)
 
 `src/ingest/adapters/` has three worked models. Pick the closest:

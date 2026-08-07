@@ -25,5 +25,12 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      # The probe only needs a browser when no candidate URL returns the document, and
+      # scripts/lib/probe.mjs already degrades gracefully when the import fails. So this must
+      # never be able to gate the probe: --with-deps shells out to apt and has wedged for
+      # 40+ minutes on a runner, which cost a whole diagnostic round trip.
+      - name: Install browser (best effort; the probe runs without it)
+        run: npx playwright install chromium
+        continue-on-error: true
+        timeout-minutes: 5
       - run: node scripts/probe-${{ inputs.state }}.mjs

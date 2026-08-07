@@ -50,7 +50,7 @@ Per the Access To convention, pillars get their own repos; the pieces *inside* a
 ```
 access-to-civics/
 ├── index.html · vite.config.ts · tsconfig.json · package.json
-├── docs/                    Design, KB model, compliance, roadmap, ADRs
+├── docs/                    Design, KB model, compliance, roadmap, adding a state, ADRs
 ├── data/
 │   ├── taxonomy/            Controlled topic vocabulary
 │   └── seed/                Decision nodes, goal cards, citizen letters, sample clause records
@@ -135,7 +135,7 @@ your help:
 | Check a citation | `data/seed/citation-verification.json` lists every un-ingested citation with sources, reasoning, and caveats |
 | Correct a framing | A citation can be accurate and still misrepresent what a provision means in practice. This is the harder failure and the one we most need help with. |
 | Flag a clause needing care | `data/seed/clause-sensitivity.json` — some history needs adult framing before a child reads it |
-| Add your state | `src/ingest/adapters/` has three worked models, about a hundred lines each |
+| Add your state | `docs/08-adding-a-state.md` is the recipe; `src/ingest/adapters/` has three worked models, about a hundred lines each |
 
 Open an issue and we will credit you unless you'd rather we didn't. The one thing we cannot
 accept is constitutional text by email or hand-typed: words enter only through the pipeline,

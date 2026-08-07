@@ -167,7 +167,7 @@ export function GrownUps() {
         </li>
         <li>
           <strong>Contribute an adapter for your state</strong> so its real words can appear.
-          The three we have are about a hundred lines each, and every state is welcome.
+          The three we have are about a hundred lines each, there is a written recipe in the repository, and every state is welcome.
         </li>
       </ul>
       <p>

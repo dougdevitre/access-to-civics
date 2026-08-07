@@ -167,6 +167,18 @@ function Game({
   const classMode = band === '8-10';
   const decisions = bundle.decisions;
   const node = decisions[state.nodeIndex];
+  // Class mode confirms each single tap; delegate mode shows a pass-the-device card
+  // between seats so one kid can't accidentally vote for the next.
+  const [pendingChoice, setPendingChoice] = useState<string | null>(null);
+  const [handoff, setHandoff] = useState(false);
+
+  // Clear per-question interaction state when the question changes. Deliberately NOT on
+  // phase change: the pass-the-device card must survive the round-1 -> round-2 boundary,
+  // where the device is with the last voter and seat 1 votes next.
+  useEffect(() => {
+    setPendingChoice(null);
+    setHandoff(false);
+  }, [state.nodeIndex]);
 
   const begin = (seatCount: number) => {
     const seats: Seat[] = classMode
@@ -203,6 +215,15 @@ function Game({
         phase: 'mirror',
       };
     });
+  };
+
+  const chooseOption = (optionId: string) => {
+    if (classMode) {
+      setPendingChoice(optionId);
+      return;
+    }
+    castVote(optionId);
+    setHandoff(true);
   };
 
   const revoteAfterTie = () => {
@@ -288,13 +309,26 @@ function Game({
       <p className="eyebrow">
         {copy.questionEyebrow(state.nodeIndex + 1, decisions.length, topicLabelFor(bundle, node.topic, band))}
       </p>
+      <ProgressDots current={state.nodeIndex} total={decisions.length} done={false} />
       <h1 ref={headingRef} tabIndex={-1}>{prompt}</h1>
 
       {state.phase === 'draft' && seat && (
         <>
           <h2>{copy.vote1Heading}</h2>
           <p>{copy.vote1Intro}</p>
-          <VotePanel node={node} band={band} copy={copy} seat={seat} classMode={classMode} onVote={castVote} />
+          <VoteFlow
+            node={node}
+            band={band}
+            copy={copy}
+            seat={seat}
+            classMode={classMode}
+            handoff={handoff}
+            onHandoffDone={() => setHandoff(false)}
+            pendingChoice={pendingChoice}
+            onChoose={chooseOption}
+            onLockIn={(id) => { castVote(id); setPendingChoice(null); }}
+            onRedo={() => setPendingChoice(null)}
+          />
         </>
       )}
 
@@ -303,7 +337,19 @@ function Game({
           <TallyBoard node={node} band={band} copy={copy} state={state} />
           <h2>{copy.vote2Heading}</h2>
           <p>{copy.vote2Intro}</p>
-          <VotePanel node={node} band={band} copy={copy} seat={seat} classMode={classMode} onVote={castVote} />
+          <VoteFlow
+            node={node}
+            band={band}
+            copy={copy}
+            seat={seat}
+            classMode={classMode}
+            handoff={handoff}
+            onHandoffDone={() => setHandoff(false)}
+            pendingChoice={pendingChoice}
+            onChoose={chooseOption}
+            onLockIn={(id) => { castVote(id); setPendingChoice(null); }}
+            onRedo={() => setPendingChoice(null)}
+          />
         </>
       )}
 
@@ -331,7 +377,7 @@ function Game({
       )}
 
       <TrickyWords node={node} band={band} copy={copy} />
-      <p aria-live="polite" className="eyebrow">{copy.phaseName(state.phase)}</p>
+      <p aria-live="polite" className="sr-only">{copy.phaseName(state.phase)}</p>
     </>
   );
 }
@@ -367,21 +413,69 @@ function SetupControls({
   );
 }
 
-function VotePanel({
+function ProgressDots({ current, total, done }: { current: number; total: number; done: boolean }) {
+  return (
+    <div className="dots" aria-hidden="true">
+      {Array.from({ length: total }, (_, i) => (
+        <span
+          key={i}
+          className={done || i < current ? 'dot dot-done' : i === current ? 'dot dot-now' : 'dot'}
+        />
+      ))}
+    </div>
+  );
+}
+
+function VoteFlow({
   node,
   band,
   copy,
   seat,
   classMode,
-  onVote,
+  handoff,
+  onHandoffDone,
+  pendingChoice,
+  onChoose,
+  onLockIn,
+  onRedo,
 }: {
   node: BundleDecision;
   band: Band;
   copy: Copy;
   seat: Seat;
   classMode: boolean;
-  onVote: (optionId: string) => void;
+  handoff: boolean;
+  onHandoffDone: () => void;
+  pendingChoice: string | null;
+  onChoose: (optionId: string) => void;
+  onLockIn: (optionId: string) => void;
+  onRedo: () => void;
 }) {
+  if (!classMode && handoff) {
+    return (
+      <section className="handoff" aria-label={copy.handoffTitle(seat.index + 1, seat.constituency)}>
+        <p><strong>{copy.handoffTitle(seat.index + 1, seat.constituency)}</strong></p>
+        <div className="options">
+          <button type="button" onClick={onHandoffDone}>{copy.handoffReady}</button>
+        </div>
+      </section>
+    );
+  }
+
+  if (classMode && pendingChoice) {
+    const chosen = node.options.find((o) => o.option_id === pendingChoice);
+    const chosenLabel = chosen ? labelFor(chosen, band) : '';
+    return (
+      <section className="handoff" aria-label={`${copy.confirmPick} ${chosenLabel}`}>
+        <p><strong>{copy.confirmPick} {chosenLabel}</strong></p>
+        <div className="options">
+          <button type="button" onClick={() => onLockIn(pendingChoice)}>{copy.lockIn}</button>
+          <button type="button" onClick={onRedo}>{copy.redo}</button>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section aria-label={copy.seatEyebrow(seat.index + 1, seat.constituency)}>
       {!classMode && (
@@ -393,9 +487,9 @@ function VotePanel({
           </details>
         </>
       )}
-      <div className="options">
+      <div className="options vote-options">
         {node.options.map((o) => (
-          <button key={o.option_id} type="button" onClick={() => onVote(o.option_id)}>
+          <button key={o.option_id} type="button" onClick={() => onChoose(o.option_id)}>
             {labelFor(o, band)}
           </button>
         ))}
@@ -426,6 +520,11 @@ function TallyBoard({
           return (
             <li key={o.option_id}>
               <strong>{label}</strong> — {copy.voteCount(n)}
+              <span className="meter" aria-hidden="true">
+                {Array.from({ length: state.seats.length }, (_, i) => (
+                  <span key={i} className={i < n ? 'meter-unit filled' : 'meter-unit'} />
+                ))}
+              </span>
               {o.favors.length > 0 && (
                 <span className="chip favors">{copy.helps}: {o.favors.join(', ')}</span>
               )}
@@ -630,9 +729,22 @@ function RatifyScreen({
 }) {
   const seatIndex = (votesSoFar.yes + votesSoFar.no) % state.seats.length;
   const seat = state.seats[seatIndex];
+  const [pending, setPending] = useState<boolean | null>(null);
+  const [handoff, setHandoff] = useState(false);
+
+  const choose = (yes: boolean) => {
+    if (classMode) {
+      setPending(yes);
+      return;
+    }
+    onVote(yes);
+    setHandoff(true);
+  };
+
   return (
     <>
       <p className="eyebrow">{copy.phaseName('ratify')}</p>
+      <ProgressDots current={bundle.decisions.length} total={bundle.decisions.length} done />
       <h1 ref={headingRef} tabIndex={-1}>{copy.ratifyTitle}</h1>
       <p>{copy.ratifyIntro}</p>
       <ul className="tally">
@@ -645,12 +757,29 @@ function RatifyScreen({
           );
         })}
       </ul>
-      {seat && (
+      {seat && !classMode && handoff && (
+        <section className="handoff" aria-label={copy.handoffTitle(seat.index + 1, seat.constituency)}>
+          <p><strong>{copy.handoffTitle(seat.index + 1, seat.constituency)}</strong></p>
+          <div className="options">
+            <button type="button" onClick={() => setHandoff(false)}>{copy.handoffReady}</button>
+          </div>
+        </section>
+      )}
+      {seat && classMode && pending !== null && (
+        <section className="handoff" aria-label={`${copy.confirmPick} ${pending ? copy.ratifyYes : copy.ratifyNo}`}>
+          <p><strong>{copy.confirmPick} {pending ? copy.ratifyYes : copy.ratifyNo}</strong></p>
+          <div className="options">
+            <button type="button" onClick={() => { onVote(pending); setPending(null); }}>{copy.lockIn}</button>
+            <button type="button" onClick={() => setPending(null)}>{copy.redo}</button>
+          </div>
+        </section>
+      )}
+      {seat && !(!classMode && handoff) && !(classMode && pending !== null) && (
         <section aria-label={copy.seatEyebrow(seat.index + 1, seat.constituency)}>
           {!classMode && <p className="eyebrow">{copy.seatEyebrow(seat.index + 1, seat.constituency)}</p>}
-          <div className="options">
-            <button type="button" onClick={() => onVote(true)}>{copy.ratifyYes}</button>
-            <button type="button" onClick={() => onVote(false)}>{copy.ratifyNo}</button>
+          <div className="options vote-options">
+            <button type="button" onClick={() => choose(true)}>{copy.ratifyYes}</button>
+            <button type="button" onClick={() => choose(false)}>{copy.ratifyNo}</button>
           </div>
         </section>
       )}
@@ -680,32 +809,66 @@ function CharterScreen({
     (sum, d) => sum + mindChangeCount(state.votes, d.node_id),
     0,
   );
+  const adoptedDate = new Date().toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
   return (
     <>
-      <p className="eyebrow">{copy.phaseName('charter')}</p>
-      {state.ratified ? (
-        <>
+      <div className="no-print">
+        <p className="eyebrow">{copy.phaseName('charter')}</p>
+        {state.ratified ? (
           <h1 ref={headingRef} tabIndex={-1}>{copy.ratifiedTitle}</h1>
-          <p className="seal">{copy.ratifiedSeal}</p>
-        </>
-      ) : (
-        <>
-          <h1 ref={headingRef} tabIndex={-1}>{copy.notRatifiedTitle}</h1>
-          <p>{copy.notRatifiedBody}</p>
-        </>
+        ) : (
+          <>
+            <h1 ref={headingRef} tabIndex={-1}>{copy.notRatifiedTitle}</h1>
+            <p>{copy.notRatifiedBody}</p>
+          </>
+        )}
+      </div>
+      {state.ratified && (
+        <section className="charter-doc" aria-label={copy.charterDocTitle(bundle.state_name)}>
+          <p className="seal seal-mark" aria-hidden="true">⬤</p>
+          <h2>{copy.charterDocTitle(bundle.state_name)}</h2>
+          <p className="eyebrow">{adoptedDate}</p>
+          <ol className="articles">
+            {bundle.decisions.map((d, i) => {
+              const adopted = d.options.find((o) => o.option_id === state.adopted[d.node_id]);
+              return (
+                <li key={d.node_id}>
+                  <span className="eyebrow">{copy.articleLabel(i + 1)} · {promptFor(d, band)}</span>
+                  <strong>{adopted ? labelFor(adopted, band) : copy.undecided}</strong>
+                </li>
+              );
+            })}
+          </ol>
+          <p>{copy.mindSummary(totalChanged)}</p>
+          <p className="eyebrow">{copy.signedLine}</p>
+          <div className="signatures" aria-hidden="true">
+            {state.seats.map((seat) => (
+              <span key={seat.index} className="signature-line" />
+            ))}
+          </div>
+        </section>
       )}
-      <ul className="tally">
-        {bundle.decisions.map((d) => {
-          const adopted = d.options.find((o) => o.option_id === state.adopted[d.node_id]);
-          return (
-            <li key={d.node_id}>
-              <strong>{promptFor(d, band)}</strong> — {adopted ? labelFor(adopted, band) : copy.undecided}
-            </li>
-          );
-        })}
-      </ul>
-      <p>{copy.mindSummary(totalChanged)}</p>
-      <div className="options">
+      {!state.ratified && (
+        <ul className="tally">
+          {bundle.decisions.map((d) => {
+            const adopted = d.options.find((o) => o.option_id === state.adopted[d.node_id]);
+            return (
+              <li key={d.node_id}>
+                <strong>{promptFor(d, band)}</strong> — {adopted ? labelFor(adopted, band) : copy.undecided}
+              </li>
+            );
+          })}
+        </ul>
+      )}
+      {!state.ratified && <p>{copy.mindSummary(totalChanged)}</p>}
+      <div className="options no-print">
+        {state.ratified && (
+          <button type="button" onClick={() => window.print()}>{copy.printCharter}</button>
+        )}
         <button type="button" onClick={onReset}>{copy.playAgain}</button>
       </div>
     </>

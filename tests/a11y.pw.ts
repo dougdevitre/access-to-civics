@@ -38,9 +38,12 @@ test('ages 8-10 class mode: full playthrough with mediated history card', async 
 
   for (let node = 0; node < 4; node++) {
     const pick = picks[node]!;
-    await page.getByRole('button', { name: pick }).click(); // vote 1
+    await page.getByRole('button', { name: pick }).click(); // vote 1: pick
+    await expect(page.getByText(/You picked/)).toBeVisible();
+    await page.getByRole('button', { name: 'Lock it in' }).click(); // vote 1: confirm
     await expect(page.getByText(/help or hurt/i)).toBeVisible();
-    await page.getByRole('button', { name: pick }).click(); // vote 2
+    await page.getByRole('button', { name: pick }).click(); // vote 2: pick
+    await page.getByRole('button', { name: 'Lock it in' }).click(); // vote 2: confirm
     await expect(page.getByRole('heading', { name: 'What real states did' })).toBeVisible();
     if (node === 0) {
       await expect(page.getByText('A letter to your convention')).toBeVisible();
@@ -57,7 +60,10 @@ test('ages 8-10 class mode: full playthrough with mediated history card', async 
 
   await expect(page.getByRole('heading', { name: 'Do you keep your rules?' })).toBeVisible();
   await page.getByRole('button', { name: 'Yes — keep our rules' }).click();
+  await page.getByRole('button', { name: 'Lock it in' }).click();
   await expect(page.getByRole('heading', { name: 'You did it.' })).toBeVisible();
+  await expect(page.getByText('The Rules of Missouri')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Print your rules' })).toBeVisible();
   await expectNoSeriousViolations(page, '8-10 charter');
 });
 
@@ -81,11 +87,16 @@ test('ages 11-14 delegate mode: full playthrough with leaving notice', async ({ 
   ];
 
   for (let node = 0; node < 4; node++) {
-    for (let round = 0; round < 2; round++) {
-      for (let seat = 0; seat < 3; seat++) {
-        // Seat 0 starts on A and switches — one mind-change per question.
-        const name = round === 0 && seat === 0 ? optionA[node]! : optionB[node]!;
-        await page.getByRole('button', { name, exact: true }).click();
+    for (let vote = 0; vote < 6; vote++) {
+      const round = Math.floor(vote / 3);
+      const seat = vote % 3;
+      // Seat 0 starts on A and switches — one mind-change per question.
+      const name = round === 0 && seat === 0 ? optionA[node]! : optionB[node]!;
+      await page.getByRole('button', { name, exact: true }).click();
+      if (vote < 5) {
+        // Pass-the-device card guards every next voter.
+        await expect(page.getByText(/Pass the device to Seat/)).toBeVisible();
+        await page.getByRole('button', { name: 'Ready to vote' }).click();
       }
     }
     await expect(page.getByRole('heading', { name: 'What real states did' })).toBeVisible();
@@ -106,10 +117,14 @@ test('ages 11-14 delegate mode: full playthrough with leaving notice', async ({ 
     page.getByRole('heading', { name: 'Do you ratify this constitution?' }),
   ).toBeVisible();
   await page.getByRole('button', { name: 'Ratify', exact: true }).click();
+  await page.getByRole('button', { name: 'Ready to vote' }).click();
   await page.getByRole('button', { name: 'Ratify', exact: true }).click();
+  await page.getByRole('button', { name: 'Ready to vote' }).click();
   await page.getByRole('button', { name: 'Reject', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Ratified.' })).toBeVisible();
+  await expect(page.getByText('The Charter of Missouri')).toBeVisible();
   await expect(page.getByText(/4 votes changed/)).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Print the charter' })).toBeVisible();
 });
 
 test('trust pages are reachable and accessible', async ({ page }) => {

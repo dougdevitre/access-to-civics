@@ -60,6 +60,15 @@ export interface Copy {
   seatEyebrow: (n: number, constituency: string) => string;
   phaseName: (phase: string) => string;
   trickyWords: string;
+  handoffTitle: (n: number, constituency: string) => string;
+  handoffReady: string;
+  confirmPick: string;
+  lockIn: string;
+  redo: string;
+  printCharter: string;
+  charterDocTitle: (stateName: string) => string;
+  articleLabel: (n: number) => string;
+  signedLine: string;
 }
 
 const PHASE_NAMES_KID: Record<string, string> = {
@@ -135,6 +144,15 @@ export const COPY: Record<Band, Copy> = {
     seatEyebrow: (n, constituency) => `Group ${n} · ${constituency}`,
     phaseName: (phase) => PHASE_NAMES_KID[phase] ?? phase,
     trickyWords: 'Tricky words',
+    handoffTitle: (n, constituency) => `Pass it to Group ${n}: ${constituency}.`,
+    handoffReady: 'We have it',
+    confirmPick: 'You picked:',
+    lockIn: 'Lock it in',
+    redo: 'Pick again',
+    printCharter: 'Print your rules',
+    charterDocTitle: (stateName) => `The Rules of ${stateName}`,
+    articleLabel: (n) => `Rule ${n}`,
+    signedLine: 'Signed by our class:',
   },
   '11-14': {
     setupIntro: (n) =>
@@ -193,6 +211,15 @@ export const COPY: Record<Band, Copy> = {
     seatEyebrow: (n, constituency) => `Seat ${n} · ${constituency}`,
     phaseName: (phase) => PHASE_NAMES_TEEN[phase] ?? phase,
     trickyWords: 'Tricky words',
+    handoffTitle: (n, constituency) => `Pass the device to Seat ${n} · ${constituency}.`,
+    handoffReady: 'Ready to vote',
+    confirmPick: 'Your vote:',
+    lockIn: 'Confirm vote',
+    redo: 'Change it',
+    printCharter: 'Print the charter',
+    charterDocTitle: (stateName) => `The Charter of ${stateName}`,
+    articleLabel: (n) => `Article ${n}`,
+    signedLine: 'Signed by the delegates:',
   },
 };
 

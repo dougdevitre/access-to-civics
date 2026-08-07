@@ -20,6 +20,9 @@ const SAMPLE_ARGS: Record<string, unknown[]> = {
   questionEyebrow: [1, 4, 'Schools'],
   seatEyebrow: [1, 'Teachers'],
   phaseName: ['negotiate'],
+  handoffTitle: [2, 'The big city'],
+  charterDocTitle: ['Missouri'],
+  articleLabel: [1],
 };
 
 function realize(key: string, value: unknown): string {

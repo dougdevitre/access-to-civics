@@ -240,7 +240,7 @@
           "label": "A supermajority must say yes",
           "label_8_10": "Way more than half must say yes",
           "clause_refs": [
-            "urn:const:us:fl:art-11:sec-05e",
+            "urn:const:us:fl:art-11:sec-05",
             "urn:const:us:nh:art-100:sec-01"
           ],
           "favors": [
@@ -809,15 +809,21 @@
       "gloss_grade_5": "A change goes to the voters at the next big election. Each change is voted on by itself. If more than half the votes say yes, it starts thirty days later.",
       "gloss_grade_8": "Proposed amendments go on the ballot at the next general election, each voted on separately and each limited to one subject. If a majority of the votes cast on it say yes, it takes effect thirty days later."
     },
-    "urn:const:us:fl:art-11:sec-05e": {
-      "urn": "urn:const:us:fl:art-11:sec-05e",
+    "urn:const:us:fl:art-11:sec-05": {
+      "urn": "urn:const:us:fl:art-11:sec-05",
       "state": "FL",
-      "citation": "Florida Constitution, Article XI, Section 5(e)",
+      "citation": "Florida Constitution, Article XI, Section 5",
       "heading": null,
-      "text": null,
-      "text_status": "unfetched",
-      "source_url": null,
-      "sensitivity": "none"
+      "text": "(a) A proposed amendment to or revision of this constitution, or any part of it, shall be submitted to the electors at the next general election held more than ninety days after the joint resolution or report of revision commission, constitutional convention or taxation and budget reform commission proposing it is filed with the custodian of state records, unless, pursuant to law enacted by the affirmative vote of three-fourths of the membership of each house of the legislature and limited to a single amendment or revision, it is submitted at an earlier special election held more than ninety days after such filing.\n\n(b) A proposed amendment or revision of this constitution, or any part of it, by initiative shall be submitted to the electors at the general election provided the initiative petition is filed with the custodian of state records no later than February 1 of the year in which the general election is held.\n\n(c) The legislature shall provide by general law, prior to the holding of an election pursuant to this section, for the provision of a statement to the public regarding the probable financial impact of any amendment proposed by initiative pursuant to section 3.\n\n(d) Once in the tenth week, and once in the sixth week immediately preceding the week in which the election is held, the proposed amendment or revision, with notice of the date of election at which it will be submitted to the electors, shall be published in one newspaper of general circulation in each county in which a newspaper is published.\n\n(e) Unless otherwise specifically provided for elsewhere in this constitution, if the proposed amendment or revision is approved by vote of at least sixty percent of the electors voting on the measure, it shall be effective as an amendment to or revision of the constitution of the state on the first Tuesday after the first Monday in January following the election, or on such other date as may be specified in the amendment or revision.",
+      "text_status": "fetched",
+      "source_url": "https://www.flsenate.gov/Laws/Constitution",
+      "sensitivity": "none",
+      "section_heading": "Amendment or revision election",
+      "effective_date": null,
+      "citation_url": "https://www.flsenate.gov/Laws/Constitution#A11S05",
+      "source_sha256": "b816e2b83dab6f03bdf1adf90f196609f2ef35e3b250d39ded6de9d992dec637",
+      "gloss_grade_5": "In Florida a change to the rules goes to the voters at the next big election. Part (e) sets the bar. More than half is not enough. At least sixty out of every hundred voters must say yes.",
+      "gloss_grade_8": "This section covers how Florida puts a proposed change to its constitution on the ballot and when it takes effect. Subsection (e) is the part that matters here: a change passes only if at least sixty percent of the people voting on it say yes. A simple majority is not enough."
     },
     "urn:const:us:nh:art-100:sec-01": {
       "urn": "urn:const:us:nh:art-100:sec-01",

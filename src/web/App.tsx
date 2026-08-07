@@ -95,8 +95,8 @@ export default function App() {
     return chrome(
       <div ref={(el) => { headingRef.current = el as unknown as HTMLHeadingElement; }} tabIndex={-1}>
         {view === 'privacy' && <PrivacyPromise />}
-        {view === 'grownups' && <GrownUps />}
-        {view === 'teachers' && <TeachersFamilies />}
+        {view === 'grownups' && <GrownUps bundle={bundle} />}
+        {view === 'teachers' && <TeachersFamilies bundle={bundle} />}
         {view === 'explore' && bundle && <Explore bundle={bundle} band={band ?? '8-10'} />}
       </div>,
     );

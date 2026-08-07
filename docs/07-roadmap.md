@@ -105,4 +105,26 @@ Legislative Counsel's bulk archives — are respectively too fragile to trust an
 commit under the current L0 model. California stays a verified citation with its words pending
 rather than being faked or scraped fragilely.
 
-Remaining Phase-3 stress cases: California (blocked, see above) and Vermont (short).
+**Florida ingested; New Hampshire blocked (2026-08).** Five states, eighteen clauses, and four of
+the six pending Mirror cards are now real text.
+
+Florida is the widest gap yet between the fetched unit and the cited unit — the Senate publishes
+the whole constitution as one 622KB document with fragment anchors, so one fetch and one checksum
+cover every Florida clause we will ever cite. It also exposed a defect that affected every state:
+`htmlToText` decoded decimal character references but not hex, so Florida's `&#x2003;` survived as
+a literal string inside a clause.
+
+New Hampshire is the one we most want and cannot reach. It is the only state cited on two
+different questions. Its General Court site was rebuilt and now soft-404s every constitution path
+(HTTP 200, site chrome, no law), pointing off-site to nh.gov — which returns 403 from Akamai to our
+runner, in a plain fetch and a real browser alike. That is edge filtering of the egress, not
+anything about how we ask.
+
+We will not disguise the harvester as a browser to get past a WAF. The crawler identifies itself
+honestly, and a rule we would break for one more clause is not a rule. New Hampshire stays a
+verified citation with its words pending, and reaching the Secretary of State's office is now a
+concrete item on the outreach list rather than a nicety.
+
+Remaining: New Hampshire (blocked at the edge), California (blocked by architecture), Virginia
+1830 (a historical document with no official online source, and likely to stay pending), and
+Vermont (short, not yet attempted).

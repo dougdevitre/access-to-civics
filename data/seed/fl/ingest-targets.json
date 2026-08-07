@@ -1,0 +1,19 @@
+{
+  "$comment": "Florida ingest scope. VERIFIED 2026-08 by scripts/probe-fl.mjs. The Senate publishes the ENTIRE constitution as one 622KB document at /Laws/Constitution, navigated by fragment anchors (#A11S05 is Article XI Section 5). So the fetched unit is the whole constitution and the cited unit is a section — the widest gap between the two of any state so far, and the reason source_url and citation_url are separate fields. Note the ref is Art. XI Sec. 5, not 5(e): subsection (e) carries the sixty-percent threshold, but the section is the citable unit and the gloss says which part matters. Same call as Texas Art. VII Sec. 3.",
+  "state": "FL",
+  "source_root": "https://www.flsenate.gov/Laws/Constitution",
+  "index_url": null,
+  "targets": [
+    {
+      "urn": "urn:const:us:fl:art-11:sec-05",
+      "article_roman": "XI",
+      "article_arabic": "11",
+      "article_heading": "Amendments",
+      "section_label": "5",
+      "anchor": "A11S05",
+      "citation_url": "https://www.flsenate.gov/Laws/Constitution#A11S05",
+      "expect": "sixty percent of the electors voting on the measure",
+      "topics": ["AMENDMENT_PROCESS"]
+    }
+  ]
+}

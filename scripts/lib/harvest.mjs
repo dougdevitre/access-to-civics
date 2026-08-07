@@ -37,7 +37,10 @@ async function fetchPage(url) {
  * words that are not in it.
  */
 async function renderPage(url) {
-  const { chromium } = await import('playwright');
+  // `@playwright/test`, not `playwright` — the test package is the declared devDependency and
+  // re-exports the same browser API. Importing `playwright` directly worked in a hoisted local
+  // install and then failed on the CI runner with ERR_MODULE_NOT_FOUND.
+  const { chromium } = await import('@playwright/test');
   const executablePath = process.env.PLAYWRIGHT_CHROMIUM_PATH;
   const browser = await chromium.launch(executablePath ? { executablePath } : {});
   try {

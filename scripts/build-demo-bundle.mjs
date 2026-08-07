@@ -152,8 +152,26 @@ if (existsSync('data/published')) {
   for (const file of readdirSync('data/published').filter((f) => f.endsWith('.json'))) {
     const corpus = JSON.parse(readFileSync(`data/published/${file}`, 'utf8'));
     for (const published of corpus.clauses ?? []) {
+      // The corpus can be wider than the decision graph — browse-only clauses get a
+      // record too, so the Explore view can show the whole ingested rule book.
+      if (!clauses[published.urn]) {
+        clauses[published.urn] = {
+          urn: published.urn,
+          state: published.state,
+          citation: citationFromUrn(published.urn),
+          heading: published.article?.heading ?? null,
+          text: null,
+          text_status: 'unfetched',
+          source_url: null,
+          sensitivity: sensitivityByUrn[published.urn]?.sensitivity ?? 'unreviewed',
+        };
+        const review = sensitivityByUrn[published.urn];
+        if (review?.mediated_8_10) {
+          clauses[published.urn].mediated_8_10 = true;
+          clauses[published.urn].teacher_note_8_10 = review.teacher_note_8_10 ?? null;
+        }
+      }
       const clause = clauses[published.urn];
-      if (!clause) continue;
       clause.text = published.text;
       clause.text_status = published.text_status;
       clause.section_heading = published.section_heading ?? null;

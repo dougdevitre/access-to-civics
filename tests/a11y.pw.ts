@@ -145,6 +145,18 @@ test('trust pages are reachable and accessible', async ({ page }) => {
   await expectNoSeriousViolations(page, 'teachers');
 });
 
+test('rule book explorer shows the full ingested corpus', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Read the rule book' }).click();
+  await expect(page.getByRole('heading', { name: 'The real rule book' })).toBeVisible();
+  // Browse-only clause, not part of any decision node:
+  await expect(page.getByText(/no law shall be passed impairing the freedom of speech/)).toBeVisible();
+  // Teacher-mediated clause never renders raw at the default (8-10) band:
+  await expect(page.getByText(/faith and prayer/)).toBeVisible();
+  await expect(page.getByText(/natural and indefeasible right to worship/)).toHaveCount(0);
+  await expectNoSeriousViolations(page, 'explore');
+});
+
 test('keyboard-only entry works', async ({ page }) => {
   await page.goto('/');
   await page.keyboard.press('Tab'); // skip link

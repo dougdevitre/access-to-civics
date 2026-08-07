@@ -76,6 +76,10 @@ export const TAUGHT_TERMS = [
   'assembly',
   'vacancy',
   'felony',
+  'petition',
+  'remedy',
+  'executive',
+  'conscience',
 ];
 
 export function gradeFor(text, band) {

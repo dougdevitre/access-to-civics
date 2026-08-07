@@ -139,7 +139,7 @@ describe('demo bundle', () => {
     const corpus = JSON.parse(readFileSync('data/published/mo.json', 'utf8')) as {
       glosses: { clause_urn: string; frozen: boolean; reviewed_by: string | null }[];
     };
-    expect(corpus.glosses).toHaveLength(4);
+    expect(corpus.glosses).toHaveLength(10);
     for (const gloss of corpus.glosses) {
       expect(gloss.frozen).toBe(true);
       expect(gloss.reviewed_by).toBeTruthy();
@@ -153,7 +153,7 @@ describe('demo bundle', () => {
     const corpus = JSON.parse(readFileSync('data/published/mo.json', 'utf8')) as {
       clauses: { urn: string; text: string; source_sha256: string }[];
     };
-    expect(corpus.clauses).toHaveLength(4);
+    expect(corpus.clauses).toHaveLength(10);
     for (const published of corpus.clauses) {
       const clause = bundle.clauses[published.urn];
       expect(clause, `bundle missing ${published.urn}`).toBeDefined();

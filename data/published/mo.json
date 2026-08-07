@@ -1,8 +1,8 @@
 {
   "$comment": "Published clause corpus (L1). Text is verbatim from the cited official source, traceable via source_sha256 to the raw page in data/raw/. Review the diff — these are the words a child reads.",
   "state": "MO",
-  "built_at": "2026-08-07T13:45:15.831Z",
-  "checksum": "e4630d824c232897aae870a93138497845fb3db1c4ab3b22233cb2b9ac808532",
+  "built_at": "2026-08-07T14:05:21.307Z",
+  "checksum": "8880ca68ebe31582225e28ec18a2502e8b36890779924870e2221ac1179164c5",
   "clauses": [
     {
       "urn": "urn:const:us:mo:art-03:sec-49",
@@ -22,7 +22,7 @@
       "effective_date": "1945-02-27",
       "supersedes": null,
       "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=III++49",
-      "source_sha256": "63f9722d0824d7c2b1a95e5a538de89be5270ed563e21dd2e9fbf5a5bb7035dd",
+      "source_sha256": "3f255da9dfb32d592a46566d71d55922ffd2b4ebb5d208137bf837b744360a5a",
       "sensitivity": "none"
     },
     {
@@ -43,7 +43,7 @@
       "effective_date": "1976-09-02",
       "supersedes": null,
       "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=V++25%28a%29",
-      "source_sha256": "72e95b8b3e785592b3b1eae67a2cf65f4cf040cd156bff26c61a8a9b2ab531c0",
+      "source_sha256": "8a25fd111edb78883bc987b5f6f07484cc24ff5d945c018e1e64a53e1243d0ba",
       "sensitivity": "none"
     },
     {
@@ -64,7 +64,7 @@
       "effective_date": "2024-12-05",
       "supersedes": null,
       "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=VIII++2",
-      "source_sha256": "527303e00793941b688556e066e71b6cc8d396a360e94eadb9ddcafc9282e59b",
+      "source_sha256": "d8166eb828d286efe7443cd53e076ae59612b699a75f29d25e7dd6115d92885d",
       "sensitivity": "none"
     },
     {
@@ -86,7 +86,133 @@
       "effective_date": "1976-09-02",
       "supersedes": null,
       "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=IX++1%28a%29",
-      "source_sha256": "607c7798a67bf9514155d0abf30b100892357993020b9b018e7244e96c09cea5",
+      "source_sha256": "837905a107ca5cbb38eda40b2a4778db557a20d46d844ce9573b2394afcc0b4f",
+      "sensitivity": "none"
+    },
+    {
+      "urn": "urn:const:us:mo:art-01:sec-05",
+      "state": "MO",
+      "article": {
+        "num": "I",
+        "heading": "Bill of Rights"
+      },
+      "section": "5",
+      "section_heading": "Religious freedom — liberty of conscience and belief — limitations — right to pray — academic religious freedoms and prayer.",
+      "text": "That all men and women have a natural and indefeasible right to worship Almighty God according to the dictates of their own consciences; that no human authority can control or interfere with the rights of conscience; that no person shall, on account of his or her religious persuasion or belief, be rendered ineligible to any public office or trust or profit in this state, be disqualified from testifying or serving as a juror, or be molested in his or her person or estate; that to secure a citizen's right to acknowledge Almighty God according to the dictates of his or her own conscience, neither the state nor any of its political subdivisions shall establish any official religion, nor shall a citizen's right to pray or express his or her religious beliefs be infringed; that the state shall not coerce any person to participate in any prayer or other religious activity, but shall ensure that any person shall have the right to pray individually or corporately in a private or public setting so long as such prayer does not result in disturbance of the peace or disruption of a public meeting or assembly; that citizens as well as elected officials and employees of the state of Missouri and its political subdivisions shall have the right to pray on government premises and public property so long as such prayers abide within the same parameters placed upon any other free speech under similar circumstances; that the General Assembly and the governing bodies of political subdivisions may extend to ministers, clergypersons, and other individuals the privilege to offer invocations or other prayers at meetings or sessions of the General Assembly or governing bodies; that students may express their beliefs about religion in written and oral assignments free from discrimination based on the religious content of their work; that no student shall be compelled to perform or participate in academic assignments or educational presentations that violate his or her religious beliefs; that the state shall ensure public school students their right to free exercise of religious expression without interference, as long as such prayer or other expression is private and voluntary, whether individually or corporately, and in a manner that is not disruptive and as long as such prayers or expressions abide within the same parameters placed upon any other free speech under similar circumstances; and, to emphasize the right to free exercise of religious expression, that all free public schools receiving state appropriations shall display, in a conspicuous and legible manner, the text of the Bill of Rights of the Constitution of the United States; but this section shall not be construed to expand the rights of prisoners in state or local custody beyond those afforded by the laws of the United States, excuse acts of licentiousness, nor to justify practices inconsistent with the good order, peace or safety of the state, or with the rights of others.",
+      "text_status": "fetched",
+      "topics": [
+        "BILL_OF_RIGHTS"
+      ],
+      "status": "operative",
+      "effective_date": "2012-09-06",
+      "supersedes": null,
+      "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=I++5",
+      "source_sha256": "37cccec19549dd96010a9e2ec08787e867a4a941c1cbe267fcd98966e3a895d5",
+      "sensitivity": "teacher_mediated"
+    },
+    {
+      "urn": "urn:const:us:mo:art-01:sec-08",
+      "state": "MO",
+      "article": {
+        "num": "I",
+        "heading": "Bill of Rights"
+      },
+      "section": "8",
+      "section_heading": "Freedom of speech — evidence of truth in defamation actions — province of jury.",
+      "text": "That no law shall be passed impairing the freedom of speech, no matter by what means communicated: that every person shall be free to say, write or publish, or otherwise communicate whatever he will on any subject, being responsible for all abuses of that liberty; and that in all suits and prosecutions for libel or slander the truth thereof may be given in evidence; and in suits and prosecutions for libel the jury, under the direction of the court, shall determine the law and the facts.",
+      "text_status": "fetched",
+      "topics": [
+        "BILL_OF_RIGHTS"
+      ],
+      "status": "operative",
+      "effective_date": "1945-02-27",
+      "supersedes": null,
+      "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=I++8",
+      "source_sha256": "fa49fe1a9befdb4e34df362ea4d0802159380b6205169c60d7f16f08c5cc1f98",
+      "sensitivity": "none"
+    },
+    {
+      "urn": "urn:const:us:mo:art-01:sec-09",
+      "state": "MO",
+      "article": {
+        "num": "I",
+        "heading": "Bill of Rights"
+      },
+      "section": "9",
+      "section_heading": "Rights of peaceable assembly and petition.",
+      "text": "That the people have the right peaceably to assemble for their common good, and to apply to those invested with the powers of government for redress of grievances by petition or remonstrance.",
+      "text_status": "fetched",
+      "topics": [
+        "BILL_OF_RIGHTS"
+      ],
+      "status": "operative",
+      "effective_date": "1945-02-27",
+      "supersedes": null,
+      "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=I++9",
+      "source_sha256": "7a33c710376d556ed9771bbf213f909f2bb4f806b3c11c2e4850b69c0bdf9076",
+      "sensitivity": "none"
+    },
+    {
+      "urn": "urn:const:us:mo:art-01:sec-14",
+      "state": "MO",
+      "article": {
+        "num": "I",
+        "heading": "Bill of Rights"
+      },
+      "section": "14",
+      "section_heading": "Open courts — certain remedies — justice without sale, denial or delay.",
+      "text": "That the courts of justice shall be open to every person, and certain remedy afforded for every injury to person, property or character, and that right and justice shall be administered without sale, denial or delay.",
+      "text_status": "fetched",
+      "topics": [
+        "BILL_OF_RIGHTS"
+      ],
+      "status": "operative",
+      "effective_date": "1945-02-27",
+      "supersedes": null,
+      "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=I++14",
+      "source_sha256": "3e4e2b91a06b88a2b2a553d3f0546ea7fa2b34f06fc621eb8d3d62322c6a02a6",
+      "sensitivity": "none"
+    },
+    {
+      "urn": "urn:const:us:mo:art-04:sec-01",
+      "state": "MO",
+      "article": {
+        "num": "IV",
+        "heading": "Executive Department"
+      },
+      "section": "1",
+      "section_heading": "Executive power — the governor.",
+      "text": "The supreme executive power shall be vested in a governor.",
+      "text_status": "fetched",
+      "topics": [
+        "EXECUTIVE"
+      ],
+      "status": "operative",
+      "effective_date": "1945-02-27",
+      "supersedes": null,
+      "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=IV++1",
+      "source_sha256": "c07bab120e225ded903b668644ce8d96a72b12bf8c74d622e3ffa3db3b1daee9",
+      "sensitivity": "none"
+    },
+    {
+      "urn": "urn:const:us:mo:art-10:sec-01",
+      "state": "MO",
+      "article": {
+        "num": "X",
+        "heading": "Taxation"
+      },
+      "section": "1",
+      "section_heading": "Taxing power — exercise by state and local governments.",
+      "text": "The taxing power may be exercised by the general assembly for state purposes, and by counties and other political subdivisions under power granted to them by the general assembly for county, municipal and other corporate purposes.",
+      "text_status": "fetched",
+      "topics": [
+        "PUBLIC_FINANCE"
+      ],
+      "status": "operative",
+      "effective_date": "1945-02-27",
+      "supersedes": null,
+      "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=X++1",
+      "source_sha256": "74be1b9456998ff510f7757a0c8b00bf2c70f559cf2b8efc93ddeff7b3f0e423",
       "sensitivity": "none"
     }
   ],
@@ -125,6 +251,66 @@
       "clause_urn": "urn:const:us:mo:art-09:sec-01a",
       "grade_5": "Missouri says learning keeps people free. So the state must run free public schools that anyone up to age 21 can attend.",
       "grade_8": "An educated public protects everyone’s rights and freedom. So the constitution requires the state to establish and maintain free public schools, open to everyone up to age twenty-one.",
+      "lang": "en",
+      "flesch_kincaid": null,
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-01:sec-05",
+      "grade_5": "Everyone can follow their own faith, or none at all. The state cannot pick a church for you or punish your beliefs. Your beliefs do not let you break fair laws.",
+      "grade_8": "Everyone may worship, or not, by their own conscience. The state cannot control belief or favor one faith. This liberty does not excuse acts that break laws protecting peace and safety.",
+      "lang": "en",
+      "flesch_kincaid": null,
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-01:sec-08",
+      "grade_5": "You are free to say and write what you think. No law can take that away. But you still answer for what you say.",
+      "grade_8": "No law may limit free speech, in any form. Every person may speak, write, or publish their views. Each person still answers for abusing that liberty.",
+      "lang": "en",
+      "flesch_kincaid": null,
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-01:sec-09",
+      "grade_5": "People can gather in peace for a shared cause. They can also ask the state to fix something that is wrong.",
+      "grade_8": "The people may gather peaceably for their common good. They may also petition the government to correct wrongs.",
+      "lang": "en",
+      "flesch_kincaid": null,
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-01:sec-14",
+      "grade_5": "The courts are open to every person. If someone harms you, you can ask a court for help. Justice cannot be sold or slowed on purpose.",
+      "grade_8": "Courts must stay open to every person, with a remedy for every injury to person, property, or character. Justice may not be sold, denied, or delayed.",
+      "lang": "en",
+      "flesch_kincaid": null,
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-04:sec-01",
+      "grade_5": "The state's top power to carry out the laws belongs to the governor.",
+      "grade_8": "The supreme executive power, the power to carry out the laws, belongs to the governor.",
+      "lang": "en",
+      "flesch_kincaid": null,
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-10:sec-01",
+      "grade_5": "The state's lawmakers can collect taxes for the state. Counties and towns can collect taxes too, if the lawmakers let them.",
+      "grade_8": "The general assembly may tax for state purposes. Counties and other local governments may tax only under power the general assembly grants them.",
       "lang": "en",
       "flesch_kincaid": null,
       "reviewed_by": "initial-editorial-pass",

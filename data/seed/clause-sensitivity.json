@@ -34,7 +34,10 @@
       "teacher_note_8_10": "This rule has a hard history. Rules like it kept many people from voting for a long time. Your teacher can tell you more."
     },
     "urn:const:us:mo:art-01:sec-05": {
-      "sensitivity": "none"
+      "sensitivity": "teacher_mediated",
+      "note": "Religious freedom clause as amended 2012, including right-to-pray and school provisions. Faith content benefits from adult framing in the younger band.",
+      "mediated_8_10": true,
+      "teacher_note_8_10": "This rule is about faith and prayer. Read it together with your teacher."
     },
     "urn:const:us:mo:art-01:sec-08": {
       "sensitivity": "none"

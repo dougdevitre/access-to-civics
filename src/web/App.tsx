@@ -29,7 +29,7 @@ import { GrownUps, PrivacyPromise, TeachersFamilies } from './views/TrustPages.j
 
 const BUNDLE_URL = `${import.meta.env.BASE_URL}bundles/mo-demo.json`;
 
-type View = 'game' | 'privacy' | 'grownups' | 'teachers';
+type View = 'game' | 'privacy' | 'grownups' | 'teachers' | 'explore';
 
 const FRESH: ConventionState = {
   phase: 'draft',
@@ -78,6 +78,9 @@ export default function App() {
           <button type="button" onClick={() => setView('privacy')}>{NEUTRAL.navPrivacy}</button>
           <button type="button" onClick={() => setView('grownups')}>{NEUTRAL.navGrownups}</button>
           <button type="button" onClick={() => setView('teachers')}>{NEUTRAL.navTeachers}</button>
+          {bundle && (
+            <button type="button" onClick={() => setView('explore')}>{NEUTRAL.navExplore}</button>
+          )}
           {band && view === 'game' && (
             <button type="button" onClick={() => { setBand(null); reset(); }}>
               {NEUTRAL.changeBand}
@@ -94,6 +97,7 @@ export default function App() {
         {view === 'privacy' && <PrivacyPromise />}
         {view === 'grownups' && <GrownUps />}
         {view === 'teachers' && <TeachersFamilies />}
+        {view === 'explore' && bundle && <Explore bundle={bundle} band={band ?? '8-10'} />}
       </div>,
     );
   }
@@ -595,6 +599,23 @@ function MirrorScreen({
   );
 }
 
+/** Browse every ingested clause — the corpus is bigger than the decision graph. */
+function Explore({ bundle, band }: { bundle: StateBundle; band: Band }) {
+  const copy = COPY[band];
+  const ingested = Object.values(bundle.clauses)
+    .filter((c) => c.text !== null)
+    .sort((a, b) => a.urn.localeCompare(b.urn));
+  return (
+    <article>
+      <h2>{copy.exploreTitle}</h2>
+      <p>{copy.exploreIntro}</p>
+      {ingested.map((clause) => (
+        <ClauseCard key={clause.urn} clause={clause} urn={clause.urn} band={band} copy={copy} />
+      ))}
+    </article>
+  );
+}
+
 /**
  * On-device text-to-speech (docs/05-compliance.md: audio narration of clause text).
  * Privacy rule: only voices the browser marks localService are used — a network voice
@@ -693,8 +714,12 @@ function ClauseCard({
   const gloss = glossFor(clause, band);
   return (
     <blockquote className="clause">
-      {clause.sensitivity === 'historical_harm' && (
-        <p className="framing">{copy.sensitiveFraming}</p>
+      {clause.sensitivity !== 'none' && (
+        <p className="framing">
+          {clause.sensitivity === 'historical_harm'
+            ? copy.sensitiveFraming
+            : clause.teacher_note_8_10 ?? copy.sensitiveFraming}
+        </p>
       )}
       {clause.text ? (
         <>

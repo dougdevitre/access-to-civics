@@ -40,6 +40,66 @@
       "reviewed_at": "2026-08-07",
       "frozen": true,
       "flesch_kincaid": null
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-01:sec-05",
+      "grade_5": "Everyone can follow their own faith, or none at all. The state cannot pick a church for you or punish your beliefs. Your beliefs do not let you break fair laws.",
+      "grade_8": "Everyone may worship, or not, by their own conscience. The state cannot control belief or favor one faith. This liberty does not excuse acts that break laws protecting peace and safety.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-01:sec-08",
+      "grade_5": "You are free to say and write what you think. No law can take that away. But you still answer for what you say.",
+      "grade_8": "No law may limit free speech, in any form. Every person may speak, write, or publish their views. Each person still answers for abusing that liberty.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-01:sec-09",
+      "grade_5": "People can gather in peace for a shared cause. They can also ask the state to fix something that is wrong.",
+      "grade_8": "The people may gather peaceably for their common good. They may also petition the government to correct wrongs.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-01:sec-14",
+      "grade_5": "The courts are open to every person. If someone harms you, you can ask a court for help. Justice cannot be sold or slowed on purpose.",
+      "grade_8": "Courts must stay open to every person, with a remedy for every injury to person, property, or character. Justice may not be sold, denied, or delayed.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-04:sec-01",
+      "grade_5": "The state's top power to carry out the laws belongs to the governor.",
+      "grade_8": "The supreme executive power, the power to carry out the laws, belongs to the governor.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-10:sec-01",
+      "grade_5": "The state's lawmakers can collect taxes for the state. Counties and towns can collect taxes too, if the lawmakers let them.",
+      "grade_8": "The general assembly may tax for state purposes. Counties and other local governments may tax only under power the general assembly grants them.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
     }
   ]
 }

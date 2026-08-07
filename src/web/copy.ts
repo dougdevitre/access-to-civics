@@ -68,6 +68,8 @@ export interface Copy {
   confirmPick: string;
   lockIn: string;
   redo: string;
+  exploreTitle: string;
+  exploreIntro: string;
   printCharter: string;
   charterDocTitle: (stateName: string) => string;
   articleLabel: (n: number) => string;
@@ -155,6 +157,8 @@ export const COPY: Record<Band, Copy> = {
     confirmPick: 'You picked:',
     lockIn: 'Lock it in',
     redo: 'Pick again',
+    exploreTitle: 'The real rule book',
+    exploreIntro: 'These are real rules from Missouri’s constitution. Each one shows what it means.',
     printCharter: 'Print your rules',
     charterDocTitle: (stateName) => `The Rules of ${stateName}`,
     articleLabel: (n) => `Rule ${n}`,
@@ -225,6 +229,8 @@ export const COPY: Record<Band, Copy> = {
     confirmPick: 'Your vote:',
     lockIn: 'Confirm vote',
     redo: 'Change it',
+    exploreTitle: 'Missouri’s real rule book',
+    exploreIntro: 'Each clause below comes from the official source, word for word. Plain-language notes sit under the real text.',
     printCharter: 'Print the charter',
     charterDocTitle: (stateName) => `The Charter of ${stateName}`,
     articleLabel: (n) => `Article ${n}`,
@@ -252,6 +258,7 @@ export const NEUTRAL = {
   navPrivacy: 'Our privacy promise',
   navGrownups: 'For grown-ups',
   navTeachers: 'Teachers & families',
+  navExplore: 'Read the rule book',
   changeBand: 'Switch age group',
   noscript: 'Charter needs JavaScript to run. Nothing is tracked either way.',
 };
@@ -288,6 +295,10 @@ export const GLOSSARY: GlossaryEntry[] = [
   { term: 'assembly', kid: 'A big group of lawmakers.', watchOut: 'The General Assembly is Missouri\u2019s name for its lawmakers.' },
   { term: 'vacancy', kid: 'An open job that needs to be filled.' },
   { term: 'felony', kid: 'A serious crime.' },
+  { term: 'petition', kid: 'A written ask that people sign.' },
+  { term: 'remedy', kid: 'A way a court fixes a wrong.' },
+  { term: 'executive', kid: 'The part of government that carries out the laws.' },
+  { term: 'conscience', kid: 'Your own sense of right and wrong.' },
   {
     term: 'bill',
     kid: 'An idea for a new law.',

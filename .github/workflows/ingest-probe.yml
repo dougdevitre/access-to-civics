@@ -11,7 +11,7 @@ on:
         required: true
         default: tx
         type: choice
-        options: [tx]
+        options: [tx, ne]
 
 permissions:
   contents: read

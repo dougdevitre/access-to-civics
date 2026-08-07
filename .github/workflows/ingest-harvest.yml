@@ -1,10 +1,18 @@
-name: Ingest harvest (Missouri)
+name: Ingest harvest
 
-# Manual trigger: fetches the targeted Missouri Constitution pages from revisor.mo.gov
+# Manual trigger: fetches the targeted constitution pages for one state from its official site
 # (GitHub runners have open egress; the dev sandbox does not) and commits the raw bytes
 # to the ingest/mo-raw branch as the L0 provenance layer. Extraction happens offline
 # against those committed bytes.
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      state:
+        description: Two-letter state code to harvest
+        required: true
+        default: mo
+        type: choice
+        options: [mo, tx]
 
 permissions:
   contents: write
@@ -17,18 +25,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node scripts/harvest-mo.mjs
+      - run: node scripts/harvest-${{ inputs.state }}.mjs
       - name: Upload raw pages as artifact (debugging aid, kept even on failure)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: mo-raw
-          path: data/raw/mo
+          name: ${{ inputs.state }}-raw
+          path: data/raw/${{ inputs.state }}
       - name: Commit harvest to ingest/mo-raw
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -B ingest/mo-raw
-          git add -f data/raw/mo
-          git commit -m "Harvest Missouri constitution raw pages (L0 provenance)"
-          git push -f origin ingest/mo-raw
+          git checkout -B ingest/${{ inputs.state }}-raw
+          git add -f data/raw/${{ inputs.state }}
+          git commit -m "Harvest ${{ inputs.state }} constitution raw pages (L0 provenance)"
+          git push -f origin ingest/${{ inputs.state }}-raw

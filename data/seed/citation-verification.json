@@ -85,8 +85,8 @@
       "caveat": "REPLACES urn:const:us:va:art-02:sec-01, which was WRONG: the modern Article II Section 1 sets universal adult suffrage (citizen, eighteen, resident) and contains no property qualification, so it was being cited as authority for the opposite of what it says. The 1830 constitution is the honest source for a freehold franchise; Virginia was the last state to drop one, in 1851. The URN is undated because the exact effective date was not verified \u2014 the vintage is carried in the citation string instead. The clause also restricted the franchise by race and sex, which is why it is flagged historical_harm and never renders raw for the 8-10 band."
     },
     {
-      "urn": "urn:const:us:tx:art-07:sec-03e",
-      "citation": "Texas Constitution, Article VII, Section 3(e)",
+      "urn": "urn:const:us:tx:art-07:sec-03",
+      "citation": "Texas Constitution, Article VII, Section 3",
       "subject": "authority for school districts to levy local property taxes to maintain their own schools",
       "verified_on": "2026-08-07",
       "method": "web research against the official Texas Legislature page and Justia; page fetch blocked from the build environment, wording matched across three independent extractions",
@@ -94,7 +94,7 @@
         "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.7/CN.7.3.htm",
         "https://law.justia.com/constitution/texas/sections/cn000700-000300.html"
       ],
-      "caveat": "Permissive, not mandatory: the legislature MAY authorize the district tax, and district voters must approve it. Texas also carries a state-duty clause at Article VII Section 1, which the Edgewood cases read to require substantially equal access to revenue - hence recapture. Texas is a both/and state, cited here because it is the canonical local-property-tax school finance state and its constitution says so in text."
+      "caveat": "The local school tax authority is subsection (e); we cite the whole section because that is the unit the ingest pipeline can fetch and byte-verify, and the gloss says which part carries the point. Permissive, not mandatory: the legislature MAY authorize the district tax and district voters must approve it. Texas also carries a state-duty clause at Article VII Section 1, which the Edgewood cases read to require substantially equal access to revenue - hence recapture. Texas is a both/and state, cited here because it is the canonical local-property-tax school finance state and its constitution says so in text."
     },
     {
       "urn": "urn:const:us:tx:art-08:sec-01e",

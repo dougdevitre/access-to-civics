@@ -148,7 +148,7 @@
           "label": "Each town pays for its own",
           "label_8_10": "Each town pays for its own schools",
           "clause_refs": [
-            "urn:const:us:tx:art-07:sec-03e",
+            "urn:const:us:tx:art-07:sec-03",
             "urn:const:us:tx:art-08:sec-01e"
           ],
           "favors": [
@@ -623,10 +623,10 @@
       "gloss_grade_5": "When a judge's job opens up, a special group picks three people who could do it. The governor must choose one of those three.",
       "gloss_grade_8": "When a judge's seat on certain courts opens up, a nonpartisan commission picks three candidates. The governor must appoint one of the three."
     },
-    "urn:const:us:tx:art-07:sec-03e": {
-      "urn": "urn:const:us:tx:art-07:sec-03e",
+    "urn:const:us:tx:art-07:sec-03": {
+      "urn": "urn:const:us:tx:art-07:sec-03",
       "state": "TX",
-      "citation": "Texas Constitution, Article VII, Section 3(e)",
+      "citation": "Texas Constitution, Article VII, Section 3",
       "heading": null,
       "text": null,
       "text_status": "unfetched",

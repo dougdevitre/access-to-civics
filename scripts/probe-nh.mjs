@@ -14,18 +14,17 @@
  */
 import { probeState } from './lib/probe.mjs';
 
-const ROOT = 'https://www.gencourt.state.nh.us';
-
 await probeState({
-  host: 'www.gencourt.state.nh.us',
+  host: 'www.nh.gov',
   marker: 'cherish the interest of literature',
   altMarkers: ['Art.] 83', 'Encouragement of Literature', 'two thirds', 'Constitutional Convention'],
-  // Only constitution-ish links, so the site's global navigation does not drown the mapping.
-  links: /constitution|nhconst|Part|Article|Art\./i,
+  links: true,
   candidates: [
-    `${ROOT}/nhconstitution/nhconstitution.html`,
-    `${ROOT}/nhconstitution/`,
-    `${ROOT}/rsa/html/nhtoc.htm`,
-    `${ROOT}/constitution/constitution.html`,
+    // The General Court site was rebuilt: gencourt.state.nh.us now redirects to gc.nh.gov and
+    // every constitution path there is a 404 whose own body points here.
+    'https://www.nh.gov/glance/state-constitution',
+    'https://www.nh.gov/glance/constitution.htm',
+    'https://sos.nh.gov/administration/state-constitution/',
+    'https://gc.nh.gov/rsa/html/NHTOC/NHTOC-CONSTITUTION.htm',
   ],
 });

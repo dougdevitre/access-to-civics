@@ -49,7 +49,10 @@ function dumpLinks(body, base, filter) {
   const rows = [];
   for (const m of body.matchAll(/<a\s[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi)) {
     let href = m[1];
-    if (/^(#|mailto:|javascript:)/i.test(href)) continue;
+    // Fragments are kept on purpose. Florida publishes its entire constitution as one document
+    // whose article and section navigation is nothing but #A11S05-style anchors; dropping those
+    // threw away the whole map and left a one-row link list.
+    if (/^(mailto:|javascript:)/i.test(href)) continue;
     try {
       href = new URL(href, base).toString();
     } catch {

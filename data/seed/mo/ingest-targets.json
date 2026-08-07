@@ -1,5 +1,5 @@
 {
-  "$comment": "Phase-0 ingest scope for Missouri: the clauses the game actually cites. scripts/harvest-mo.mjs fetches these from the official Revisor site on a GitHub Actions runner (sandbox egress is blocked); the adapter then extracts from the committed raw pages. Expand this list to widen the corpus \u2014 everything downstream is driven by it. Section URLs use the Revisor's lenient form (?constit=y&section=<ROMAN>++<label>); the opaque bid parameter is deliberately not used because it is version-scoped and cannot be derived.",
+  "$comment": "Phase-0 ingest scope for Missouri: the clauses the game actually cites. scripts/harvest-mo.mjs fetches these from the official Revisor site on a GitHub Actions runner (sandbox egress is blocked); the adapter then extracts from the committed raw pages. Expand this list to widen the corpus — everything downstream is driven by it. Section URLs use the Revisor's lenient form (?constit=y&section=<ROMAN>++<label>); the opaque bid parameter is deliberately not used because it is version-scoped and cannot be derived.",
   "state": "MO",
   "index_url": "https://revisor.mo.gov/main/Home.aspx?constit=y",
   "targets": [
@@ -112,6 +112,16 @@
       "expect": "majority",
       "topics": [
         "AMENDMENT_PROCESS"
+      ]
+    },
+    {
+      "urn": "urn:const:us:mo:art-03:sec-01",
+      "article_roman": "III",
+      "article_heading": "Legislative Department",
+      "section_label": "1",
+      "expect": "house of representatives",
+      "topics": [
+        "LEGISLATIVE"
       ]
     }
   ]

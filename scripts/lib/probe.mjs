@@ -59,6 +59,15 @@ async function probeFetch(candidates, marker, altMarkers) {
         headers: { 'user-agent': UA, accept: 'text/html,application/json' },
         redirect: 'follow',
       });
+      const type = res.headers.get('content-type') ?? '';
+      const length = Number(res.headers.get('content-length') ?? '0');
+      if (!/text|html|json|xml/i.test(type) || length > 20_000_000) {
+        // A bulk archive is not a document. Reading one into a string threw
+        // "Cannot create a string longer than 0x1fffffe8 characters" after five and a half
+        // minutes, which is most of a probe run spent learning nothing.
+        console.log(`\n  ${url}\n    ${res.status}  skipped: ${type || 'unknown type'}, ${length}B`);
+        continue;
+      }
       const body = await res.text();
       const text = textOf(body);
       const found = text.toLowerCase().includes(marker.toLowerCase());

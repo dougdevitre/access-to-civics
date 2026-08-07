@@ -13,7 +13,7 @@
  * until the L2 gloss pipeline exists). Per docs/05-compliance.md, historical_harm clauses
  * never render raw in the 8-10 band; the bundle carries the teacher-mediated note.
  */
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { parseCsvRecords } from './lib/csv.mjs';
 
 const OUT = 'public/bundles/mo-demo.json';
@@ -143,6 +143,24 @@ for (const [urn, clause] of Object.entries(clauses)) {
   if (review?.mediated_8_10) {
     clause.mediated_8_10 = true;
     clause.teacher_note_8_10 = review.teacher_note_8_10 ?? null;
+  }
+}
+
+// Join the published corpus (real ingested text) where it exists. Text is copied
+// byte-for-byte — the check-quote-integrity gate fails the build if it ever diverges.
+if (existsSync('data/published')) {
+  for (const file of readdirSync('data/published').filter((f) => f.endsWith('.json'))) {
+    const corpus = JSON.parse(readFileSync(`data/published/${file}`, 'utf8'));
+    for (const published of corpus.clauses ?? []) {
+      const clause = clauses[published.urn];
+      if (!clause) continue;
+      clause.text = published.text;
+      clause.text_status = published.text_status;
+      clause.section_heading = published.section_heading ?? null;
+      clause.effective_date = published.effective_date ?? null;
+      clause.source_url = published.source_url;
+      clause.source_sha256 = published.source_sha256 ?? null;
+    }
   }
 }
 

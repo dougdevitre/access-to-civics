@@ -32,6 +32,7 @@ export interface Copy {
   mindChanged: (n: number) => string;
   mindHeld: string;
   mirrorHeading: string;
+  realWords: string;
   pendingClause: string;
   sensitiveFraming: string;
   sourceLink: string;
@@ -101,6 +102,7 @@ export const COPY: Record<Band, Copy> = {
     mindChanged: () => 'Your class changed its mind after the talk. That means you listened.',
     mindHeld: 'Your class stuck with its first pick. That can be right too.',
     mirrorHeading: 'What real states did',
+    realWords: 'The real words:',
     pendingClause:
       'This is a real rule from a real state. The exact words are coming soon. We never make up the words.',
     sensitiveFraming: 'This rule has a hard history. Read it with your teacher.',
@@ -158,6 +160,7 @@ export const COPY: Record<Band, Copy> = {
       `${n} ${n === 1 ? 'delegate' : 'delegates'} changed their mind after hearing the other side.`,
     mindHeld: 'No delegate changed their mind this round.',
     mirrorHeading: 'What real states did',
+    realWords: 'Word for word:',
     pendingClause:
       'This citation is real. The exact words appear once they are fetched from the official source — nothing in this app invents constitutional text.',
     sensitiveFraming:

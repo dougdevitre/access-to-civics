@@ -58,10 +58,14 @@ export interface BundleClause {
   state: string;
   citation: string;
   heading: string | null;
+  /** Official section heading from the source page; present once ingested. */
+  section_heading?: string | null;
   /** null until the ingest pipeline has fetched it from the official source. */
   text: string | null;
   text_status: 'unfetched' | 'fetched' | 'verified';
   source_url: string | null;
+  source_sha256?: string | null;
+  effective_date?: string | null;
   /** Editorial review of record; 'unreviewed' when no human has set a value. */
   sensitivity: 'none' | 'historical_harm' | 'teacher_mediated' | 'unreviewed';
   /** When true, the 8-10 band shows the teacher note instead of the clause card. */

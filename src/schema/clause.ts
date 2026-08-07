@@ -15,6 +15,8 @@ export const Clause = z.object({
   state: z.string().length(2).toUpperCase(),
   article: z.object({ num: z.string(), heading: z.string().nullable() }),
   section: z.string(),
+  /** The official section heading as printed on the source page, e.g. "Free public schools — age limit". */
+  section_heading: z.string().nullable().default(null),
   text: z.string().nullable(),
   text_status: z.enum(['unfetched', 'fetched', 'verified']).default('unfetched'),
   topics: z.array(z.string()).default([]),

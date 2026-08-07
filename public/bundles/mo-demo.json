@@ -459,20 +459,26 @@
       "state": "MO",
       "citation": "Missouri Constitution, Article IX, Section 1(a)",
       "heading": "Education",
-      "text": null,
-      "text_status": "unfetched",
-      "source_url": "https://revisor.mo.gov/main/Home.aspx",
-      "sensitivity": "none"
+      "text": "A general diffusion of knowledge and intelligence being essential to the preservation of the rights and liberties of the people, the general assembly shall establish and maintain free public schools for the gratuitous instruction of all persons in this state within ages not in excess of twenty-one years as prescribed by law.",
+      "text_status": "fetched",
+      "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=IX++1%28a%29",
+      "sensitivity": "none",
+      "section_heading": "Free public schools — age limit.",
+      "effective_date": "1976-09-02",
+      "source_sha256": "607c7798a67bf9514155d0abf30b100892357993020b9b018e7244e96c09cea5"
     },
     "urn:const:us:mo:art-03:sec-49": {
       "urn": "urn:const:us:mo:art-03:sec-49",
       "state": "MO",
       "citation": "Missouri Constitution, Article III, Section 49",
       "heading": "Legislative Department",
-      "text": null,
-      "text_status": "unfetched",
-      "source_url": "https://revisor.mo.gov/main/Home.aspx",
-      "sensitivity": "none"
+      "text": "The people reserve power to propose and enact or reject laws and amendments to the constitution by the initiative, independent of the general assembly, and also reserve power to approve or reject by referendum any act of the general assembly, except as hereinafter provided.",
+      "text_status": "fetched",
+      "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=III++49",
+      "sensitivity": "none",
+      "section_heading": "Reservation of power to enact and reject laws.",
+      "effective_date": "1945-02-27",
+      "source_sha256": "63f9722d0824d7c2b1a95e5a538de89be5270ed563e21dd2e9fbf5a5bb7035dd"
     },
     "urn:const:us:de:art-16:sec-01": {
       "urn": "urn:const:us:de:art-16:sec-01",
@@ -509,10 +515,13 @@
       "state": "MO",
       "citation": "Missouri Constitution, Article 5, Section 25a",
       "heading": null,
-      "text": null,
-      "text_status": "unfetched",
-      "source_url": null,
-      "sensitivity": "none"
+      "text": "Whenever a vacancy shall occur in the office of judge of any of the following courts of this state, to wit: The supreme court, the court of appeals, or in the office of circuit or associate circuit judge within the city of St. Louis and Jackson county, the governor shall fill such vacancy by appointing one of three persons possessing the qualifications for such office, who shall be nominated and whose names shall be submitted to the governor by a nonpartisan judicial commission established and organized as hereinafter provided. If the governor fails to appoint any of the nominees within sixty days after the list of nominees is submitted, the nonpartisan judicial commission making the nomination shall appoint one of the nominees to fill the vacancy.",
+      "text_status": "fetched",
+      "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=V++25%28a%29",
+      "sensitivity": "none",
+      "section_heading": "Nonpartisan selection of judges — courts subject to plan — appointments to fill vacancies.",
+      "effective_date": "1976-09-02",
+      "source_sha256": "72e95b8b3e785592b3b1eae67a2cf65f4cf040cd156bff26c61a8a9b2ab531c0"
     },
     "urn:const:us:nh:art-83:sec-01": {
       "urn": "urn:const:us:nh:art-83:sec-01",
@@ -541,10 +550,13 @@
       "state": "MO",
       "citation": "Missouri Constitution, Article 8, Section 2",
       "heading": null,
-      "text": null,
-      "text_status": "unfetched",
-      "source_url": null,
-      "sensitivity": "none"
+      "text": "Only citizens of the United States, including occupants of soldiers' and sailors' homes, over the age of eighteen who are residents of this state and of the political subdivision in which they offer to vote are entitled to vote at all elections by the people, if the election is one for which registration is required if they are registered within the time prescribed by law, or if the election is one for which registration is not required, if they have been residents of the political subdivision in which they offer to vote for thirty days next preceding the election for which they offer to vote: Provided however, no person who has a guardian of his or her estate or person by reason of mental incapacity, appointed by a court of competent jurisdiction and no person who is involuntarily confined in a mental institution pursuant to an adjudication of a court of competent jurisdiction shall be entitled to vote, and persons convicted of felony, or crime connected with the exercise of the right of suffrage may be excluded by law from voting.",
+      "text_status": "fetched",
+      "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=VIII++2",
+      "sensitivity": "none",
+      "section_heading": "Qualifications of voters — disqualifications.",
+      "effective_date": "2024-12-05",
+      "source_sha256": "527303e00793941b688556e066e71b6cc8d396a360e94eadb9ddcafc9282e59b"
     }
   }
 }

@@ -48,3 +48,11 @@ other Access To skills instead of trapped in one app. *(Deferred out of v1.)*
    one-pager, **before writing more code**. Their answer sets the funding path and the first state.
 4. Confirm whether Missouri publishes official ballot arguments in structured form; if not, pilot
    the "why" layer with California or Oregon.
+
+## Phase 0 status note (2026-08)
+
+Missouri ingest is live in scoped form: the clauses cited by the seed decision nodes are
+harvested from revisor.mo.gov, extracted, verified, and published to `data/published/mo.json`
+with per-section source URLs and sha256 provenance. The quote-integrity, clause-refs,
+sensitivity, reading-level, and privacy gates are implemented and blocking. Scope widens by
+adding entries to `data/seed/mo/ingest-targets.json` and re-running the harvest workflow.

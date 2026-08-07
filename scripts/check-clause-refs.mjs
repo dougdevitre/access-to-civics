@@ -33,14 +33,25 @@ if (!existsSync(BUNDLE_DIR)) {
   process.exit(0);
 }
 
+// Resolution is required only for states whose corpus has been published. Refs to states
+// without an adapter yet stay advisory — their Mirror cards honestly say "pending".
 const published = new Set();
+const publishedStates = new Set();
 for (const file of readdirSync(BUNDLE_DIR).filter((f) => f.endsWith('.json'))) {
   const bundle = JSON.parse(readFileSync(join(BUNDLE_DIR, file), 'utf8'));
+  if (bundle.state) publishedStates.add(String(bundle.state).toLowerCase());
   for (const clause of bundle.clauses ?? []) published.add(baseUrn(clause.urn));
 }
 
-const misses = [...refs].filter((ref) => !published.has(baseUrn(ref)));
+const stateOf = (ref) => ref.split(':')[3] ?? '';
+const inScope = [...refs].filter((ref) => publishedStates.has(stateOf(ref)));
+const advisory = refs.size - inScope.length;
+const misses = inScope.filter((ref) => !published.has(baseUrn(ref)));
 for (const miss of misses) console.error(`[check] unresolvable clause ref: ${miss}`);
+console.log(
+  `[check] ${inScope.length} refs checked against published states (${[...publishedStates].join(', ')}), ` +
+  `${advisory} advisory (state not yet published), ${misses.length} unresolvable`,
+);
 process.exit(misses.length > 0 ? 1 : 0);
 
 function baseUrn(urn) {

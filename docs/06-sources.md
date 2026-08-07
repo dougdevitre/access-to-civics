@@ -40,3 +40,23 @@ below is for discovery, cross-checking, and the "why" layer.
 
 - Which states publish official voter pamphlets with pro/con arguments in machine-readable form?
 - Which states publish constitutional text with stable section anchors vs. session-generated URLs?
+
+## Missouri (pilot) — verified source notes, 2026-08
+
+- **Canonical:** Revisor of Statutes constitution pages — `https://revisor.mo.gov/main/Home.aspx?constit=y`.
+  Per-section pages resolve via the lenient form `OneSection.aspx?constit=y&section=<ROMAN>++<label>`
+  (lettered sections keep parens: `V  25(a)`). The `bid` query parameter is an opaque,
+  version-scoped row id — never construct or rely on it. The `hl` parameter adds search
+  highlighting and must be stripped before hashing.
+- **Page structure (verified):** one `div.norm > p.norm` per section with a
+  `span.bold` header (`ROMAN Section LABEL. HEADING —`) followed by the clause text;
+  effective date in `span#effdt`; footnotes/annotations in `div.foot` (excluded from
+  clause text). Parser: `src/ingest/adapters/missouri.ts`.
+- **Cross-check:** Secretary of State PDFs at `https://www.sos.mo.gov/pubs/constitution`;
+  the dated snapshots (e.g. `MissouriConstitution_12.2024.pdf`) are immutable and make a
+  better provenance anchor than the evergreen `CurrentMissouriConstitution.pdf`, which is
+  republished in place.
+- **Harvest:** network fetch runs on a GitHub Actions runner
+  (`.github/workflows/ingest-harvest.yml`) because dev sandboxes may lack *.mo.gov egress;
+  raw bytes + sha256 manifest are committed under `data/raw/mo/` (L0), and extraction runs
+  offline against those bytes.

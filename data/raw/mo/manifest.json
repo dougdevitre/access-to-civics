@@ -1,0 +1,49 @@
+{
+  "fetched_at": "2026-08-07T12:04:08.148Z",
+  "source_root": "https://revisor.mo.gov/main/Home.aspx?constit=y",
+  "documents": [
+    {
+      "file": "index.html",
+      "url": "https://revisor.mo.gov/main/Home.aspx?constit=y",
+      "http_status": 200,
+      "sha256": "6507657b3d964a3a29221ceadfec151250baec3ea76d3688336479ab528ad2be",
+      "bytes": 318205
+    },
+    {
+      "file": "art-03-sec-49.html",
+      "urn": "urn:const:us:mo:art-03:sec-49",
+      "url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=III++49",
+      "http_status": 200,
+      "sha256": "63f9722d0824d7c2b1a95e5a538de89be5270ed563e21dd2e9fbf5a5bb7035dd",
+      "bytes": 27514,
+      "marker_found": true
+    },
+    {
+      "file": "art-05-sec-25a.html",
+      "urn": "urn:const:us:mo:art-05:sec-25a",
+      "url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=V++25%28a%29",
+      "http_status": 200,
+      "sha256": "72e95b8b3e785592b3b1eae67a2cf65f4cf040cd156bff26c61a8a9b2ab531c0",
+      "bytes": 27967,
+      "marker_found": true
+    },
+    {
+      "file": "art-08-sec-02.html",
+      "urn": "urn:const:us:mo:art-08:sec-02",
+      "url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=VIII++2",
+      "http_status": 200,
+      "sha256": "527303e00793941b688556e066e71b6cc8d396a360e94eadb9ddcafc9282e59b",
+      "bytes": 31589,
+      "marker_found": true
+    },
+    {
+      "file": "art-09-sec-01a.html",
+      "urn": "urn:const:us:mo:art-09:sec-01a",
+      "url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=IX++1%28a%29",
+      "http_status": 200,
+      "sha256": "607c7798a67bf9514155d0abf30b100892357993020b9b018e7244e96c09cea5",
+      "bytes": 27386,
+      "marker_found": true
+    }
+  ]
+}

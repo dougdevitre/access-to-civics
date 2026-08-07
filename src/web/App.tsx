@@ -541,7 +541,17 @@ function ClauseCard({
       {clause.sensitivity === 'historical_harm' && (
         <p className="framing">{copy.sensitiveFraming}</p>
       )}
-      {clause.text ? clause.text : <em>{copy.pendingClause}</em>}
+      {clause.text ? (
+        <>
+          <p className="framing">
+            {copy.realWords}
+            {clause.section_heading && <> “{clause.section_heading}”</>}
+          </p>
+          {clause.text}
+        </>
+      ) : (
+        <em>{copy.pendingClause}</em>
+      )}
       <cite>
         {clause.citation}
         {showSource && !confirming && (

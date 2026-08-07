@@ -135,6 +135,20 @@ describe('demo bundle', () => {
     }
   });
 
+  it('carries the real ingested Missouri text, byte-equal to the published corpus', () => {
+    const corpus = JSON.parse(readFileSync('data/published/mo.json', 'utf8')) as {
+      clauses: { urn: string; text: string; source_sha256: string }[];
+    };
+    expect(corpus.clauses).toHaveLength(4);
+    for (const published of corpus.clauses) {
+      const clause = bundle.clauses[published.urn];
+      expect(clause, `bundle missing ${published.urn}`).toBeDefined();
+      expect(clause?.text).toBe(published.text);
+      expect(clause?.text_status).toBe('fetched');
+      expect(clause?.source_sha256).toBe(published.source_sha256);
+    }
+  });
+
   it('only links to official government sources over https', () => {
     for (const clause of Object.values(bundle.clauses)) {
       if (clause.source_url === null) continue;

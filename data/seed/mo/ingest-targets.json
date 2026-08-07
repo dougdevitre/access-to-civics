@@ -1,5 +1,5 @@
 {
-  "$comment": "Phase-0 ingest scope for Missouri: the clauses the game actually cites. scripts/harvest-mo.mjs fetches these from the official Revisor site on a GitHub Actions runner (sandbox egress is blocked); the adapter then extracts from the committed raw pages. Expand this list to widen the corpus — everything downstream is driven by it. Section URLs use the Revisor's lenient form (?constit=y&section=<ROMAN>++<label>); the opaque bid parameter is deliberately not used because it is version-scoped and cannot be derived.",
+  "$comment": "Phase-0 ingest scope for Missouri: the clauses the game actually cites. scripts/harvest-mo.mjs fetches these from the official Revisor site on a GitHub Actions runner (sandbox egress is blocked); the adapter then extracts from the committed raw pages. Expand this list to widen the corpus \u2014 everything downstream is driven by it. Section URLs use the Revisor's lenient form (?constit=y&section=<ROMAN>++<label>); the opaque bid parameter is deliberately not used because it is version-scoped and cannot be derived.",
   "state": "MO",
   "index_url": "https://revisor.mo.gov/main/Home.aspx?constit=y",
   "targets": [
@@ -8,28 +8,41 @@
       "article_roman": "III",
       "article_heading": "Legislative Department",
       "section_label": "49",
-      "expect": "initiative"
+      "expect": "initiative",
+      "topics": [
+        "DIRECT_DEMOCRACY"
+      ]
     },
     {
       "urn": "urn:const:us:mo:art-05:sec-25a",
       "article_roman": "V",
       "article_heading": "Judicial Department",
       "section_label": "25(a)",
-      "expect": "nonpartisan"
+      "expect": "nonpartisan",
+      "topics": [
+        "JUDICIAL_SELECTION"
+      ]
     },
     {
       "urn": "urn:const:us:mo:art-08:sec-02",
       "article_roman": "VIII",
       "article_heading": "Suffrage and Elections",
       "section_label": "2",
-      "expect": "voter"
+      "expect": "voter",
+      "topics": [
+        "SUFFRAGE"
+      ]
     },
     {
       "urn": "urn:const:us:mo:art-09:sec-01a",
       "article_roman": "IX",
       "article_heading": "Education",
       "section_label": "1(a)",
-      "expect": "school"
+      "expect": "school",
+      "topics": [
+        "EDUCATION_ESTABLISHMENT",
+        "PUBLIC_FINANCE"
+      ]
     }
   ]
 }

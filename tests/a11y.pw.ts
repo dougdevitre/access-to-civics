@@ -91,6 +91,8 @@ test('ages 11-14 delegate mode: full playthrough with leaving notice', async ({ 
     await expect(page.getByRole('heading', { name: 'What real states did' })).toBeVisible();
     await expect(page.getByText('Mail for the convention')).toBeVisible();
     if (node === 0) {
+      // Real ingested text: MO Art. III §49 renders word for word.
+      await expect(page.getByText(/The people reserve power to propose/)).toBeVisible();
       // MO Art. III §49 has an official source: the leaving notice must gate it.
       await page.getByRole('button', { name: /Official source/ }).first().click();
       await expect(page.getByText(/leaving Charter/i)).toBeVisible();

@@ -25,6 +25,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Install browser (states that render their constitution client-side)
+        run: npx playwright install --with-deps chromium
       - run: node scripts/harvest-${{ inputs.state }}.mjs
       - name: Upload raw pages as artifact (debugging aid, kept even on failure)
         if: always()

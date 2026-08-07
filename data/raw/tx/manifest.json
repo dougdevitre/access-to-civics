@@ -1,0 +1,40 @@
+{
+  "fetched_at": "2026-08-07T16:40:39.081Z",
+  "source_root": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.htm",
+  "documents": [
+    {
+      "file": "index.html",
+      "url": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.htm",
+      "http_status": 200,
+      "sha256": "dbfba8a96dc3cd584157ca66aaafdf67e0ed15dd5a0c8a58f3d4bd0f109fc646",
+      "bytes": 250874
+    },
+    {
+      "file": "art-05-sec-02.html",
+      "urn": "urn:const:us:tx:art-05:sec-02",
+      "url": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.5/CN.5.2.htm",
+      "http_status": 200,
+      "sha256": "dbfba8a96dc3cd584157ca66aaafdf67e0ed15dd5a0c8a58f3d4bd0f109fc646",
+      "bytes": 250874,
+      "marker_found": false
+    },
+    {
+      "file": "art-07-sec-03.html",
+      "urn": "urn:const:us:tx:art-07:sec-03",
+      "url": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.7/CN.7.3.htm",
+      "http_status": 200,
+      "sha256": "dbfba8a96dc3cd584157ca66aaafdf67e0ed15dd5a0c8a58f3d4bd0f109fc646",
+      "bytes": 250874,
+      "marker_found": false
+    },
+    {
+      "file": "art-08-sec-01e.html",
+      "urn": "urn:const:us:tx:art-08:sec-01e",
+      "url": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.8/CN.8.1-e.htm",
+      "http_status": 200,
+      "sha256": "dbfba8a96dc3cd584157ca66aaafdf67e0ed15dd5a0c8a58f3d4bd0f109fc646",
+      "bytes": 250874,
+      "marker_found": false
+    }
+  ]
+}

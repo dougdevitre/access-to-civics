@@ -8,7 +8,20 @@
       content="Charter — a civic education game for ages 8–14. Draft your state's rules, debate them, then see what real state constitutions say. No accounts, no ads, no tracking."
     />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#1B1E24" />
+    <!--
+      The two faces are self-hosted (the privacy gate forbids a font CDN). Preloading the body
+      face only: it is what a child reads first, and the serif is used further down the page.
+    -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/atkinson-hyperlegible-latin-400-normal.woff2"
+      crossorigin
+    />
     <title>Charter — a constitutional convention</title>
   </head>
   <body>

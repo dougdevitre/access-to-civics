@@ -9,18 +9,28 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icon.svg'],
+      includeAssets: ['icon.svg', 'apple-touch-icon.png', 'fonts/*.woff2'],
       manifest: {
+        id: '/',
         name: 'Charter — a constitutional convention',
         short_name: 'Charter',
         description:
           'A civic education game built on the primary text of U.S. state constitutions.',
         start_url: '/',
         display: 'standalone',
+        orientation: 'any',
+        lang: 'en-US',
+        categories: ['education'],
         background_color: '#EDE8DC',
         theme_color: '#1B1E24',
         icons: [
+          // SVG first for platforms that take it; PNGs because many still do not. The maskable
+          // entry is a separate drawing with a 22% safe-zone inset — Android crops adaptive icons
+          // to a circle, and the previous single icon put the seal inside the part that gets cut.
           { src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
+          { src: 'icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+          { src: 'icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+          { src: 'icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
       workbox: {

@@ -18,6 +18,16 @@ const NODE_COUNT: number = DECISIONS.length;
  * violations fail CI (WCAG 2.2 AA target — see docs/05-compliance.md).
  */
 
+/**
+ * A choice button's accessible name now carries its consequences on the second vote —
+ * "Only the lawmakers helps: legislators, stability hurts: organizers, kids" — because a
+ * screen-reader user should hear exactly what a sighted child sees printed on the card. So
+ * match on the label prefix rather than the whole name; `exact` would silently stop matching
+ * the moment the trade-off appears, which is the round that matters most.
+ */
+const startsWith = (label: string) =>
+  new RegExp('^' + label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+
 async function expectNoSeriousViolations(page: Page, screen: string) {
   const results = await new AxeBuilder({ page }).analyze();
   const serious = results.violations.filter(
@@ -50,11 +60,11 @@ test('ages 8-10 class mode: full playthrough with mediated history card', async 
 
   for (let node = 0; node < NODE_COUNT; node++) {
     const pick = picks[node]!;
-    await page.getByRole('button', { name: pick }).click(); // vote 1: pick
+    await page.getByRole('button', { name: startsWith(pick) }).click(); // vote 1: pick
     await expect(page.getByText(/You picked/)).toBeVisible();
     await page.getByRole('button', { name: 'Lock it in' }).click(); // vote 1: confirm
     await expect(page.getByText(/help or hurt/i)).toBeVisible();
-    await page.getByRole('button', { name: pick }).click(); // vote 2: pick
+    await page.getByRole('button', { name: startsWith(pick) }).click(); // vote 2: pick
     await page.getByRole('button', { name: 'Lock it in' }).click(); // vote 2: confirm
     await expect(page.getByRole('heading', { name: 'What real states did' })).toBeVisible();
     if (node === 0) {
@@ -111,7 +121,7 @@ test('ages 11-14 delegate mode: full playthrough with leaving notice', async ({ 
       const seat = vote % 3;
       // Seat 0 starts on A and switches — one mind-change per question.
       const name = round === 0 && seat === 0 ? optionA[node]! : optionB[node]!;
-      await page.getByRole('button', { name, exact: true }).click();
+      await page.getByRole('button', { name: startsWith(name) }).click();
       if (vote < 5) {
         // Pass-the-device card guards every next voter.
         await expect(page.getByText(/Pass the device to Seat/)).toBeVisible();

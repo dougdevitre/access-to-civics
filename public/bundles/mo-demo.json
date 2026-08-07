@@ -652,7 +652,8 @@
       "effective_date": "1976-09-02",
       "source_sha256": "b1d747879791453ab9f315b188f8352f0f519dcde3a5d23456c07dafd2d21694",
       "gloss_grade_5": "Missouri says learning keeps people free. So the state must run free public schools that anyone up to age 21 can attend.",
-      "gloss_grade_8": "An educated public protects everyone’s rights and freedom. So the constitution requires the state to establish and maintain free public schools, open to everyone up to age twenty-one."
+      "gloss_grade_8": "An educated public protects everyone’s rights and freedom. So the constitution requires the state to establish and maintain free public schools, open to everyone up to age twenty-one.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:mo:art-03:sec-49": {
       "urn": "urn:const:us:mo:art-03:sec-49",
@@ -667,7 +668,8 @@
       "effective_date": "1945-02-27",
       "source_sha256": "42a48e404dc85a41a9b4261aae21762519d31b0db7a4f60c2c6921608ea3c0ea",
       "gloss_grade_5": "The people keep two powers for themselves. They can write a new law and put it to a vote. They can also vote yes or no on a law the lawmakers passed.",
-      "gloss_grade_8": "The people keep two powers. By initiative, they can propose a law or an amendment and pass it at the ballot. By referendum, they can approve or reject a law the general assembly passed."
+      "gloss_grade_8": "The people keep two powers. By initiative, they can propose a law or an amendment and pass it at the ballot. By referendum, they can approve or reject a law the general assembly passed.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:de:art-16:sec-01": {
       "urn": "urn:const:us:de:art-16:sec-01",
@@ -682,7 +684,8 @@
       "effective_date": null,
       "source_sha256": "1e3f63db846d71fa9abfc89418cc2f943732cc5cfc71918a1ce273686720e691",
       "gloss_grade_5": "Delaware can change its rules without a public vote. Two-thirds of each group of lawmakers must say yes. The plan must be made public before the next election. Then the new group of lawmakers must say yes too.",
-      "gloss_grade_8": "Delaware changes its constitution with no vote of the people on the amendment itself. Two-thirds of each house must agree. The proposal is then made public before the next general election, and the General Assembly chosen at that election must agree again by two-thirds. Then it is part of the Constitution."
+      "gloss_grade_8": "Delaware changes its constitution with no vote of the people on the amendment itself. Two-thirds of each house must agree. The proposal is then made public before the next general election, and the General Assembly chosen at that election must agree again by two-thirds. Then it is part of the Constitution.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:ca:art-02:sec-08": {
       "urn": "urn:const:us:ca:art-02:sec-08",
@@ -708,7 +711,8 @@
       "citation_url": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.5.htm",
       "source_sha256": "52f6a242aad887d49d00bc2863de835962ea6c491870d788e77213374613b50e",
       "gloss_grade_5": "Texas has nine judges on its top court. Voters choose them at an election. Each one serves six years. A judge must be 35 or older and must have worked in law for ten years.",
-      "gloss_grade_8": "The Texas Supreme Court has a Chief Justice and eight Justices. Voters elect them to six-year terms, three seats every two years. A Justice must be at least 35, licensed to practice law in Texas, and must have ten years of work as a lawyer or judge."
+      "gloss_grade_8": "The Texas Supreme Court has a Chief Justice and eight Justices. Voters elect them to six-year terms, three seats every two years. A Justice must be at least 35, licensed to practice law in Texas, and must have ten years of work as a lawyer or judge.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:mo:art-05:sec-25a": {
       "urn": "urn:const:us:mo:art-05:sec-25a",
@@ -723,7 +727,8 @@
       "effective_date": "1976-09-02",
       "source_sha256": "4acf4dd720a164347694e009cb976148520ccac2449bca03c7747bdbe4d3ef64",
       "gloss_grade_5": "When a judge's job opens up, a special group picks three people who could do it. The governor must choose one of those three.",
-      "gloss_grade_8": "When a judge's seat on certain courts opens up, a nonpartisan commission picks three candidates. The governor must appoint one of the three."
+      "gloss_grade_8": "When a judge's seat on certain courts opens up, a nonpartisan commission picks three candidates. The governor must appoint one of the three.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:tx:art-07:sec-03": {
       "urn": "urn:const:us:tx:art-07:sec-03",
@@ -739,7 +744,8 @@
       "citation_url": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.7.htm",
       "source_sha256": "76b225cf0205081670a56977a9a79cd9b5ec8916f6b2e2fd91935c27acdc4bb2",
       "gloss_grade_5": "Texas lets each school district raise its own tax money for its own schools. But first the voters who live there must say yes to the tax.",
-      "gloss_grade_8": "This section lets the Legislature form school districts and lets those districts levy a local property tax to run their schools and put up school buildings. The tax takes effect only if most of the district's voters approve it at an election."
+      "gloss_grade_8": "This section lets the Legislature form school districts and lets those districts levy a local property tax to run their schools and put up school buildings. The tax takes effect only if most of the district's voters approve it at an election.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:tx:art-08:sec-01e": {
       "urn": "urn:const:us:tx:art-08:sec-01e",
@@ -755,7 +761,8 @@
       "citation_url": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.8.htm",
       "source_sha256": "6e93228ec575ac87a6049064b89f5594e6a9085dade838e053c4de9a37837695",
       "gloss_grade_5": "The state of Texas may not tax land or buildings. One short line is the whole rule.",
-      "gloss_grade_8": "Texas may not levy a statewide ad valorem tax, which is a tax on the value of property. The ban is on the State itself, and this section says nothing about taxes levied by local governments."
+      "gloss_grade_8": "Texas may not levy a statewide ad valorem tax, which is a tax on the value of property. The ban is on the State itself, and this section says nothing about taxes levied by local governments.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:nh:art-83:sec-01": {
       "urn": "urn:const:us:nh:art-83:sec-01",
@@ -792,7 +799,8 @@
       "effective_date": "2024-12-05",
       "source_sha256": "c8cef9e5aac1c05b03260e6ece500e5eff3eabcd2f663c67a567a40eb59e116c",
       "gloss_grade_5": "You can vote in Missouri if you are a citizen of the United States, you are 18 or older, and you live here. The section also says when someone cannot vote.",
-      "gloss_grade_8": "Voters must be United States citizens, at least eighteen, and residents of Missouri and their district. The section also lists times when a person cannot vote, such as while serving a felony sentence."
+      "gloss_grade_8": "Voters must be United States citizens, at least eighteen, and residents of Missouri and their district. The section also lists times when a person cannot vote, such as while serving a felony sentence.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:mo:art-12:sec-02b": {
       "urn": "urn:const:us:mo:art-12:sec-02b",
@@ -807,7 +815,8 @@
       "effective_date": "1945-02-27",
       "source_sha256": "367428978f82f6f2cafa8701b1ba7dfe6837c7e48133393f1c67bfa256775faa",
       "gloss_grade_5": "A change goes to the voters at the next big election. Each change is voted on by itself. If more than half the votes say yes, it starts thirty days later.",
-      "gloss_grade_8": "Proposed amendments go on the ballot at the next general election, each voted on separately and each limited to one subject. If a majority of the votes cast on it say yes, it takes effect thirty days later."
+      "gloss_grade_8": "Proposed amendments go on the ballot at the next general election, each voted on separately and each limited to one subject. If a majority of the votes cast on it say yes, it takes effect thirty days later.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:fl:art-11:sec-05": {
       "urn": "urn:const:us:fl:art-11:sec-05",
@@ -823,7 +832,8 @@
       "citation_url": "https://www.flsenate.gov/Laws/Constitution#A11S05",
       "source_sha256": "b816e2b83dab6f03bdf1adf90f196609f2ef35e3b250d39ded6de9d992dec637",
       "gloss_grade_5": "In Florida a change to the rules goes to the voters at the next big election. Part (e) sets the bar. More than half is not enough. At least sixty out of every hundred voters must say yes.",
-      "gloss_grade_8": "This section covers how Florida puts a proposed change to its constitution on the ballot and when it takes effect. Subsection (e) is the part that matters here: a change passes only if at least sixty percent of the people voting on it say yes. A simple majority is not enough."
+      "gloss_grade_8": "This section covers how Florida puts a proposed change to its constitution on the ballot and when it takes effect. Subsection (e) is the part that matters here: a change passes only if at least sixty percent of the people voting on it say yes. A simple majority is not enough.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:nh:art-100:sec-01": {
       "urn": "urn:const:us:nh:art-100:sec-01",
@@ -848,7 +858,8 @@
       "effective_date": "1945-02-27",
       "source_sha256": "c90e63fb6c65175e0d88679829271d582a3dfb627b8d32bb813843eab1da7f1d",
       "gloss_grade_5": "Missouri's lawmakers are two groups, not one. A bill must get a yes from both groups before it can be a law.",
-      "gloss_grade_8": "Missouri vests its lawmaking power in two chambers, a senate and a house of representatives. Together they are called the General Assembly, and a bill has to pass both of them."
+      "gloss_grade_8": "Missouri vests its lawmaking power in two chambers, a senate and a house of representatives. Together they are called the General Assembly, and a bill has to pass both of them.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:ne:art-03:sec-01": {
       "urn": "urn:const:us:ne:art-03:sec-01",
@@ -863,7 +874,8 @@
       "effective_date": null,
       "source_sha256": "88d6533afc7bd35b942aea5d9d7ceabf2a81bb215ee1b5f52a413e3ec4f4ac86",
       "gloss_grade_5": "Nebraska's lawmakers are one group, not two. Nebraska is the only state that does it this way. The people kept two powers too. They can make a law by voting. They can also undo one.",
-      "gloss_grade_8": "Nebraska puts its lawmaking power in a Legislature of one chamber. It is the only state that does. The same section keeps two powers for the people. Initiative lets them propose a law and pass it at the polls. Referendum lets them approve or reject a law the Legislature passed."
+      "gloss_grade_8": "Nebraska puts its lawmaking power in a Legislature of one chamber. It is the only state that does. The same section keeps two powers for the people. Initiative lets them propose a law and pass it at the polls. Referendum lets them approve or reject a law the Legislature passed.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:mo:art-01:sec-05": {
       "urn": "urn:const:us:mo:art-01:sec-05",
@@ -880,7 +892,8 @@
       "effective_date": "2012-09-06",
       "source_sha256": "896d9fc6ab36efda65cd819080644d00bc8970d4d44ed2fc1146325253902694",
       "gloss_grade_5": "Everyone can follow their own faith, or none at all. The state cannot pick a church for you or punish your beliefs. Your beliefs do not let you break fair laws.",
-      "gloss_grade_8": "Everyone may worship, or not, by their own conscience. The state cannot control belief or favor one faith. This liberty does not excuse acts that break laws protecting peace and safety."
+      "gloss_grade_8": "Everyone may worship, or not, by their own conscience. The state cannot control belief or favor one faith. This liberty does not excuse acts that break laws protecting peace and safety.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:mo:art-01:sec-08": {
       "urn": "urn:const:us:mo:art-01:sec-08",
@@ -895,7 +908,8 @@
       "effective_date": "1945-02-27",
       "source_sha256": "a90028ea14d6fffcb8ac3e8d4aacf1ae356fc3eb365128432445023e15deddf0",
       "gloss_grade_5": "You are free to say and write what you think. No law can take that away. But you still answer for what you say.",
-      "gloss_grade_8": "No law may limit free speech, in any form. Every person may speak, write, or publish their views. Each person still answers for abusing that liberty."
+      "gloss_grade_8": "No law may limit free speech, in any form. Every person may speak, write, or publish their views. Each person still answers for abusing that liberty.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:mo:art-01:sec-09": {
       "urn": "urn:const:us:mo:art-01:sec-09",
@@ -910,7 +924,8 @@
       "effective_date": "1945-02-27",
       "source_sha256": "e632b0f2c8df3a12a90e2a05664816b144aa7a5436254c51429bed8392a0e697",
       "gloss_grade_5": "People can gather in peace for a shared cause. They can also ask the state to fix something that is wrong.",
-      "gloss_grade_8": "The people may gather peaceably for their common good. They may also petition the government to correct wrongs."
+      "gloss_grade_8": "The people may gather peaceably for their common good. They may also petition the government to correct wrongs.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:mo:art-01:sec-14": {
       "urn": "urn:const:us:mo:art-01:sec-14",
@@ -925,7 +940,8 @@
       "effective_date": "1945-02-27",
       "source_sha256": "f3e7c65d6e8dbab015d6e34235b4704e0599ccdee45ac812ade7606ebb7c0009",
       "gloss_grade_5": "The courts are open to every person. If someone harms you, you can ask a court for help. Justice cannot be sold or slowed on purpose.",
-      "gloss_grade_8": "Courts must stay open to every person, with a remedy for every injury to person, property, or character. Justice may not be sold, denied, or delayed."
+      "gloss_grade_8": "Courts must stay open to every person, with a remedy for every injury to person, property, or character. Justice may not be sold, denied, or delayed.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:mo:art-04:sec-01": {
       "urn": "urn:const:us:mo:art-04:sec-01",
@@ -940,7 +956,8 @@
       "effective_date": "1945-02-27",
       "source_sha256": "c452d403ad100e2e761b1b48d8ccd0a5e090c0271bfe202cfd329135c98e5a08",
       "gloss_grade_5": "The state's top power to carry out the laws belongs to the governor.",
-      "gloss_grade_8": "The supreme executive power, the power to carry out the laws, belongs to the governor."
+      "gloss_grade_8": "The supreme executive power, the power to carry out the laws, belongs to the governor.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     },
     "urn:const:us:mo:art-10:sec-01": {
       "urn": "urn:const:us:mo:art-10:sec-01",
@@ -955,7 +972,8 @@
       "effective_date": "1945-02-27",
       "source_sha256": "e0c5c7da46c4855e53c9d636c32a613a4f7d6f7478105d6ca0d7592d43bf5a54",
       "gloss_grade_5": "The state's lawmakers can collect taxes for the state. Counties and towns can collect taxes too, if the lawmakers let them.",
-      "gloss_grade_8": "The general assembly may tax for state purposes. Counties and other local governments may tax only under power the general assembly grants them."
+      "gloss_grade_8": "The general assembly may tax for state purposes. Counties and other local governments may tax only under power the general assembly grants them.",
+      "gloss_reviewed_by": "initial-editorial-pass"
     }
   }
 }

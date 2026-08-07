@@ -5,7 +5,9 @@
   "type": "module",
   "description": "Charter — a civic education game built on all 50 U.S. state constitutions",
   "license": "MIT",
-  "engines": { "node": ">=22.6" },
+  "engines": {
+    "node": ">=22.6"
+  },
   "scripts": {
     "dev": "vite",
     "build": "npm run bundle:demo && tsc --noEmit && vite build",
@@ -16,7 +18,9 @@
     "test:a11y": "playwright test",
     "ingest": "vite-node src/ingest/cli.ts --",
     "review:neutrality": "node scripts/analyze-neutrality.mjs",
-    "gates": "node scripts/check-clause-refs.mjs && node scripts/check-reading-level.mjs && node scripts/check-sensitivity.mjs && node scripts/check-quote-integrity.mjs && node scripts/check-gloss-freeze.mjs && node scripts/check-privacy-regression.mjs"
+    "gates": "node scripts/check-clause-refs.mjs && node scripts/check-reading-level.mjs && node scripts/check-sensitivity.mjs && node scripts/check-quote-integrity.mjs && node scripts/check-gloss-freeze.mjs && node scripts/check-privacy-regression.mjs && node scripts/build-review-sheet.mjs --check",
+    "review:status": "node scripts/check-review-status.mjs",
+    "review:sheet": "node scripts/build-review-sheet.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.665.0",

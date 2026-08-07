@@ -1,7 +1,7 @@
 {
   "$comment": "Published clause corpus (L1). Text is verbatim from the cited official source, traceable via source_sha256 to the raw page in data/raw/. Review the diff — these are the words a child reads.",
   "state": "NE",
-  "built_at": "2026-08-07T17:43:47.184Z",
+  "built_at": "2026-08-07T19:26:25.640Z",
   "checksum": "dc68ed70032040616c0871ee8b9f4c945d683783d04e651922d853237083f232",
   "clauses": [
     {

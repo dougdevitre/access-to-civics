@@ -115,11 +115,22 @@ export default function App() {
   }
 
   if (!band) {
+    const clauseCount = Object.values(bundle.clauses).filter((c) => c.text !== null).length;
     return chrome(
       <>
-        <p className="eyebrow">{NEUTRAL.pilot(bundle.state_name)}</p>
-        <h1 ref={headingRef} tabIndex={-1}>{NEUTRAL.title}</h1>
-        <p>{NEUTRAL.tagline}</p>
+        <header className="hero">
+          <p className="hero-mark" aria-hidden="true">⬤</p>
+          <p className="eyebrow">{NEUTRAL.pilot(bundle.state_name)}</p>
+          <h1 ref={headingRef} tabIndex={-1}>{NEUTRAL.title}</h1>
+          <p className="lede">{NEUTRAL.tagline}</p>
+          <ul className="facts">
+            <li>{NEUTRAL.factQuestions(bundle.decisions.length)}</li>
+            <li>{NEUTRAL.factTime}</li>
+            <li>{NEUTRAL.factClauses(clauseCount)}</li>
+            <li>{NEUTRAL.factGrades}</li>
+          </ul>
+        </header>
+
         <h2>{NEUTRAL.whoPlaying}</h2>
         <div className="options band-pick">
           <button type="button" onClick={() => setBand('8-10')}>
@@ -131,6 +142,25 @@ export default function App() {
             <span>{NEUTRAL.band11Sub}</span>
           </button>
         </div>
+
+        <p className="trust-strip">{NEUTRAL.trustStrip}</p>
+
+        <section className="home-card" aria-labelledby="rulebook">
+          <h2 id="rulebook">{NEUTRAL.exploreCardTitle}</h2>
+          <p>{NEUTRAL.exploreCardBody}</p>
+          <div className="options">
+            <button type="button" onClick={() => setView('explore')}>
+              {NEUTRAL.exploreCardCta}
+            </button>
+          </div>
+        </section>
+
+        <p className="teacher-line">
+          {NEUTRAL.teacherLead}{' '}
+          <button type="button" className="linklike" onClick={() => setView('teachers')}>
+            {NEUTRAL.teacherCta}
+          </button>
+        </p>
       </>,
     );
   }

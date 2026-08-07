@@ -259,6 +259,17 @@ export const NEUTRAL = {
   navGrownups: 'For grown-ups',
   navTeachers: 'Teachers & families',
   navExplore: 'Read the rule book',
+  factQuestions: (n: number) => `${n} questions`,
+  factClauses: (n: number) => `${n} real clauses`,
+  factTime: '20 to 40 minutes',
+  factGrades: 'Grades 3 to 8',
+  trustStrip: 'No accounts. No ads. No tracking. Works with no wifi.',
+  exploreCardTitle: 'The real rule book',
+  exploreCardBody:
+    'Read the real Missouri rules in this game. See what each one means.',
+  exploreCardCta: 'Open the rule book',
+  teacherLead: 'Teaching with this?',
+  teacherCta: 'Start with the teacher guide',
   changeBand: 'Switch age group',
   noscript: 'Charter needs JavaScript to run. Nothing is tracked either way.',
 };

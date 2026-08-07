@@ -38,14 +38,36 @@ body {
   line-height: 1.6;
 }
 
-/* Ruled ledger, the one ambient device. */
+/*
+  Ruled ledger, the one ambient device.
+
+  The rules must read as paper the text sits ON, never as strikethrough. Two guards:
+  the rule tone is light enough to be texture, and every text block paints the paper
+  colour behind itself, so the ruling only ever shows in the space between blocks.
+  Without the second guard the lines cut straight through headings at any font size.
+*/
 .convention {
   max-width: 46rem;
   margin: 0 auto;
   padding: 3rem 1.5rem 6rem;
   background-image: repeating-linear-gradient(
-    to bottom, transparent 0 2.1rem, var(--rule) 2.1rem 2.15rem
+    to bottom,
+    transparent 0 2.1rem,
+    color-mix(in srgb, var(--rule) 55%, var(--paper)) 2.1rem 2.15rem
   );
+}
+
+.convention h1,
+.convention h2,
+.convention h3,
+.convention p,
+.convention ul,
+.convention ol,
+.convention dl,
+.convention details,
+.convention blockquote,
+.convention article {
+  background-color: var(--paper);
 }
 
 h1 { font-family: var(--font-display); font-size: var(--step-3); font-weight: 600; margin: 0 0 .25rem; }
@@ -271,6 +293,70 @@ button:active { transform: translateY(1px); }
 @keyframes stamp {
   from { transform: scale(2.4) rotate(-12deg); opacity: 0; }
   to { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* --- Home page --- */
+.hero { margin-bottom: 2.25rem; }
+/*
+  Ink, not seal red. The palette note above spends the red exactly once, at ratification;
+  putting it on the home page too would cash that in before the player earns it.
+*/
+.hero-mark {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  line-height: 1;
+  margin: 0 0 .75rem;
+}
+.lede {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  margin: .5rem 0 1rem;
+  max-width: 34rem;
+}
+.facts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .5rem;
+  padding: 0;
+  margin: 0;
+}
+.facts li {
+  font-size: .8rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--iron);
+  border: 1px solid var(--rule);
+  padding: .2rem .6rem;
+}
+
+.trust-strip {
+  border-top: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  padding: .7rem 0;
+  margin: 2rem 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+.home-card {
+  border: 1.5px solid var(--rule);
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0 1.5rem;
+  background-color: var(--paper);
+}
+.home-card h2 { margin-top: 0; }
+.home-card .options { margin-bottom: 0; }
+
+.teacher-line { color: var(--iron); margin-top: 2rem; }
+
+/* Footer is wayfinding, not a call to action — quieter than anything in the page body. */
+.site-footer button {
+  border: none;
+  background: none;
+  text-decoration: underline;
+  padding: .6rem .5rem;
 }
 
 @media (max-width: 520px) {

@@ -148,9 +148,23 @@ test('trust pages are reachable and accessible', async ({ page }) => {
   await expectNoSeriousViolations(page, 'teachers');
 });
 
+test('home page orients a newcomer before any choice is made', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('heading', { name: 'Charter' })).toBeVisible();
+  // The facts row is built from the bundle, not hard-coded.
+  await expect(page.getByText('5 questions')).toBeVisible();
+  await expect(page.getByText('11 real clauses')).toBeVisible();
+  // The differentiator a teacher must see without clicking anything.
+  await expect(page.getByText(/No accounts\. No ads\. No tracking\./)).toBeVisible();
+  // Both audiences have a distinct entry point.
+  await expect(page.getByRole('button', { name: 'Open the rule book' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Start with the teacher guide' })).toBeVisible();
+  await expectNoSeriousViolations(page, 'home');
+});
+
 test('rule book explorer shows the full ingested corpus', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Read the rule book' }).click();
+  await page.getByRole('button', { name: 'Open the rule book' }).click();
   await expect(page.getByRole('heading', { name: 'The real rule book' })).toBeVisible();
   // Browse-only clause, not part of any decision node:
   await expect(page.getByText(/no law shall be passed impairing the freedom of speech/)).toBeVisible();

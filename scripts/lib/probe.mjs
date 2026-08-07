@@ -39,6 +39,33 @@ function titleOf(body) {
   return /<title[^>]*>([\s\S]*?)<\/title>/i.exec(body)?.[1]?.trim().replace(/\s+/g, ' ') ?? '';
 }
 
+/**
+ * Print the links on a page with their text. When a state publishes an index, reading it beats
+ * guessing URL shapes — Delaware's file numbers are offset from its article numbers, and no
+ * amount of guessing would have found that. One round trip instead of three.
+ */
+function dumpLinks(body, base, filter) {
+  const seen = new Set();
+  const rows = [];
+  for (const m of body.matchAll(/<a\s[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi)) {
+    let href = m[1];
+    if (/^(#|mailto:|javascript:)/i.test(href)) continue;
+    try {
+      href = new URL(href, base).toString();
+    } catch {
+      continue;
+    }
+    const text = textOf(m[2]).slice(0, 80);
+    if (!text) continue;
+    const row = `${text}  ->  ${href}`;
+    if (seen.has(row)) continue;
+    if (filter && !filter.test(row)) continue;
+    seen.add(row);
+    rows.push(row);
+  }
+  return rows;
+}
+
 async function probeDns(host) {
   bar(`DNS — ${host}`);
   for (const [name, fn] of [['lookup', lookup], ['resolve4', resolve4], ['resolve6', resolve6]]) {
@@ -50,7 +77,7 @@ async function probeDns(host) {
   }
 }
 
-async function probeFetch(candidates, marker, altMarkers) {
+async function probeFetch(candidates, marker, altMarkers, links) {
   bar('Plain fetch of candidate paths');
   const hits = [];
   for (const url of candidates) {
@@ -84,6 +111,12 @@ async function probeFetch(candidates, marker, altMarkers) {
         for (const alt of altMarkers) {
           console.log(`    alt "${alt}": ${text.toLowerCase().includes(alt.toLowerCase())}`);
         }
+      }
+      if (links) {
+        const rows = dumpLinks(body, res.url, links instanceof RegExp ? links : null);
+        console.log(`    ${rows.length} link(s):`);
+        for (const row of rows.slice(0, 120)) console.log(`      ${row}`);
+        if (rows.length > 120) console.log(`      … ${rows.length - 120} more`);
       }
     } catch (err) {
       console.log(`\n  ${url}\n    ERR ${err.cause?.code ?? err.message}`);
@@ -141,11 +174,13 @@ async function probeBrowser(url, marker) {
  * @param {string[]} opts.candidates  URLs to try with a plain fetch, in preference order
  * @param {string} opts.marker      a phrase that must appear if the response is the real document
  * @param {string[]} [opts.altMarkers] looser phrases, reported when the marker misses
+ * @param {boolean|RegExp} [opts.links] print each candidate's links, optionally filtered — use this
+ *        on an index page to read the article-to-URL mapping instead of guessing it
  * @param {string} [opts.renderUrl] page to open in a browser; defaults to the first candidate
  */
-export async function probeState({ host, candidates, marker, altMarkers = [], renderUrl }) {
+export async function probeState({ host, candidates, marker, altMarkers = [], links, renderUrl }) {
   await probeDns(host);
-  const hits = await probeFetch(candidates, marker, altMarkers);
+  const hits = await probeFetch(candidates, marker, altMarkers, links);
 
   if (hits.length > 0) {
     console.log(`\n[probe] ${hits.length} candidate(s) returned the real document:`);

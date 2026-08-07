@@ -34,9 +34,10 @@ test('ages 8-10 class mode: full playthrough with mediated history card', async 
     1: 'Experts make a list. The governor picks one.',
     2: 'The state makes sure every school gets enough',
     3: 'Only people who own land', // adopt the historical-harm option to test mediation
+    4: 'More than half of people say yes',
   };
 
-  for (let node = 0; node < 4; node++) {
+  for (let node = 0; node < 5; node++) {
     const pick = picks[node]!;
     await page.getByRole('button', { name: pick }).click(); // vote 1: pick
     await expect(page.getByText(/You picked/)).toBeVisible();
@@ -80,15 +81,17 @@ test('ages 11-14 delegate mode: full playthrough with leaving notice', async ({ 
     'A commission nominates, the governor appoints',
     'The state must fund a minimum for every school',
     'Every adult citizen',
+    'A supermajority must say yes',
   ];
   const optionA = [
     'Only the legislature',
     'Voters elect them',
     'Each town pays for its own',
     'Only people who own land',
+    'More than half the voters say yes',
   ];
 
-  for (let node = 0; node < 4; node++) {
+  for (let node = 0; node < 5; node++) {
     for (let vote = 0; vote < 6; vote++) {
       const round = Math.floor(vote / 3);
       const seat = vote % 3;
@@ -126,7 +129,7 @@ test('ages 11-14 delegate mode: full playthrough with leaving notice', async ({ 
   await page.getByRole('button', { name: 'Reject', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Ratified.' })).toBeVisible();
   await expect(page.getByText('The Charter of Missouri')).toBeVisible();
-  await expect(page.getByText(/4 votes changed/)).toBeVisible();
+  await expect(page.getByText(/5 votes changed/)).toBeVisible();
   await expect(page.getByRole('button', { name: 'Print the charter' })).toBeVisible();
 });
 

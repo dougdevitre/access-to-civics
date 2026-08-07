@@ -209,6 +209,48 @@
           "harms": []
         }
       ]
+    },
+    {
+      "node_id": "D05",
+      "age_band": "11-14",
+      "prompt": "How hard should it be to change the rules?",
+      "prompt_8_10": "How hard should it be to change a rule?",
+      "topic": "AMENDMENT_PROCESS",
+      "options": [
+        {
+          "option_id": "D05-A",
+          "label": "More than half the voters say yes",
+          "label_8_10": "More than half of people say yes",
+          "clause_refs": [
+            "urn:const:us:mo:art-12:sec-02b"
+          ],
+          "favors": [
+            "most people",
+            "organizers"
+          ],
+          "harms": [
+            "small groups",
+            "stability"
+          ]
+        },
+        {
+          "option_id": "D05-B",
+          "label": "A supermajority must say yes",
+          "label_8_10": "Way more than half must say yes",
+          "clause_refs": [
+            "urn:const:us:fl:art-11:sec-05e",
+            "urn:const:us:nh:art-100:sec-01"
+          ],
+          "favors": [
+            "small groups",
+            "stability"
+          ],
+          "harms": [
+            "most people",
+            "organizers"
+          ]
+        }
+      ]
     }
   ],
   "goal_cards": [
@@ -409,6 +451,46 @@
       "writer_age": 19,
       "tone": "hopeful",
       "body": "I'm the first in my family to vote. My grandmother told me the rules used to keep people like us out. She came with me to watch."
+    },
+    {
+      "letter_id": "L17",
+      "node_id": "D05",
+      "option_id": "D05-A",
+      "age_band": "11-14",
+      "writer_name": "Priya",
+      "writer_age": 15,
+      "tone": "hopeful",
+      "body": "Our school board rule changed because 51 percent of voters wanted it. My mom says that is how it should work. My neighbor says a rule that thin can flip back next year."
+    },
+    {
+      "letter_id": "L18",
+      "node_id": "D05",
+      "option_id": "D05-B",
+      "age_band": "11-14",
+      "writer_name": "Walter",
+      "writer_age": 68,
+      "tone": "worried",
+      "body": "We got 55 percent and still lost. The measure needed 60. I understand the reason, but it is strange to win the vote and lose the question."
+    },
+    {
+      "letter_id": "L19",
+      "node_id": "D05",
+      "option_id": "D05-A",
+      "age_band": "8-10",
+      "writer_name": "Nina",
+      "writer_age": 10,
+      "tone": "hopeful",
+      "body": "Our town voted to build a skate park. It won by a little. My friend says a small win still counts. I think she is right."
+    },
+    {
+      "letter_id": "L20",
+      "node_id": "D05",
+      "option_id": "D05-B",
+      "age_band": "8-10",
+      "writer_name": "Nina",
+      "writer_age": 10,
+      "tone": "worried",
+      "body": "Our skate park vote got more yes than no. It still did not pass. The rule said we needed way more than half."
     }
   ],
   "reflections": [
@@ -451,6 +533,16 @@
       "node_id": "D04",
       "age_band": "11-14",
       "prompt": "Who did the old voting rules leave out? What did it take to change them?"
+    },
+    {
+      "node_id": "D05",
+      "age_band": "8-10",
+      "prompt": "Should it be easy or hard to change a rule? Say why."
+    },
+    {
+      "node_id": "D05",
+      "age_band": "11-14",
+      "prompt": "Whose voice does a high bar protect? Whose voice does it slow down?"
     }
   ],
   "clauses": {
@@ -465,7 +557,7 @@
       "sensitivity": "none",
       "section_heading": "Free public schools — age limit.",
       "effective_date": "1976-09-02",
-      "source_sha256": "837905a107ca5cbb38eda40b2a4778db557a20d46d844ce9573b2394afcc0b4f",
+      "source_sha256": "4b71e8850e46732ee36dd1cc73198a60a168a76a796b468975dffd4acaea4b8c",
       "gloss_grade_5": "Missouri says learning keeps people free. So the state must run free public schools that anyone up to age 21 can attend.",
       "gloss_grade_8": "An educated public protects everyone’s rights and freedom. So the constitution requires the state to establish and maintain free public schools, open to everyone up to age twenty-one."
     },
@@ -480,7 +572,7 @@
       "sensitivity": "none",
       "section_heading": "Reservation of power to enact and reject laws.",
       "effective_date": "1945-02-27",
-      "source_sha256": "3f255da9dfb32d592a46566d71d55922ffd2b4ebb5d208137bf837b744360a5a",
+      "source_sha256": "69728fdff8f2a04958be8a5a74ad4cb8f13a6f286d1243484e3853d75003f778",
       "gloss_grade_5": "The people keep two powers for themselves. They can write a new law and put it to a vote. They can also vote yes or no on a law the lawmakers passed.",
       "gloss_grade_8": "The people keep two powers. By initiative, they can propose a law or an amendment and pass it at the ballot. By referendum, they can approve or reject a law the general assembly passed."
     },
@@ -525,7 +617,7 @@
       "sensitivity": "none",
       "section_heading": "Nonpartisan selection of judges — courts subject to plan — appointments to fill vacancies.",
       "effective_date": "1976-09-02",
-      "source_sha256": "8a25fd111edb78883bc987b5f6f07484cc24ff5d945c018e1e64a53e1243d0ba",
+      "source_sha256": "5d5e2b6c5cb99e89190c9d6f978ed288e4aa0e3a03112afafd62ecfeca08aca3",
       "gloss_grade_5": "When a judge's job opens up, a special group picks three people who could do it. The governor must choose one of those three.",
       "gloss_grade_8": "When a judge's seat on certain courts opens up, a nonpartisan commission picks three candidates. The governor must appoint one of the three."
     },
@@ -562,9 +654,44 @@
       "sensitivity": "none",
       "section_heading": "Qualifications of voters — disqualifications.",
       "effective_date": "2024-12-05",
-      "source_sha256": "d8166eb828d286efe7443cd53e076ae59612b699a75f29d25e7dd6115d92885d",
+      "source_sha256": "b5f9d9fc3c237c64e2e04e25d524cf40251473a4ce5cc29134a5b032635f3692",
       "gloss_grade_5": "You can vote in Missouri if you are a citizen of the United States, you are 18 or older, and you live here. The section also says when someone cannot vote.",
       "gloss_grade_8": "Voters must be United States citizens, at least eighteen, and residents of Missouri and their district. The section also lists times when a person cannot vote, such as while serving a felony sentence."
+    },
+    "urn:const:us:mo:art-12:sec-02b": {
+      "urn": "urn:const:us:mo:art-12:sec-02b",
+      "state": "MO",
+      "citation": "Missouri Constitution, Article 12, Section 2b",
+      "heading": null,
+      "text": "All amendments proposed by the general assembly or by the initiative shall be submitted to the electors for their approval or rejection by official ballot title as may be provided by law, on a separate ballot without party designation, at the next general election, or at a special election called by the governor prior thereto, at which he may submit any of the amendments. No such proposed amendment shall contain more than one amended and revised article of this constitution, or one new article which shall not contain more than one subject and matters properly connected therewith. If possible, each proposed amendment shall be published once a week for two consecutive weeks in two newspapers of different political faith in each county, the last publication to be not more than thirty nor less than fifteen days next preceding the election. If there be but one newspaper in any county, publication for four consecutive weeks shall be made. If a majority of the votes cast thereon is in favor of any amendment, the same shall take effect at the end of thirty days after the election. More than one amendment at the same election shall be so submitted as to enable the electors to vote on each amendment separately.",
+      "text_status": "fetched",
+      "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=XII++2%28b%29",
+      "sensitivity": "none",
+      "section_heading": "Submission of amendments proposed by general assembly or by the initiative.",
+      "effective_date": "1945-02-27",
+      "source_sha256": "54648183f66a86bbadfedac966dda4067791698f15885247fc5dbbebf7b93f4d",
+      "gloss_grade_5": "A change goes to the voters at the next big election. Each change is voted on by itself. If more than half the votes say yes, it starts thirty days later.",
+      "gloss_grade_8": "Proposed amendments go on the ballot at the next general election, each voted on separately and each limited to one subject. If a majority of the votes cast on it say yes, it takes effect thirty days later."
+    },
+    "urn:const:us:fl:art-11:sec-05e": {
+      "urn": "urn:const:us:fl:art-11:sec-05e",
+      "state": "FL",
+      "citation": "Florida Constitution, Article 11, Section 5e",
+      "heading": null,
+      "text": null,
+      "text_status": "unfetched",
+      "source_url": null,
+      "sensitivity": "none"
+    },
+    "urn:const:us:nh:art-100:sec-01": {
+      "urn": "urn:const:us:nh:art-100:sec-01",
+      "state": "NH",
+      "citation": "New Hampshire Constitution, Article 100, Section 1",
+      "heading": null,
+      "text": null,
+      "text_status": "unfetched",
+      "source_url": null,
+      "sensitivity": "none"
     },
     "urn:const:us:mo:art-01:sec-05": {
       "urn": "urn:const:us:mo:art-01:sec-05",
@@ -579,7 +706,7 @@
       "teacher_note_8_10": "This rule is about faith and prayer. Read it together with your teacher.",
       "section_heading": "Religious freedom — liberty of conscience and belief — limitations — right to pray — academic religious freedoms and prayer.",
       "effective_date": "2012-09-06",
-      "source_sha256": "37cccec19549dd96010a9e2ec08787e867a4a941c1cbe267fcd98966e3a895d5",
+      "source_sha256": "f7e088e734a147cf5c8a58822f7233767e647510978d1df4912c365a8dff8930",
       "gloss_grade_5": "Everyone can follow their own faith, or none at all. The state cannot pick a church for you or punish your beliefs. Your beliefs do not let you break fair laws.",
       "gloss_grade_8": "Everyone may worship, or not, by their own conscience. The state cannot control belief or favor one faith. This liberty does not excuse acts that break laws protecting peace and safety."
     },
@@ -594,7 +721,7 @@
       "sensitivity": "none",
       "section_heading": "Freedom of speech — evidence of truth in defamation actions — province of jury.",
       "effective_date": "1945-02-27",
-      "source_sha256": "fa49fe1a9befdb4e34df362ea4d0802159380b6205169c60d7f16f08c5cc1f98",
+      "source_sha256": "4ef143a78950b101a1cc7b46e98c4391e2ab10733ade46dc79e662ce83ba8521",
       "gloss_grade_5": "You are free to say and write what you think. No law can take that away. But you still answer for what you say.",
       "gloss_grade_8": "No law may limit free speech, in any form. Every person may speak, write, or publish their views. Each person still answers for abusing that liberty."
     },
@@ -609,7 +736,7 @@
       "sensitivity": "none",
       "section_heading": "Rights of peaceable assembly and petition.",
       "effective_date": "1945-02-27",
-      "source_sha256": "7a33c710376d556ed9771bbf213f909f2bb4f806b3c11c2e4850b69c0bdf9076",
+      "source_sha256": "bb28d75408721e3ec980611875997620b8437c184aaf231a32d6d9ba25a698f2",
       "gloss_grade_5": "People can gather in peace for a shared cause. They can also ask the state to fix something that is wrong.",
       "gloss_grade_8": "The people may gather peaceably for their common good. They may also petition the government to correct wrongs."
     },
@@ -624,7 +751,7 @@
       "sensitivity": "none",
       "section_heading": "Open courts — certain remedies — justice without sale, denial or delay.",
       "effective_date": "1945-02-27",
-      "source_sha256": "3e4e2b91a06b88a2b2a553d3f0546ea7fa2b34f06fc621eb8d3d62322c6a02a6",
+      "source_sha256": "fae1dc3eb1ec9dae317a67a7033574ed4e93ea43d5feb0a5ad9cf5a49b55ccc0",
       "gloss_grade_5": "The courts are open to every person. If someone harms you, you can ask a court for help. Justice cannot be sold or slowed on purpose.",
       "gloss_grade_8": "Courts must stay open to every person, with a remedy for every injury to person, property, or character. Justice may not be sold, denied, or delayed."
     },
@@ -639,7 +766,7 @@
       "sensitivity": "none",
       "section_heading": "Executive power — the governor.",
       "effective_date": "1945-02-27",
-      "source_sha256": "c07bab120e225ded903b668644ce8d96a72b12bf8c74d622e3ffa3db3b1daee9",
+      "source_sha256": "5efc04e0d57351edb8c1b8f20817f51684af2cc2ce4f6324442d785dddb181fe",
       "gloss_grade_5": "The state's top power to carry out the laws belongs to the governor.",
       "gloss_grade_8": "The supreme executive power, the power to carry out the laws, belongs to the governor."
     },
@@ -654,7 +781,7 @@
       "sensitivity": "none",
       "section_heading": "Taxing power — exercise by state and local governments.",
       "effective_date": "1945-02-27",
-      "source_sha256": "74be1b9456998ff510f7757a0c8b00bf2c70f559cf2b8efc93ddeff7b3f0e423",
+      "source_sha256": "1dc9ede5013731bc0c6d8ecfd26958f99fab4b0911741395cc90dcab851a5925",
       "gloss_grade_5": "The state's lawmakers can collect taxes for the state. Counties and towns can collect taxes too, if the lawmakers let them.",
       "gloss_grade_8": "The general assembly may tax for state purposes. Counties and other local governments may tax only under power the general assembly grants them."
     }

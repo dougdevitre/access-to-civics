@@ -1,8 +1,8 @@
 {
   "$comment": "Published clause corpus (L1). Text is verbatim from the cited official source, traceable via source_sha256 to the raw page in data/raw/. Review the diff — these are the words a child reads.",
   "state": "MO",
-  "built_at": "2026-08-07T14:05:21.307Z",
-  "checksum": "8880ca68ebe31582225e28ec18a2502e8b36890779924870e2221ac1179164c5",
+  "built_at": "2026-08-07T15:31:17.216Z",
+  "checksum": "ce83080ef8335436afa21615d218793479bfd54a17ef33a082937be980ab8902",
   "clauses": [
     {
       "urn": "urn:const:us:mo:art-03:sec-49",
@@ -22,7 +22,7 @@
       "effective_date": "1945-02-27",
       "supersedes": null,
       "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=III++49",
-      "source_sha256": "3f255da9dfb32d592a46566d71d55922ffd2b4ebb5d208137bf837b744360a5a",
+      "source_sha256": "69728fdff8f2a04958be8a5a74ad4cb8f13a6f286d1243484e3853d75003f778",
       "sensitivity": "none"
     },
     {
@@ -43,7 +43,7 @@
       "effective_date": "1976-09-02",
       "supersedes": null,
       "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=V++25%28a%29",
-      "source_sha256": "8a25fd111edb78883bc987b5f6f07484cc24ff5d945c018e1e64a53e1243d0ba",
+      "source_sha256": "5d5e2b6c5cb99e89190c9d6f978ed288e4aa0e3a03112afafd62ecfeca08aca3",
       "sensitivity": "none"
     },
     {
@@ -64,7 +64,7 @@
       "effective_date": "2024-12-05",
       "supersedes": null,
       "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=VIII++2",
-      "source_sha256": "d8166eb828d286efe7443cd53e076ae59612b699a75f29d25e7dd6115d92885d",
+      "source_sha256": "b5f9d9fc3c237c64e2e04e25d524cf40251473a4ce5cc29134a5b032635f3692",
       "sensitivity": "none"
     },
     {
@@ -86,7 +86,7 @@
       "effective_date": "1976-09-02",
       "supersedes": null,
       "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=IX++1%28a%29",
-      "source_sha256": "837905a107ca5cbb38eda40b2a4778db557a20d46d844ce9573b2394afcc0b4f",
+      "source_sha256": "4b71e8850e46732ee36dd1cc73198a60a168a76a796b468975dffd4acaea4b8c",
       "sensitivity": "none"
     },
     {
@@ -107,7 +107,7 @@
       "effective_date": "2012-09-06",
       "supersedes": null,
       "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=I++5",
-      "source_sha256": "37cccec19549dd96010a9e2ec08787e867a4a941c1cbe267fcd98966e3a895d5",
+      "source_sha256": "f7e088e734a147cf5c8a58822f7233767e647510978d1df4912c365a8dff8930",
       "sensitivity": "teacher_mediated"
     },
     {
@@ -128,7 +128,7 @@
       "effective_date": "1945-02-27",
       "supersedes": null,
       "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=I++8",
-      "source_sha256": "fa49fe1a9befdb4e34df362ea4d0802159380b6205169c60d7f16f08c5cc1f98",
+      "source_sha256": "4ef143a78950b101a1cc7b46e98c4391e2ab10733ade46dc79e662ce83ba8521",
       "sensitivity": "none"
     },
     {
@@ -149,7 +149,7 @@
       "effective_date": "1945-02-27",
       "supersedes": null,
       "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=I++9",
-      "source_sha256": "7a33c710376d556ed9771bbf213f909f2bb4f806b3c11c2e4850b69c0bdf9076",
+      "source_sha256": "bb28d75408721e3ec980611875997620b8437c184aaf231a32d6d9ba25a698f2",
       "sensitivity": "none"
     },
     {
@@ -170,7 +170,7 @@
       "effective_date": "1945-02-27",
       "supersedes": null,
       "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=I++14",
-      "source_sha256": "3e4e2b91a06b88a2b2a553d3f0546ea7fa2b34f06fc621eb8d3d62322c6a02a6",
+      "source_sha256": "fae1dc3eb1ec9dae317a67a7033574ed4e93ea43d5feb0a5ad9cf5a49b55ccc0",
       "sensitivity": "none"
     },
     {
@@ -191,7 +191,7 @@
       "effective_date": "1945-02-27",
       "supersedes": null,
       "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=IV++1",
-      "source_sha256": "c07bab120e225ded903b668644ce8d96a72b12bf8c74d622e3ffa3db3b1daee9",
+      "source_sha256": "5efc04e0d57351edb8c1b8f20817f51684af2cc2ce4f6324442d785dddb181fe",
       "sensitivity": "none"
     },
     {
@@ -212,7 +212,28 @@
       "effective_date": "1945-02-27",
       "supersedes": null,
       "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=X++1",
-      "source_sha256": "74be1b9456998ff510f7757a0c8b00bf2c70f559cf2b8efc93ddeff7b3f0e423",
+      "source_sha256": "1dc9ede5013731bc0c6d8ecfd26958f99fab4b0911741395cc90dcab851a5925",
+      "sensitivity": "none"
+    },
+    {
+      "urn": "urn:const:us:mo:art-12:sec-02b",
+      "state": "MO",
+      "article": {
+        "num": "XII",
+        "heading": "Amending the Constitution"
+      },
+      "section": "2(b)",
+      "section_heading": "Submission of amendments proposed by general assembly or by the initiative.",
+      "text": "All amendments proposed by the general assembly or by the initiative shall be submitted to the electors for their approval or rejection by official ballot title as may be provided by law, on a separate ballot without party designation, at the next general election, or at a special election called by the governor prior thereto, at which he may submit any of the amendments. No such proposed amendment shall contain more than one amended and revised article of this constitution, or one new article which shall not contain more than one subject and matters properly connected therewith. If possible, each proposed amendment shall be published once a week for two consecutive weeks in two newspapers of different political faith in each county, the last publication to be not more than thirty nor less than fifteen days next preceding the election. If there be but one newspaper in any county, publication for four consecutive weeks shall be made. If a majority of the votes cast thereon is in favor of any amendment, the same shall take effect at the end of thirty days after the election. More than one amendment at the same election shall be so submitted as to enable the electors to vote on each amendment separately.",
+      "text_status": "fetched",
+      "topics": [
+        "AMENDMENT_PROCESS"
+      ],
+      "status": "operative",
+      "effective_date": "1945-02-27",
+      "supersedes": null,
+      "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=XII++2%28b%29",
+      "source_sha256": "54648183f66a86bbadfedac966dda4067791698f15885247fc5dbbebf7b93f4d",
       "sensitivity": "none"
     }
   ],
@@ -311,6 +332,16 @@
       "clause_urn": "urn:const:us:mo:art-10:sec-01",
       "grade_5": "The state's lawmakers can collect taxes for the state. Counties and towns can collect taxes too, if the lawmakers let them.",
       "grade_8": "The general assembly may tax for state purposes. Counties and other local governments may tax only under power the general assembly grants them.",
+      "lang": "en",
+      "flesch_kincaid": null,
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-12:sec-02b",
+      "grade_5": "A change goes to the voters at the next big election. Each change is voted on by itself. If more than half the votes say yes, it starts thirty days later.",
+      "grade_8": "Proposed amendments go on the ballot at the next general election, each voted on separately and each limited to one subject. If a majority of the votes cast on it say yes, it takes effect thirty days later.",
       "lang": "en",
       "flesch_kincaid": null,
       "reviewed_by": "initial-editorial-pass",

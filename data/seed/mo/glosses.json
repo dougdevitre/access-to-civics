@@ -100,6 +100,16 @@
       "reviewed_at": "2026-08-07",
       "frozen": true,
       "flesch_kincaid": null
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-12:sec-02b",
+      "grade_5": "A change goes to the voters at the next big election. Each change is voted on by itself. If more than half the votes say yes, it starts thirty days later.",
+      "grade_8": "Proposed amendments go on the ballot at the next general election, each voted on separately and each limited to one subject. If a majority of the votes cast on it say yes, it takes effect thirty days later.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
     }
   ]
 }

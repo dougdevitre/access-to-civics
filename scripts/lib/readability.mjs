@@ -80,6 +80,8 @@ export const TAUGHT_TERMS = [
   'remedy',
   'executive',
   'conscience',
+  'supermajority',
+  'majority',
 ];
 
 export function gradeFor(text, band) {

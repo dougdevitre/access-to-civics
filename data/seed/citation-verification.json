@@ -1,0 +1,41 @@
+{
+  "$comment": "Audit trail for clause citations that are referenced by decision nodes but whose state has no ingest adapter yet. These clauses render as honest 'text pending' cards — the app never shows words for them — but the citation itself must still be right, because a child sees it and a teacher may follow the link. Each entry records how the citation was verified and when. When a state's adapter lands, its entries move to the published corpus and this record becomes the pre-ingest history.",
+  "verified": [
+    {
+      "urn": "urn:const:us:fl:art-11:sec-05e",
+      "citation": "Florida Constitution, Article XI, Section 5(e)",
+      "subject": "60% voter approval required for a constitutional amendment",
+      "verified_on": "2026-08-07",
+      "method": "web research against flsenate.gov (official) and secondary mirrors; page fetch was blocked from the build environment, so the quote was corroborated across independent search extractions rather than retrieved first-party",
+      "sources": [
+        "https://www.flsenate.gov/laws/constitution",
+        "https://codes.findlaw.com/fl/florida-constitution1968-revision/fl-const-art-11-sect-5/"
+      ],
+      "caveat": "The 60% rule is the general threshold. Article XI, Section 7 requires two-thirds for amendments imposing a new state tax or fee. The game option is written as the general rule, not as an absolute."
+    },
+    {
+      "urn": "urn:const:us:nh:art-100:sec-01",
+      "citation": "New Hampshire Constitution, Part Second, Article 100",
+      "subject": "two-thirds of voters required to ratify a constitutional amendment",
+      "verified_on": "2026-08-07",
+      "method": "web research against nh.gov and Justia; page fetch blocked from the build environment, corroborated across independent search extractions",
+      "sources": [
+        "https://www.nh.gov/glance/state-constitution/part-2-oaths-and-subscriptions-exclusion-offices",
+        "https://law.justia.com/constitution/new-hampshire/"
+      ],
+      "caveat": "Two-thirds is the ratification threshold at the polls. The three-fifths figure sometimes quoted is the separate legislative threshold for proposing an amendment."
+    }
+  ],
+  "unverified": [
+    {
+      "$note": "Referenced by seed decisions since the original scaffold, not yet re-verified in this session. Each renders as a pending card with no text. Verify before any classroom pilot.",
+      "urns": [
+        "urn:const:us:de:art-16:sec-01",
+        "urn:const:us:ca:art-02:sec-08",
+        "urn:const:us:tx:art-05:sec-02",
+        "urn:const:us:nh:art-83:sec-01",
+        "urn:const:us:va:art-02:sec-01"
+      ]
+    }
+  ]
+}

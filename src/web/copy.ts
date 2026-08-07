@@ -300,6 +300,12 @@ export const GLOSSARY: GlossaryEntry[] = [
   { term: 'executive', kid: 'The part of government that carries out the laws.' },
   { term: 'conscience', kid: 'Your own sense of right and wrong.' },
   {
+    term: 'supermajority',
+    kid: 'Much more than half. Often 6 out of 10, or 2 out of 3.',
+    watchOut: 'A plain majority is just more than half. A supermajority is a higher bar.',
+  },
+  { term: 'majority', kid: 'More than half.' },
+  {
     term: 'bill',
     kid: 'An idea for a new law.',
     watchOut: 'Not money you pay! In government, a bill is an idea for a law.',

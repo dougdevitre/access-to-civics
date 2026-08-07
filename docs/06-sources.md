@@ -60,3 +60,13 @@ below is for discovery, cross-checking, and the "why" layer.
   (`.github/workflows/ingest-harvest.yml`) because dev sandboxes may lack *.mo.gov egress;
   raw bytes + sha256 manifest are committed under `data/raw/mo/` (L0), and extraction runs
   offline against those bytes.
+
+## Contrast-state citations (pre-ingest)
+
+Decision options cite states other than the pilot so a Mirror card can show that real
+places chose differently. Those states have no adapter yet, so their cards render as
+"text pending" — the app never shows words it has not fetched. The citations themselves
+are still verified before seeding, and the audit trail lives in
+`data/seed/citation-verification.json` (what was checked, how, when, and any caveat such
+as Florida's two-thirds carve-out for new taxes). Refs inherited from the original
+scaffold are listed there as unverified and should be checked before a classroom pilot.

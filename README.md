@@ -63,13 +63,41 @@ access-to-civics/
 └── infra/                   CDK stack (stub)
 ```
 
+## Two age bands, two experiences
+
+The game asks who's playing and routes the whole experience by band — not just easier words:
+
+| | **Ages 8–10** | **Ages 11–14** |
+|---|---|---|
+| Mode | Whole-class, teacher-led. No hidden goals. | Pass-and-play delegates with secret goal cards. |
+| Copy register | Flesch-Kincaid ≤ ~4.8, enforced in CI | ≤ ~7.8, enforced in CI |
+| Sensitive history | `historical_harm` clauses never render raw — a teacher-mediated card appears instead | Rendered inside explicit framing |
+
+Every decision outcome has a **citizen letter** in both registers (consequences are a person,
+not a stat), every question ends with a **turn-and-talk prompt** answered out loud — never
+typed — and the number the game celebrates is how many players **changed their mind** after
+hearing the other side. That metric lives on the device only.
+
+## The trust layer
+
+Charter collects nothing: no accounts, no cookies, no analytics, no ads, no free text, no
+server-side state. That posture is documented in-app (a kid-readable privacy promise plus a
+full page for grown-ups and district reviewers) and **enforced in CI** — a privacy-regression
+gate scans every build for tracking markers, storage APIs, and non-allowlisted hosts, and
+fails the release if any appear. Reading levels, clause sensitivity review, and an axe
+accessibility scan (WCAG 2.2 AA target) are blocking gates too. External links go only to
+official government sources, behind a kid-language "you're leaving Charter" notice, with
+referrer suppression at the header level.
+
 ## Quick start
 
 ```bash
 npm install
 npm run typecheck
-npm run ingest -- --state MO --dry-run   # fetch + verify, writes nothing
-npm run gates                            # content gates (advisory until ingest has run)
+npm test                                 # unit tests incl. copy reading-level gate
+npm run build                            # demo bundle + typecheck + vite build
+npm run gates                            # content, sensitivity, reading-level, privacy gates
+npm run test:a11y                        # Playwright e2e + axe scan (both bands)
 npm run dev                              # game shell at :5173
 ```
 
@@ -81,8 +109,10 @@ Scope backward from it. See `docs/04-distribution-and-cut-list.md`.
 
 ## Status
 
-Scaffold. Missouri is the pilot state. Nothing here is production-ready and no clause text
-has been ingested yet — every seed record is deliberately `text: null`.
+Playable demo, live via Vercel from `main`. Missouri is the pilot state. No clause text has
+been ingested yet — every clause record is deliberately `text: null` and the Mirror cards say
+so honestly. The ingest pipeline, gloss layer, and additional states are the next milestones
+(see `docs/07-roadmap.md`).
 
 ## License
 

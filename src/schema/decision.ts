@@ -36,6 +36,8 @@ export const CitizenLetter = z.object({
   letter_id: z.string(),
   node_id: z.string(),
   option_id: z.string(),
+  /** Which register the letter is written in. Optional for back-compat with early seeds. */
+  age_band: AgeBand.optional(),
   writer_name: z.string(),
   writer_age: z.number().int().nullable(),
   body: z.string(),

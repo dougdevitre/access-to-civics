@@ -75,6 +75,110 @@ button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
 .options { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.5rem 0; }
 
+/* WCAG 2.2 target size: every interactive control at least 24px tall. */
+button, select, .options a { min-height: 44px; }
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--ink);
+  color: var(--paper);
+  padding: .5rem 1rem;
+  z-index: 10;
+}
+.skip-link:focus { left: 0; }
+
+h2 { font-family: var(--font-display); font-size: var(--step-1); font-weight: 600; margin: 1.5rem 0 .25rem; }
+h3 { font-size: var(--step-0); margin: 1.25rem 0 .25rem; }
+.eyebrow-heading {
+  font-family: var(--font-body);
+  font-size: .8rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--iron);
+  font-weight: 600;
+}
+h1:focus, div[tabindex="-1"]:focus { outline: none; }
+
+.band-pick button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .25rem;
+  padding: 1rem 1.25rem;
+}
+.band-pick span { color: var(--iron); font-size: .9rem; }
+
+.letter {
+  font-family: var(--font-clause);
+  border-left: 3px solid var(--rule);
+  padding: .5rem 0 .5rem 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+}
+.letter cite { display: block; font-size: .8rem; font-style: normal; color: var(--iron); margin-top: .5rem; }
+
+.reflect { font-size: var(--step-1); font-family: var(--font-display); }
+
+.clause.mediated { border-left-color: var(--seal); }
+.clause .framing {
+  font-family: var(--font-body);
+  font-size: .85rem;
+  color: var(--iron);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: .4rem;
+  margin: 0 0 .5rem;
+}
+
+.linklike {
+  background: none;
+  border: none;
+  min-height: 24px;
+  padding: 0;
+  color: var(--focus);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+}
+
+.leaving {
+  border: 1.5px solid var(--ink);
+  padding: .75rem 1rem;
+  margin-top: .75rem;
+  font-family: var(--font-body);
+  font-style: normal;
+}
+.leaving a {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid var(--ink);
+  padding: .6rem 1rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+.leaving a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+.tricky { border-top: 1px solid var(--rule); margin-top: 2rem; padding-top: .5rem; }
+.tricky dt { font-weight: 700; text-transform: capitalize; margin-top: .5rem; }
+.tricky dd { margin: 0; color: var(--iron); }
+.tricky em { display: block; }
+
+.promise-list { padding-left: 1.25rem; }
+.promise-list li { margin: .4rem 0; }
+
+.site-footer {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 3rem;
+}
+.site-footer nav { display: flex; flex-wrap: wrap; gap: .5rem; }
+.site-footer button {
+  font-size: .85rem;
+  border-width: 1px;
+  color: var(--iron);
+}
+
 .tally { list-style: none; padding: 0; margin: 1rem 0; }
 .tally li { margin: .5rem 0; }
 

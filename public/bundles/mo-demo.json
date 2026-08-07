@@ -3,16 +3,72 @@
   "bundle_id": "mo-demo",
   "state": "MO",
   "state_name": "Missouri",
+  "topics": {
+    "BILL_OF_RIGHTS": {
+      "label": "Rights and liberties",
+      "kid_label": "What the government can't do to you"
+    },
+    "SUFFRAGE": {
+      "label": "Voting and elections",
+      "kid_label": "Who gets to vote"
+    },
+    "DIRECT_DEMOCRACY": {
+      "label": "Initiative, referendum, recall",
+      "kid_label": "Putting a law on the ballot yourself"
+    },
+    "LEGISLATIVE": {
+      "label": "Legislative branch",
+      "kid_label": "Who makes the rules"
+    },
+    "EXECUTIVE": {
+      "label": "Executive branch",
+      "kid_label": "Who runs things day to day"
+    },
+    "JUDICIAL_SELECTION": {
+      "label": "How judges are chosen",
+      "kid_label": "Who picks the judges"
+    },
+    "EDUCATION_ESTABLISHMENT": {
+      "label": "Public education",
+      "kid_label": "Schools"
+    },
+    "PUBLIC_FINANCE": {
+      "label": "Taxation and spending",
+      "kid_label": "Where the money comes from"
+    },
+    "LOCAL_GOVERNMENT": {
+      "label": "Counties, cities, home rule",
+      "kid_label": "Your town"
+    },
+    "AMENDMENT_PROCESS": {
+      "label": "How the constitution changes",
+      "kid_label": "Changing the rules later"
+    },
+    "ENVIRONMENT_RESOURCES": {
+      "label": "Natural resources",
+      "kid_label": "Land, water, and air"
+    },
+    "LABOR": {
+      "label": "Labor and employment",
+      "kid_label": "Work"
+    },
+    "EMERGENCY_POWERS": {
+      "label": "Emergencies and militia",
+      "kid_label": "What happens in a crisis"
+    }
+  },
   "decisions": [
     {
       "node_id": "D01",
       "age_band": "11-14",
       "prompt": "Who can put a law on the ballot?",
+      "prompt_8_10": "Who can start a new rule?",
       "topic": "DIRECT_DEMOCRACY",
       "options": [
         {
           "option_id": "D01-A",
           "label": "Only the legislature",
+          "label_8_10": "Only the lawmakers",
           "clause_refs": [
             "urn:const:us:de:art-16:sec-01"
           ],
@@ -28,6 +84,7 @@
         {
           "option_id": "D01-B",
           "label": "Citizens with enough signatures",
+          "label_8_10": "Anyone who gets enough people to sign",
           "clause_refs": [
             "urn:const:us:mo:art-03:sec-49",
             "urn:const:us:ca:art-02:sec-08"
@@ -46,11 +103,13 @@
       "node_id": "D02",
       "age_band": "11-14",
       "prompt": "How do we choose judges?",
+      "prompt_8_10": "How do we pick judges?",
       "topic": "JUDICIAL_SELECTION",
       "options": [
         {
           "option_id": "D02-A",
           "label": "Voters elect them",
+          "label_8_10": "People vote for them",
           "clause_refs": [
             "urn:const:us:tx:art-05:sec-02"
           ],
@@ -64,6 +123,7 @@
         {
           "option_id": "D02-B",
           "label": "A commission nominates, the governor appoints",
+          "label_8_10": "Experts make a list. The governor picks one.",
           "clause_refs": [
             "urn:const:us:mo:art-05:sec-25a"
           ],
@@ -80,11 +140,13 @@
       "node_id": "D03",
       "age_band": "11-14",
       "prompt": "Who pays for schools?",
+      "prompt_8_10": "Who pays for schools?",
       "topic": "EDUCATION_ESTABLISHMENT",
       "options": [
         {
           "option_id": "D03-A",
           "label": "Each town pays for its own",
+          "label_8_10": "Each town pays for its own schools",
           "clause_refs": [
             "urn:const:us:nh:art-83:sec-01"
           ],
@@ -98,7 +160,8 @@
         },
         {
           "option_id": "D03-B",
-          "label": "The state guarantees a minimum for every school",
+          "label": "The state must fund a minimum for every school",
+          "label_8_10": "The state makes sure every school gets enough",
           "clause_refs": [
             "urn:const:us:mo:art-09:sec-01a"
           ],
@@ -116,11 +179,13 @@
       "node_id": "D04",
       "age_band": "8-10",
       "prompt": "Who gets to vote?",
+      "prompt_8_10": "Who gets to vote?",
       "topic": "SUFFRAGE",
       "options": [
         {
           "option_id": "D04-A",
           "label": "Only people who own land",
+          "label_8_10": "Only people who own land",
           "clause_refs": [
             "urn:const:us:va:art-02:sec-01"
           ],
@@ -134,6 +199,7 @@
         {
           "option_id": "D04-B",
           "label": "Every adult citizen",
+          "label_8_10": "Every grown-up citizen",
           "clause_refs": [
             "urn:const:us:mo:art-08:sec-02"
           ],
@@ -183,6 +249,210 @@
       "age_band": "11-14"
     }
   ],
+  "letters": [
+    {
+      "letter_id": "L01",
+      "node_id": "D03",
+      "option_id": "D03-A",
+      "age_band": "11-14",
+      "writer_name": "Marisol",
+      "writer_age": 11,
+      "tone": "worried",
+      "body": "Our school closed the library this year. The town next to ours built a new gym. My teacher says it's because of how the money works. I don't understand why we're different."
+    },
+    {
+      "letter_id": "L02",
+      "node_id": "D03",
+      "option_id": "D03-B",
+      "age_band": "11-14",
+      "writer_name": "Marisol",
+      "writer_age": 11,
+      "tone": "grateful",
+      "body": "We got the library back. It's not big but there's a librarian on Tuesdays and Thursdays now. My teacher says the state had to send money because of the rule you wrote."
+    },
+    {
+      "letter_id": "L03",
+      "node_id": "D01",
+      "option_id": "D01-A",
+      "age_band": "11-14",
+      "writer_name": "Ray",
+      "writer_age": 47,
+      "tone": "angry",
+      "body": "Two thousand of us signed a petition about the water. We were told signatures don't do anything here — only the legislature can start a law. I'm not sure what the signatures were for."
+    },
+    {
+      "letter_id": "L04",
+      "node_id": "D01",
+      "option_id": "D01-B",
+      "age_band": "11-14",
+      "writer_name": "Ray",
+      "writer_age": 47,
+      "tone": "hopeful",
+      "body": "The water measure made the ballot. We didn't win, but it was on there, and 40,000 people had to think about it. That's more than happened in the twelve years before."
+    },
+    {
+      "letter_id": "L05",
+      "node_id": "D02",
+      "option_id": "D02-A",
+      "age_band": "11-14",
+      "writer_name": "Judge Alvarez",
+      "writer_age": null,
+      "tone": "worried",
+      "body": "I have to raise money to keep my seat. Last month a lawyer who gave to my campaign appeared in my courtroom. I sent the case to another judge, but I think about it."
+    },
+    {
+      "letter_id": "L06",
+      "node_id": "D02",
+      "option_id": "D02-B",
+      "age_band": "11-14",
+      "writer_name": "Denise",
+      "writer_age": 38,
+      "tone": "angry",
+      "body": "A commission picked the judge in my case and I never got to vote on him. When I asked how to get rid of a bad judge, nobody could give me a straight answer."
+    },
+    {
+      "letter_id": "L07",
+      "node_id": "D01",
+      "option_id": "D01-A",
+      "age_band": "8-10",
+      "writer_name": "Maya",
+      "writer_age": 9,
+      "tone": "worried",
+      "body": "My class had an idea for a park cleanup day. We wrote to the lawmakers. They never wrote back. There was nothing else we could do."
+    },
+    {
+      "letter_id": "L08",
+      "node_id": "D01",
+      "option_id": "D01-B",
+      "age_band": "8-10",
+      "writer_name": "Maya",
+      "writer_age": 9,
+      "tone": "hopeful",
+      "body": "My class got 500 people to sign our park paper. Now the whole town gets to vote on it. My name is on the first page."
+    },
+    {
+      "letter_id": "L09",
+      "node_id": "D02",
+      "option_id": "D02-A",
+      "age_band": "8-10",
+      "writer_name": "Sam",
+      "writer_age": 10,
+      "tone": "worried",
+      "body": "We voted for our judge. The judge with the most yard signs won. I don't know if signs make you fair."
+    },
+    {
+      "letter_id": "L10",
+      "node_id": "D02",
+      "option_id": "D02-B",
+      "age_band": "8-10",
+      "writer_name": "Sam",
+      "writer_age": 10,
+      "tone": "worried",
+      "body": "Experts picked our judge this year. My mom never got a say. She wants to know who picked the experts."
+    },
+    {
+      "letter_id": "L11",
+      "node_id": "D03",
+      "option_id": "D03-A",
+      "age_band": "8-10",
+      "writer_name": "Leo",
+      "writer_age": 8,
+      "tone": "worried",
+      "body": "Our school shares one art teacher with two other towns. The town next door has a pool. My dad says it's about the money rules."
+    },
+    {
+      "letter_id": "L12",
+      "node_id": "D03",
+      "option_id": "D03-B",
+      "age_band": "8-10",
+      "writer_name": "Leo",
+      "writer_age": 8,
+      "tone": "grateful",
+      "body": "Our school got new books this year. My teacher says the state helped pay because of the rule. The pool town got the same books too."
+    },
+    {
+      "letter_id": "L13",
+      "node_id": "D04",
+      "option_id": "D04-A",
+      "age_band": "8-10",
+      "writer_name": "Joe",
+      "writer_age": 70,
+      "tone": "worried",
+      "body": "I rent my home. I do not own land. Under this rule I would never get to vote. My boss would."
+    },
+    {
+      "letter_id": "L14",
+      "node_id": "D04",
+      "option_id": "D04-B",
+      "age_band": "8-10",
+      "writer_name": "Rosa",
+      "writer_age": 18,
+      "tone": "grateful",
+      "body": "I just turned 18. I voted for the first time on Tuesday. I did not need to own anything. I just needed to be me."
+    },
+    {
+      "letter_id": "L15",
+      "node_id": "D04",
+      "option_id": "D04-A",
+      "age_band": "11-14",
+      "writer_name": "Ruth",
+      "writer_age": 34,
+      "tone": "angry",
+      "body": "I teach at the school in this town and rent my apartment. Under this rule my landlord can vote and I can't. What does owning land have to do with having a say?"
+    },
+    {
+      "letter_id": "L16",
+      "node_id": "D04",
+      "option_id": "D04-B",
+      "age_band": "11-14",
+      "writer_name": "Marcus",
+      "writer_age": 19,
+      "tone": "hopeful",
+      "body": "I'm the first in my family to vote. My grandmother told me the rules used to keep people like us out. She came with me to watch."
+    }
+  ],
+  "reflections": [
+    {
+      "node_id": "D01",
+      "age_band": "8-10",
+      "prompt": "What would you do if the lawmakers said no to your idea?"
+    },
+    {
+      "node_id": "D01",
+      "age_band": "11-14",
+      "prompt": "What did the other side say that made the most sense to you?"
+    },
+    {
+      "node_id": "D02",
+      "age_band": "8-10",
+      "prompt": "What makes a judge fair? Talk it over."
+    },
+    {
+      "node_id": "D02",
+      "age_band": "11-14",
+      "prompt": "Can a judge be fair if they have to win votes? Can experts be fair if nobody voted for them?"
+    },
+    {
+      "node_id": "D03",
+      "age_band": "8-10",
+      "prompt": "Is it fair if one school has more than another? Why or why not?"
+    },
+    {
+      "node_id": "D03",
+      "age_band": "11-14",
+      "prompt": "Who should pay for a school in a town with very little money? Say your reason out loud."
+    },
+    {
+      "node_id": "D04",
+      "age_band": "8-10",
+      "prompt": "Why should every grown-up get a vote? Tell a partner."
+    },
+    {
+      "node_id": "D04",
+      "age_band": "11-14",
+      "prompt": "Who did the old voting rules leave out? What did it take to change them?"
+    }
+  ],
   "clauses": {
     "urn:const:us:mo:art-09:sec-01a": {
       "urn": "urn:const:us:mo:art-09:sec-01a",
@@ -191,7 +461,8 @@
       "heading": "Education",
       "text": null,
       "text_status": "unfetched",
-      "source_url": "https://revisor.mo.gov/main/Home.aspx"
+      "source_url": "https://revisor.mo.gov/main/Home.aspx",
+      "sensitivity": "none"
     },
     "urn:const:us:mo:art-03:sec-49": {
       "urn": "urn:const:us:mo:art-03:sec-49",
@@ -200,7 +471,8 @@
       "heading": "Legislative Department",
       "text": null,
       "text_status": "unfetched",
-      "source_url": "https://revisor.mo.gov/main/Home.aspx"
+      "source_url": "https://revisor.mo.gov/main/Home.aspx",
+      "sensitivity": "none"
     },
     "urn:const:us:de:art-16:sec-01": {
       "urn": "urn:const:us:de:art-16:sec-01",
@@ -209,7 +481,8 @@
       "heading": null,
       "text": null,
       "text_status": "unfetched",
-      "source_url": null
+      "source_url": null,
+      "sensitivity": "none"
     },
     "urn:const:us:ca:art-02:sec-08": {
       "urn": "urn:const:us:ca:art-02:sec-08",
@@ -218,7 +491,8 @@
       "heading": null,
       "text": null,
       "text_status": "unfetched",
-      "source_url": null
+      "source_url": null,
+      "sensitivity": "none"
     },
     "urn:const:us:tx:art-05:sec-02": {
       "urn": "urn:const:us:tx:art-05:sec-02",
@@ -227,7 +501,8 @@
       "heading": null,
       "text": null,
       "text_status": "unfetched",
-      "source_url": null
+      "source_url": null,
+      "sensitivity": "none"
     },
     "urn:const:us:mo:art-05:sec-25a": {
       "urn": "urn:const:us:mo:art-05:sec-25a",
@@ -236,7 +511,8 @@
       "heading": null,
       "text": null,
       "text_status": "unfetched",
-      "source_url": null
+      "source_url": null,
+      "sensitivity": "none"
     },
     "urn:const:us:nh:art-83:sec-01": {
       "urn": "urn:const:us:nh:art-83:sec-01",
@@ -245,7 +521,8 @@
       "heading": null,
       "text": null,
       "text_status": "unfetched",
-      "source_url": null
+      "source_url": null,
+      "sensitivity": "none"
     },
     "urn:const:us:va:art-02:sec-01": {
       "urn": "urn:const:us:va:art-02:sec-01",
@@ -254,7 +531,10 @@
       "heading": null,
       "text": null,
       "text_status": "unfetched",
-      "source_url": null
+      "source_url": null,
+      "sensitivity": "historical_harm",
+      "mediated_8_10": true,
+      "teacher_note_8_10": "This rule has a hard history. Rules like it kept many people from voting for a long time. Your teacher can tell you more."
     },
     "urn:const:us:mo:art-08:sec-02": {
       "urn": "urn:const:us:mo:art-08:sec-02",
@@ -263,7 +543,8 @@
       "heading": null,
       "text": null,
       "text_status": "unfetched",
-      "source_url": null
+      "source_url": null,
+      "sensitivity": "none"
     }
   }
 }

@@ -1,0 +1,21 @@
+{
+  "$comment": "Human editorial review of clause sensitivity, keyed by URN. Values follow src/schema/clause.ts Sensitivity. Per docs/05-compliance.md, historical_harm never surfaces raw in an 8-10 Mirror card; the app shows a teacher-mediated card instead, and the 11-14 band gets framing. This file is the review of record until the L2 gloss pipeline exists. Initial editorial pass drafted 2026-08 — a named human reviewer should confirm each entry before classroom use.",
+  "reviewed_by": "initial-editorial-pass",
+  "reviewed_at": "2026-08-07",
+  "clauses": {
+    "urn:const:us:mo:art-09:sec-01a": { "sensitivity": "none" },
+    "urn:const:us:mo:art-03:sec-49": { "sensitivity": "none" },
+    "urn:const:us:de:art-16:sec-01": { "sensitivity": "none" },
+    "urn:const:us:ca:art-02:sec-08": { "sensitivity": "none" },
+    "urn:const:us:tx:art-05:sec-02": { "sensitivity": "none" },
+    "urn:const:us:mo:art-05:sec-25a": { "sensitivity": "none" },
+    "urn:const:us:nh:art-83:sec-01": { "sensitivity": "none" },
+    "urn:const:us:mo:art-08:sec-02": { "sensitivity": "none" },
+    "urn:const:us:va:art-02:sec-01": {
+      "sensitivity": "historical_harm",
+      "note": "Property-based suffrage restriction. The history of who was excluded from voting (by property, race, and sex) requires adult framing.",
+      "mediated_8_10": true,
+      "teacher_note_8_10": "This rule has a hard history. Rules like it kept many people from voting for a long time. Your teacher can tell you more."
+    }
+  }
+}

@@ -1,12 +1,17 @@
 #!/usr/bin/env node
 /**
- * Builds the static demo bundle the web tier loads: seed decisions + goal cards + the
- * Missouri sample clause records, joined into one JSON file under public/bundles/.
+ * Builds the static demo bundle the web tier loads: seed decisions + goal cards + letters +
+ * reflections + topic labels + the Missouri sample clause records, joined into one JSON file
+ * under public/bundles/.
  *
  * Clause `text` stays null until the ingest pipeline has fetched it from the official
  * source — this script never invents constitutional text. Clauses referenced by a
  * decision but absent from the sample corpus get a stub record whose citation is
  * derived mechanically from the URN, clearly marked unfetched.
+ *
+ * Sensitivity comes from data/seed/clause-sensitivity.json (the editorial review of record
+ * until the L2 gloss pipeline exists). Per docs/05-compliance.md, historical_harm clauses
+ * never render raw in the 8-10 band; the bundle carries the teacher-mediated note.
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { parseCsvRecords } from './lib/csv.mjs';
@@ -40,7 +45,14 @@ function trimZeros(slug) {
   return slug.replace(/^0+(?=[0-9])/, '');
 }
 
-// --- decisions ---
+// --- topics ---
+const taxonomy = JSON.parse(readFileSync('data/taxonomy/topics.json', 'utf8'));
+const topics = {};
+for (const t of taxonomy.topics) {
+  topics[t.id] = { label: t.label, kid_label: t.kid_label };
+}
+
+// --- decisions (with 8-10 register variants) ---
 const decisionRows = parseCsvRecords(readFileSync('data/seed/decisions.csv', 'utf8'));
 const nodes = new Map();
 for (const row of decisionRows) {
@@ -49,6 +61,7 @@ for (const row of decisionRows) {
       node_id: row.node_id,
       age_band: row.age_band,
       prompt: row.prompt,
+      prompt_8_10: row.prompt_8_10 || row.prompt,
       topic: row.topic,
       options: [],
     });
@@ -56,6 +69,7 @@ for (const row of decisionRows) {
   nodes.get(row.node_id).options.push({
     option_id: row.option_id,
     label: row.option_label,
+    label_8_10: row.option_label_8_10 || row.option_label,
     clause_refs: splitList(row.clause_refs),
     favors: splitList(row.favors),
     harms: splitList(row.harms),
@@ -69,6 +83,29 @@ const goal_cards = parseCsvRecords(readFileSync('data/seed/goal-cards.csv', 'utf
   private_goal: r.private_goal,
   age_band: r.age_band,
 }));
+
+// --- citizen letters ---
+const letters = parseCsvRecords(readFileSync('data/seed/letters.csv', 'utf8')).map((r) => ({
+  letter_id: r.letter_id,
+  node_id: r.node_id,
+  option_id: r.option_id,
+  age_band: r.age_band,
+  writer_name: r.writer_name,
+  writer_age: r.writer_age ? Number(r.writer_age) : null,
+  tone: r.tone,
+  body: r.body,
+}));
+
+// --- reflection prompts ---
+const reflections = parseCsvRecords(readFileSync('data/seed/reflections.csv', 'utf8')).map((r) => ({
+  node_id: r.node_id,
+  age_band: r.age_band,
+  prompt: r.prompt,
+}));
+
+// --- sensitivity review of record ---
+const sensitivityFile = JSON.parse(readFileSync('data/seed/clause-sensitivity.json', 'utf8'));
+const sensitivityByUrn = sensitivityFile.clauses;
 
 // --- clauses: sample corpus first, then URN-derived stubs for anything still missing ---
 const sample = JSON.parse(readFileSync('data/seed/mo/clauses.sample.json', 'utf8'));
@@ -100,6 +137,14 @@ for (const node of nodes.values()) {
     }
   }
 }
+for (const [urn, clause] of Object.entries(clauses)) {
+  const review = sensitivityByUrn[urn];
+  clause.sensitivity = review?.sensitivity ?? 'unreviewed';
+  if (review?.mediated_8_10) {
+    clause.mediated_8_10 = true;
+    clause.teacher_note_8_10 = review.teacher_note_8_10 ?? null;
+  }
+}
 
 const bundle = {
   $comment:
@@ -108,8 +153,11 @@ const bundle = {
   bundle_id: 'mo-demo',
   state: 'MO',
   state_name: 'Missouri',
+  topics,
   decisions: [...nodes.values()].sort((a, b) => a.node_id.localeCompare(b.node_id)),
   goal_cards,
+  letters,
+  reflections,
   clauses,
 };
 
@@ -117,7 +165,8 @@ mkdirSync('public/bundles', { recursive: true });
 writeFileSync(OUT, JSON.stringify(bundle, null, 2) + '\n');
 console.log(
   `[bundle] wrote ${OUT}: ${bundle.decisions.length} decisions, ` +
-  `${goal_cards.length} goal cards, ${Object.keys(clauses).length} clause records`,
+  `${goal_cards.length} goal cards, ${letters.length} letters, ` +
+  `${reflections.length} reflections, ${Object.keys(clauses).length} clause records`,
 );
 
 function splitList(value) {

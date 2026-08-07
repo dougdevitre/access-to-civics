@@ -9,11 +9,13 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run bundle:demo && tsc --noEmit && vite build",
+    "preview": "vite preview",
     "bundle:demo": "node scripts/build-demo-bundle.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "test:a11y": "playwright test",
     "ingest": "node --experimental-strip-types src/ingest/cli.ts",
-    "gates": "node scripts/check-clause-refs.mjs && node scripts/check-quote-integrity.mjs && node scripts/check-sensitivity.mjs && node scripts/check-gloss-freeze.mjs"
+    "gates": "node scripts/check-clause-refs.mjs && node scripts/check-reading-level.mjs && node scripts/check-sensitivity.mjs && node scripts/check-quote-integrity.mjs && node scripts/check-gloss-freeze.mjs && node scripts/check-privacy-regression.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.665.0",
@@ -23,6 +25,8 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "@playwright/test": "^1.48.2",
     "@types/aws-lambda": "^8.10.145",
     "@types/node": "^22.9.0",
     "@types/react": "^18.3.12",

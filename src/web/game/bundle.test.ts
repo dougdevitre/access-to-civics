@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { DecisionNode, GoalCard, parseUrn } from '../../schema/index.js';
+import { CitizenLetter, DecisionNode, GoalCard, parseUrn } from '../../schema/index.js';
 import type { StateBundle } from './bundle.js';
 
 /**
@@ -10,6 +10,8 @@ import type { StateBundle } from './bundle.js';
 const bundle = JSON.parse(
   readFileSync('public/bundles/mo-demo.json', 'utf8'),
 ) as StateBundle;
+
+const BANDS = ['8-10', '11-14'] as const;
 
 describe('demo bundle', () => {
   it('has every decision conforming to the DecisionNode schema', () => {
@@ -31,9 +33,64 @@ describe('demo bundle', () => {
     }
   });
 
+  it('carries an 8-10 register variant for every prompt and option', () => {
+    for (const d of bundle.decisions) {
+      expect(d.prompt_8_10, `${d.node_id} prompt_8_10`).toBeTruthy();
+      for (const o of d.options) expect(o.label_8_10, `${o.option_id} label_8_10`).toBeTruthy();
+    }
+  });
+
   it('has every goal card conforming to the GoalCard schema', () => {
     for (const card of bundle.goal_cards) GoalCard.parse(card);
     expect(bundle.goal_cards.length).toBeGreaterThan(0);
+  });
+
+  it('has every letter conforming to the CitizenLetter schema', () => {
+    for (const letter of bundle.letters) {
+      CitizenLetter.parse({
+        letter_id: letter.letter_id,
+        node_id: letter.node_id,
+        option_id: letter.option_id,
+        age_band: letter.age_band,
+        writer_name: letter.writer_name,
+        writer_age: letter.writer_age,
+        body: letter.body,
+        tone: letter.tone,
+      });
+    }
+  });
+
+  it('has a letter for every decision outcome in every band — consequences are a person', () => {
+    for (const d of bundle.decisions) {
+      for (const o of d.options) {
+        for (const band of BANDS) {
+          const letter = bundle.letters.find(
+            (l) => l.node_id === d.node_id && l.option_id === o.option_id && l.age_band === band,
+          );
+          expect(letter, `no ${band} letter for ${o.option_id}`).toBeDefined();
+        }
+      }
+    }
+  });
+
+  it('has a reflection prompt for every decision in every band', () => {
+    for (const d of bundle.decisions) {
+      for (const band of BANDS) {
+        const reflection = bundle.reflections.find(
+          (r) => r.node_id === d.node_id && r.age_band === band,
+        );
+        expect(reflection, `no ${band} reflection for ${d.node_id}`).toBeDefined();
+      }
+    }
+  });
+
+  it('ships kid and adult labels for every referenced topic', () => {
+    for (const d of bundle.decisions) {
+      const topic = bundle.topics[d.topic];
+      expect(topic, `topic ${d.topic} missing from bundle`).toBeDefined();
+      expect(topic?.label).toBeTruthy();
+      expect(topic?.kid_label).toBeTruthy();
+    }
   });
 
   it('resolves every clause_ref to a clause record with a parseable URN', () => {
@@ -47,6 +104,23 @@ describe('demo bundle', () => {
     }
   });
 
+  it('carries a sensitivity review on every clause, with 8-10 mediation where required', () => {
+    for (const clause of Object.values(bundle.clauses)) {
+      expect(clause.sensitivity, `${clause.urn} has no sensitivity value`).toBeTruthy();
+      expect(clause.sensitivity, `${clause.urn} is unreviewed`).not.toBe('unreviewed');
+      if (clause.sensitivity !== 'none') {
+        expect(clause.mediated_8_10, `${clause.urn} lacks 8-10 mediation`).toBe(true);
+        expect(clause.teacher_note_8_10, `${clause.urn} lacks a teacher note`).toBeTruthy();
+      }
+    }
+  });
+
+  it('flags the Virginia landowner-suffrage clause as historical harm', () => {
+    const va = bundle.clauses['urn:const:us:va:art-02:sec-01'];
+    expect(va?.sensitivity).toBe('historical_harm');
+    expect(va?.mediated_8_10).toBe(true);
+  });
+
   it('carries the D02-B ref the old CSV parser silently dropped', () => {
     const d02b = bundle.decisions
       .find((d) => d.node_id === 'D02')
@@ -58,6 +132,18 @@ describe('demo bundle', () => {
   it('never carries invented clause text — unfetched means null', () => {
     for (const clause of Object.values(bundle.clauses)) {
       if (clause.text_status === 'unfetched') expect(clause.text).toBeNull();
+    }
+  });
+
+  it('only links to official government sources over https', () => {
+    for (const clause of Object.values(bundle.clauses)) {
+      if (clause.source_url === null) continue;
+      const url = new URL(clause.source_url);
+      expect(url.protocol).toBe('https:');
+      expect(
+        url.hostname === 'revisor.mo.gov' || url.hostname.endsWith('.gov'),
+        `${clause.urn} links to non-government host ${url.hostname}`,
+      ).toBe(true);
     }
   });
 });

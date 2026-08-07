@@ -92,6 +92,28 @@ end. Everything below was established empirically by `scripts/probe-tx.mjs`, not
 - **Harvest:** same two-stage split as Missouri — `scripts/harvest-tx.mjs` on a GitHub runner,
   raw bytes + sha256 manifest committed under `data/raw/tx/` (L0), extraction offline.
 
+## Nebraska — verified source notes, 2026-08
+
+Nebraska is the third state and the simplest so far. It is in the corpus for one clause.
+
+- **Canonical:** `https://nebraskalegislature.gov/laws/articles.php?article=<ROMAN>-<section>` —
+  plain HTML, one page per section, no application shell, no browser. Note the section is part of
+  the `article` parameter: `article=III-1`, not `article=III&section=1`.
+- **The trap:** `article=III` with no section answers **HTTP 200 with a 37-byte empty body**
+  rather than a 404, and `statutes.php?statute=III-1` does the same at 39 bytes. A harvester that
+  checks status codes would record two successes and store nothing. The manifest's marker check is
+  what separates a document from a polite blank.
+- **Page structure (verified):** `<div class="statute">` holding `<h2>ARTICLE-SECTION.</h2>`, an
+  `<h3>` section heading, and `<p>` body paragraphs, followed by `<div class="statute_source">`
+  with the amendment history. Everything from `statute_source` on is editorial, not constitutional
+  text, and is cut before the body is read. Parser: `src/ingest/adapters/nebraska.ts`.
+- **No effective dates.** Nebraska prints amendment *years* ("Amended 1934, Initiative Measure
+  No. 330"), not dates. Amendments are ratified at November general elections, but converting a
+  year into a date is inference, so `effective_date` is null until a source states the day.
+- **Scope:** Art. III §1 only. It vests the legislative authority in a Legislature "consisting of
+  one chamber" — Nebraska is the only state that answers that question differently, which is the
+  whole reason it is here. The same section also reserves initiative and referendum to the people.
+
 ## Contrast-state citations (pre-ingest)
 
 Decision options cite states other than the pilot so a Mirror card can show that real

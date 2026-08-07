@@ -1,0 +1,43 @@
+{
+  "$comment": "Published clause corpus (L1). Text is verbatim from the cited official source, traceable via source_sha256 to the raw page in data/raw/. Review the diff — these are the words a child reads.",
+  "state": "NE",
+  "built_at": "2026-08-07T17:43:47.184Z",
+  "checksum": "dc68ed70032040616c0871ee8b9f4c945d683783d04e651922d853237083f232",
+  "clauses": [
+    {
+      "urn": "urn:const:us:ne:art-03:sec-01",
+      "state": "NE",
+      "article": {
+        "num": "III",
+        "heading": "Legislative Power"
+      },
+      "section": "1",
+      "section_heading": "Legislative authority; how vested; power of initiative; power of referendum",
+      "text": "The legislative authority of the state shall be vested in a Legislature consisting of one chamber. The people reserve for themselves the power to propose laws and amendments to the Constitution and to enact or reject the same at the polls, independent of the Legislature, which power shall be called the power of initiative. The people also reserve power at their own option to approve or reject at the polls any act, item, section, or part of any act passed by the Legislature, which power shall be called the power of referendum.",
+      "text_status": "fetched",
+      "topics": [
+        "LEGISLATIVE",
+        "DIRECT_DEMOCRACY"
+      ],
+      "status": "operative",
+      "effective_date": null,
+      "supersedes": null,
+      "source_url": "https://nebraskalegislature.gov/laws/articles.php?article=III-1",
+      "citation_url": null,
+      "source_sha256": "88d6533afc7bd35b942aea5d9d7ceabf2a81bb215ee1b5f52a413e3ec4f4ac86",
+      "sensitivity": "none"
+    }
+  ],
+  "glosses": [
+    {
+      "clause_urn": "urn:const:us:ne:art-03:sec-01",
+      "grade_5": "Nebraska's lawmakers are one group, not two. Nebraska is the only state that does it this way. The people kept two powers too. They can make a law by voting. They can also undo one.",
+      "grade_8": "Nebraska puts its lawmaking power in a Legislature of one chamber. It is the only state that does. The same section keeps two powers for the people. Initiative lets them propose a law and pass it at the polls. Referendum lets them approve or reject a law the Legislature passed.",
+      "lang": "en",
+      "flesch_kincaid": null,
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true
+    }
+  ]
+}

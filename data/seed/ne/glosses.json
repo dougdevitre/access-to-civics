@@ -1,0 +1,15 @@
+{
+  "$comment": "L2 gloss layer for the ingested Nebraska clause. Batch-drafted, then frozen; reviewed_by records the initial editorial pass — a named human reviewer should confirm it against the clause text before classroom use. Note the clause does three things, not one: it makes the Legislature single-chambered AND reserves initiative and referendum to the people. The gloss covers all three because they are all in the section; it does not reach into neighboring sections.",
+  "glosses": [
+    {
+      "clause_urn": "urn:const:us:ne:art-03:sec-01",
+      "grade_5": "Nebraska's lawmakers are one group, not two. Nebraska is the only state that does it this way. The people kept two powers too. They can make a law by voting. They can also undo one.",
+      "grade_8": "Nebraska puts its lawmaking power in a Legislature of one chamber. It is the only state that does. The same section keeps two powers for the people. Initiative lets them propose a law and pass it at the polls. Referendum lets them approve or reject a law the Legislature passed.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
+    }
+  ]
+}

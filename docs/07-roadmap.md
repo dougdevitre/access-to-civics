@@ -76,5 +76,16 @@ the reasons are worth carrying into Phase 1:
   only Missouri's glosses, and the privacy gate's host allowlist was hand-maintained. A third
   state should require no edit to either.
 
+**Nebraska ingested, and Phase 0 closed (2026-08).** The third adapter took under an hour end to
+end, which is the first evidence that the marginal cost of a state is falling. Its site is plain
+HTML, one page per section — but it answers HTTP 200 with a 37-byte empty body for a bad section
+id, so it independently confirmed the Texas lesson from the opposite direction: the failure mode
+is not "the site is complicated", it is "the site says yes to everything".
+
+Nebraska is scoped to a single clause on purpose. Art. III §1 puts the legislative authority in a
+Legislature of one chamber, and no other state does. That clause is the whole reason to ingest
+Nebraska, and it is the other side of **D06**, the sixth decision node — which closes the Phase-0
+scope of six nodes with real, byte-verified text on **both** sides of the question.
+
 Remaining Phase-3 stress cases: California (initiative-heavy), Delaware (no popular
 ratification), Vermont (short).

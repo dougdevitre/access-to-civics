@@ -111,7 +111,7 @@ export function GrownUps() {
       <h3>External links</h3>
       <p>
         The only outbound links in the game go to official state government sources for the
-        constitutional text we cite (Missouri’s revisor, the Texas Legislature). Links open behind a
+        constitutional text we cite (Missouri’s revisor, the Texas and Nebraska legislatures). Links open behind a
         “you’re leaving Charter” notice written for kids, in a new tab, with no referrer sent.
         We never link to commercial, advocacy, or account-required sites. Report a broken or
         wrong link through the repository below.
@@ -127,9 +127,9 @@ export function GrownUps() {
 
       <h3>Help us get your state right</h3>
       <p>
-        <strong>Charter is a prototype.</strong> Two states — Missouri and Texas — have had
-        their constitutional text ingested; every other state appears as a citation with the
-        words still pending. We are asking the people who would know to check our work,
+        <strong>Charter is a prototype.</strong> Three states — Missouri, Texas and Nebraska —
+        have had their constitutional text ingested; every other state appears as a citation
+        with the words still pending. We are asking the people who would know to check our work,
         because we have already been wrong.
       </p>
       <p>
@@ -167,7 +167,7 @@ export function GrownUps() {
         </li>
         <li>
           <strong>Contribute an adapter for your state</strong> so its real words can appear.
-          The Missouri and Texas ones are about a hundred lines each, and every state is welcome.
+          The three we have are about a hundred lines each, and every state is welcome.
         </li>
       </ul>
       <p>
@@ -287,8 +287,8 @@ export function TeachersFamilies() {
 
       <h3>This is a prototype — please tell us what is wrong</h3>
       <p>
-        Two states — Missouri and Texas — have had their constitutional text ingested so far;
-        other states show a citation with the words still pending. We have already found and fixed
+        Three states — Missouri, Texas and Nebraska — have had their constitutional text ingested
+        so far; other states show a citation with the words still pending. We have already found and fixed
         two citations that misrepresented a state’s constitution, and we expect there are
         more. If something looks wrong to you — a citation, a framing, a gloss, or a clause
         that needs more care before a child reads it — the grown-ups page explains how to

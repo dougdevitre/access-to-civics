@@ -110,10 +110,11 @@ Scope backward from it. See `docs/04-distribution-and-cut-list.md`.
 ## Status: prototype
 
 Playable and live via Vercel from `main`, and clearly labelled a prototype in the app.
-Two states are ingested. Missouri is the pilot — eleven clauses from the official Revisor
-pages — and Texas is the proof the pipeline generalises: three clauses, a different site
-architecture, no adapter code shared beyond the interface. Both carry sha256 provenance and
-human-reviewed glosses at two reading levels. Every other state appears as a verified
+Three states are ingested, sixteen clauses in all. Missouri is the pilot (twelve clauses from
+the official Revisor pages); Texas proved the pipeline generalises (three clauses, from a site
+that serves an application shell to every document URL); Nebraska is there for one clause, the
+only single-chamber legislature in the country. All carry sha256 provenance and human-reviewed
+glosses at two reading levels. Every other state appears as a verified
 citation with its words still pending — nothing is ever hand-typed. See `docs/07-roadmap.md`.
 
 ## Help us get your state right
@@ -134,7 +135,7 @@ your help:
 | Check a citation | `data/seed/citation-verification.json` lists every un-ingested citation with sources, reasoning, and caveats |
 | Correct a framing | A citation can be accurate and still misrepresent what a provision means in practice. This is the harder failure and the one we most need help with. |
 | Flag a clause needing care | `data/seed/clause-sensitivity.json` — some history needs adult framing before a child reads it |
-| Add your state | `src/ingest/adapters/missouri.ts` and `texas.ts` are the models, about a hundred lines each |
+| Add your state | `src/ingest/adapters/` has three worked models, about a hundred lines each |
 
 Open an issue and we will credit you unless you'd rather we didn't. The one thing we cannot
 accept is constitutional text by email or hand-typed: words enter only through the pipeline,

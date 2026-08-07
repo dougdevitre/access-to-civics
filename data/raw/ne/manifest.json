@@ -1,0 +1,24 @@
+{
+  "fetched_at": "2026-08-07T17:41:28.766Z",
+  "source_root": "https://nebraskalegislature.gov/laws/browse-constitution.php",
+  "documents": [
+    {
+      "file": "index.html",
+      "url": "https://nebraskalegislature.gov/laws/browse-constitution.php",
+      "http_status": 200,
+      "capture": "raw-bytes",
+      "sha256": "98b0c9f6343e35282d8ab9bc5fc3f290c68305cb8afe3a7299554c45472344e2",
+      "bytes": 132327
+    },
+    {
+      "file": "art-03-sec-01.html",
+      "urn": "urn:const:us:ne:art-03:sec-01",
+      "url": "https://nebraskalegislature.gov/laws/articles.php?article=III-1",
+      "http_status": 200,
+      "capture": "raw-bytes",
+      "sha256": "88d6533afc7bd35b942aea5d9d7ceabf2a81bb215ee1b5f52a413e3ec4f4ac86",
+      "bytes": 30389,
+      "marker_found": true
+    }
+  ]
+}

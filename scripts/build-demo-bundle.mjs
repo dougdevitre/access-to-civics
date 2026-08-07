@@ -37,8 +37,13 @@ function citationFromUrn(urn) {
   const m = URN_RE.exec(urn);
   if (!m) throw new Error(`Cannot derive citation, malformed URN: ${urn}`);
   const [, st, art, sec] = m;
-  const name = STATE_NAMES[st] ?? st.toUpperCase();
-  return `${name} Constitution, Article ${trimZeros(art)}, Section ${trimZeros(sec)}`;
+  return citationFrom(st, trimZeros(art), trimZeros(sec));
+}
+
+/** The one place a citation string is built, so every path formats it identically. */
+function citationFrom(state, article, section) {
+  const name = STATE_NAMES[String(state).toLowerCase()] ?? String(state).toUpperCase();
+  return `${name} Constitution, Article ${article}, Section ${section}`;
 }
 
 function trimZeros(slug) {
@@ -192,6 +197,10 @@ if (existsSync('data/published')) {
       // Where a reader should be sent, when that is not the document we hashed (Texas).
       if (published.citation_url) clause.citation_url = published.citation_url;
       clause.source_sha256 = published.source_sha256 ?? null;
+      // Once a clause is ingested, cite it the way its own state numbers it. The URN slug is
+      // zero-padded arabic for sorting ("art-03"); the corpus carries the real article label,
+      // which is roman in every state ingested so far.
+      clause.citation = citationFrom(published.state, published.article?.num, published.section);
     }
     for (const gloss of corpus.glosses ?? []) {
       // Belt and suspenders: the publish path already refuses unreviewed glosses.

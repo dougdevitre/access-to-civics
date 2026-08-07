@@ -1,7 +1,25 @@
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { CitizenLetter, DecisionNode, GoalCard, parseUrn } from '../../schema/index.js';
 import type { StateBundle } from './bundle.js';
+
+/**
+ * Every published corpus, not just Missouri. Two of these assertions used to read mo.json by
+ * name with a pinned clause count, so ingesting a second state broke them instead of covering it.
+ */
+function publishedCorpora(): {
+  state: string;
+  clauses: { urn: string; text: string; source_sha256: string }[];
+  glosses: { clause_urn: string; frozen: boolean; reviewed_by: string | null }[];
+}[] {
+  return readdirSync('data/published')
+    .filter((f) => f.endsWith('.json'))
+    .map((f) => {
+      const corpus = JSON.parse(readFileSync(`data/published/${f}`, 'utf8'));
+      return { state: corpus.state, clauses: corpus.clauses ?? [], glosses: corpus.glosses ?? [] };
+    });
+}
+
 
 /**
  * Integrity check on the generated demo bundle — this transitively validates the seed
@@ -157,31 +175,38 @@ describe('demo bundle', () => {
   });
 
   it('carries a reviewed gloss at both reading levels for every ingested clause', () => {
-    const corpus = JSON.parse(readFileSync('data/published/mo.json', 'utf8')) as {
-      glosses: { clause_urn: string; frozen: boolean; reviewed_by: string | null }[];
-    };
-    expect(corpus.glosses).toHaveLength(11);
-    for (const gloss of corpus.glosses) {
-      expect(gloss.frozen).toBe(true);
-      expect(gloss.reviewed_by).toBeTruthy();
-      const clause = bundle.clauses[gloss.clause_urn];
-      expect(clause?.gloss_grade_5, `${gloss.clause_urn} grade_5`).toBeTruthy();
-      expect(clause?.gloss_grade_8, `${gloss.clause_urn} grade_8`).toBeTruthy();
+    let checked = 0;
+    for (const corpus of publishedCorpora()) {
+      for (const gloss of corpus.glosses) {
+        checked++;
+        expect(gloss.frozen).toBe(true);
+        expect(gloss.reviewed_by).toBeTruthy();
+        const clause = bundle.clauses[gloss.clause_urn];
+        expect(clause?.gloss_grade_5, `${gloss.clause_urn} grade_5`).toBeTruthy();
+        expect(clause?.gloss_grade_8, `${gloss.clause_urn} grade_8`).toBeTruthy();
+      }
     }
+    // A floor, not a pinned count: the corpus grows, but "zero glosses" must never pass.
+    expect(checked).toBeGreaterThanOrEqual(11);
   });
 
-  it('carries the real ingested Missouri text, byte-equal to the published corpus', () => {
-    const corpus = JSON.parse(readFileSync('data/published/mo.json', 'utf8')) as {
-      clauses: { urn: string; text: string; source_sha256: string }[];
-    };
-    expect(corpus.clauses).toHaveLength(11);
-    for (const published of corpus.clauses) {
-      const clause = bundle.clauses[published.urn];
-      expect(clause, `bundle missing ${published.urn}`).toBeDefined();
-      expect(clause?.text).toBe(published.text);
-      expect(clause?.text_status).toBe('fetched');
-      expect(clause?.source_sha256).toBe(published.source_sha256);
+  it('carries the real ingested text of every state, byte-equal to the published corpus', () => {
+    const states = new Set<string>();
+    let checked = 0;
+    for (const corpus of publishedCorpora()) {
+      states.add(corpus.state);
+      for (const published of corpus.clauses) {
+        checked++;
+        const clause = bundle.clauses[published.urn];
+        expect(clause, `bundle missing ${published.urn}`).toBeDefined();
+        expect(clause?.text).toBe(published.text);
+        expect(clause?.text_status).toBe('fetched');
+        expect(clause?.source_sha256).toBe(published.source_sha256);
+      }
     }
+    expect(checked).toBeGreaterThanOrEqual(11);
+    // More than one state is the whole thesis; a regression to a single-state corpus is a bug.
+    expect(states.size).toBeGreaterThanOrEqual(2);
   });
 
   it('only links to official government sources over https', () => {

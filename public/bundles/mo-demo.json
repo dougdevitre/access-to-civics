@@ -253,6 +253,47 @@
           ]
         }
       ]
+    },
+    {
+      "node_id": "D06",
+      "age_band": "11-14",
+      "prompt": "Should the lawmakers be one group, or two groups that both have to agree?",
+      "prompt_8_10": "Should the lawmakers be one group, or two?",
+      "topic": "LEGISLATIVE",
+      "options": [
+        {
+          "option_id": "D06-A",
+          "label": "Two groups that both have to agree",
+          "label_8_10": "Two groups",
+          "clause_refs": [
+            "urn:const:us:mo:art-03:sec-01"
+          ],
+          "favors": [
+            "stability",
+            "small groups"
+          ],
+          "harms": [
+            "organizers",
+            "taxpayers"
+          ]
+        },
+        {
+          "option_id": "D06-B",
+          "label": "One group",
+          "label_8_10": "One group",
+          "clause_refs": [
+            "urn:const:us:ne:art-03:sec-01"
+          ],
+          "favors": [
+            "organizers",
+            "taxpayers"
+          ],
+          "harms": [
+            "stability",
+            "small groups"
+          ]
+        }
+      ]
     }
   ],
   "goal_cards": [
@@ -493,6 +534,46 @@
       "writer_age": 10,
       "tone": "worried",
       "body": "Our skate park vote got more yes than no. It still did not pass. The rule said we needed way more than half."
+    },
+    {
+      "letter_id": "L21",
+      "node_id": "D06",
+      "option_id": "D06-A",
+      "age_band": "11-14",
+      "writer_name": "Deshawn",
+      "writer_age": 16,
+      "tone": "worried",
+      "body": "Our bill to put a nurse in every school passed the first group. Then it sat in the second group until the session ran out. Two rooms means two chances to say yes. It also means two places a bill can quietly die."
+    },
+    {
+      "letter_id": "L22",
+      "node_id": "D06",
+      "option_id": "D06-B",
+      "age_band": "11-14",
+      "writer_name": "Deshawn",
+      "writer_age": 16,
+      "tone": "hopeful",
+      "body": "The nurse bill got one hearing and one vote. I could see how every lawmaker voted, on one page. My aunt says that cuts both ways: with one group, nobody else is there to stop a bad bill either."
+    },
+    {
+      "letter_id": "L23",
+      "node_id": "D06",
+      "option_id": "D06-A",
+      "age_band": "8-10",
+      "writer_name": "Deshawn",
+      "writer_age": 11,
+      "tone": "worried",
+      "body": "We asked for a nurse at school. One group said yes. The other group ran out of time. It takes a long time when two groups must agree."
+    },
+    {
+      "letter_id": "L24",
+      "node_id": "D06",
+      "option_id": "D06-B",
+      "age_band": "8-10",
+      "writer_name": "Deshawn",
+      "writer_age": 11,
+      "tone": "hopeful",
+      "body": "We asked for a nurse at school. One group voted. We got an answer fast. But my aunt says a fast no is fast too."
     }
   ],
   "reflections": [
@@ -545,6 +626,16 @@
       "node_id": "D05",
       "age_band": "11-14",
       "prompt": "Whose voice does a high bar protect? Whose voice does it slow down?"
+    },
+    {
+      "node_id": "D06",
+      "age_band": "8-10",
+      "prompt": "Is it better when two groups must agree, or when one group can act fast? Talk it over."
+    },
+    {
+      "node_id": "D06",
+      "age_band": "11-14",
+      "prompt": "When two groups must agree, who gains power and who loses it? Say who, and why."
     }
   ],
   "clauses": {
@@ -559,7 +650,7 @@
       "sensitivity": "none",
       "section_heading": "Free public schools — age limit.",
       "effective_date": "1976-09-02",
-      "source_sha256": "4b71e8850e46732ee36dd1cc73198a60a168a76a796b468975dffd4acaea4b8c",
+      "source_sha256": "b1d747879791453ab9f315b188f8352f0f519dcde3a5d23456c07dafd2d21694",
       "gloss_grade_5": "Missouri says learning keeps people free. So the state must run free public schools that anyone up to age 21 can attend.",
       "gloss_grade_8": "An educated public protects everyone’s rights and freedom. So the constitution requires the state to establish and maintain free public schools, open to everyone up to age twenty-one."
     },
@@ -574,7 +665,7 @@
       "sensitivity": "none",
       "section_heading": "Reservation of power to enact and reject laws.",
       "effective_date": "1945-02-27",
-      "source_sha256": "69728fdff8f2a04958be8a5a74ad4cb8f13a6f286d1243484e3853d75003f778",
+      "source_sha256": "42a48e404dc85a41a9b4261aae21762519d31b0db7a4f60c2c6921608ea3c0ea",
       "gloss_grade_5": "The people keep two powers for themselves. They can write a new law and put it to a vote. They can also vote yes or no on a law the lawmakers passed.",
       "gloss_grade_8": "The people keep two powers. By initiative, they can propose a law or an amendment and pass it at the ballot. By referendum, they can approve or reject a law the general assembly passed."
     },
@@ -617,7 +708,7 @@
     "urn:const:us:mo:art-05:sec-25a": {
       "urn": "urn:const:us:mo:art-05:sec-25a",
       "state": "MO",
-      "citation": "Missouri Constitution, Article 5, Section 25a",
+      "citation": "Missouri Constitution, Article V, Section 25(a)",
       "heading": null,
       "text": "Whenever a vacancy shall occur in the office of judge of any of the following courts of this state, to wit: The supreme court, the court of appeals, or in the office of circuit or associate circuit judge within the city of St. Louis and Jackson county, the governor shall fill such vacancy by appointing one of three persons possessing the qualifications for such office, who shall be nominated and whose names shall be submitted to the governor by a nonpartisan judicial commission established and organized as hereinafter provided. If the governor fails to appoint any of the nominees within sixty days after the list of nominees is submitted, the nonpartisan judicial commission making the nomination shall appoint one of the nominees to fill the vacancy.",
       "text_status": "fetched",
@@ -625,7 +716,7 @@
       "sensitivity": "none",
       "section_heading": "Nonpartisan selection of judges — courts subject to plan — appointments to fill vacancies.",
       "effective_date": "1976-09-02",
-      "source_sha256": "5d5e2b6c5cb99e89190c9d6f978ed288e4aa0e3a03112afafd62ecfeca08aca3",
+      "source_sha256": "4acf4dd720a164347694e009cb976148520ccac2449bca03c7747bdbe4d3ef64",
       "gloss_grade_5": "When a judge's job opens up, a special group picks three people who could do it. The governor must choose one of those three.",
       "gloss_grade_8": "When a judge's seat on certain courts opens up, a nonpartisan commission picks three candidates. The governor must appoint one of the three."
     },
@@ -686,7 +777,7 @@
     "urn:const:us:mo:art-08:sec-02": {
       "urn": "urn:const:us:mo:art-08:sec-02",
       "state": "MO",
-      "citation": "Missouri Constitution, Article 8, Section 2",
+      "citation": "Missouri Constitution, Article VIII, Section 2",
       "heading": null,
       "text": "Only citizens of the United States, including occupants of soldiers' and sailors' homes, over the age of eighteen who are residents of this state and of the political subdivision in which they offer to vote are entitled to vote at all elections by the people, if the election is one for which registration is required if they are registered within the time prescribed by law, or if the election is one for which registration is not required, if they have been residents of the political subdivision in which they offer to vote for thirty days next preceding the election for which they offer to vote: Provided however, no person who has a guardian of his or her estate or person by reason of mental incapacity, appointed by a court of competent jurisdiction and no person who is involuntarily confined in a mental institution pursuant to an adjudication of a court of competent jurisdiction shall be entitled to vote, and persons convicted of felony, or crime connected with the exercise of the right of suffrage may be excluded by law from voting.",
       "text_status": "fetched",
@@ -694,14 +785,14 @@
       "sensitivity": "none",
       "section_heading": "Qualifications of voters — disqualifications.",
       "effective_date": "2024-12-05",
-      "source_sha256": "b5f9d9fc3c237c64e2e04e25d524cf40251473a4ce5cc29134a5b032635f3692",
+      "source_sha256": "c8cef9e5aac1c05b03260e6ece500e5eff3eabcd2f663c67a567a40eb59e116c",
       "gloss_grade_5": "You can vote in Missouri if you are a citizen of the United States, you are 18 or older, and you live here. The section also says when someone cannot vote.",
       "gloss_grade_8": "Voters must be United States citizens, at least eighteen, and residents of Missouri and their district. The section also lists times when a person cannot vote, such as while serving a felony sentence."
     },
     "urn:const:us:mo:art-12:sec-02b": {
       "urn": "urn:const:us:mo:art-12:sec-02b",
       "state": "MO",
-      "citation": "Missouri Constitution, Article 12, Section 2b",
+      "citation": "Missouri Constitution, Article XII, Section 2(b)",
       "heading": null,
       "text": "All amendments proposed by the general assembly or by the initiative shall be submitted to the electors for their approval or rejection by official ballot title as may be provided by law, on a separate ballot without party designation, at the next general election, or at a special election called by the governor prior thereto, at which he may submit any of the amendments. No such proposed amendment shall contain more than one amended and revised article of this constitution, or one new article which shall not contain more than one subject and matters properly connected therewith. If possible, each proposed amendment shall be published once a week for two consecutive weeks in two newspapers of different political faith in each county, the last publication to be not more than thirty nor less than fifteen days next preceding the election. If there be but one newspaper in any county, publication for four consecutive weeks shall be made. If a majority of the votes cast thereon is in favor of any amendment, the same shall take effect at the end of thirty days after the election. More than one amendment at the same election shall be so submitted as to enable the electors to vote on each amendment separately.",
       "text_status": "fetched",
@@ -709,7 +800,7 @@
       "sensitivity": "none",
       "section_heading": "Submission of amendments proposed by general assembly or by the initiative.",
       "effective_date": "1945-02-27",
-      "source_sha256": "54648183f66a86bbadfedac966dda4067791698f15885247fc5dbbebf7b93f4d",
+      "source_sha256": "367428978f82f6f2cafa8701b1ba7dfe6837c7e48133393f1c67bfa256775faa",
       "gloss_grade_5": "A change goes to the voters at the next big election. Each change is voted on by itself. If more than half the votes say yes, it starts thirty days later.",
       "gloss_grade_8": "Proposed amendments go on the ballot at the next general election, each voted on separately and each limited to one subject. If a majority of the votes cast on it say yes, it takes effect thirty days later."
     },
@@ -733,10 +824,40 @@
       "source_url": null,
       "sensitivity": "none"
     },
+    "urn:const:us:mo:art-03:sec-01": {
+      "urn": "urn:const:us:mo:art-03:sec-01",
+      "state": "MO",
+      "citation": "Missouri Constitution, Article III, Section 1",
+      "heading": null,
+      "text": "The legislative power shall be vested in a senate and house of representatives to be styled \"The General Assembly of the State of Missouri.\"",
+      "text_status": "fetched",
+      "source_url": "https://revisor.mo.gov/main/OneSection.aspx?constit=y&section=III++1",
+      "sensitivity": "none",
+      "section_heading": "Legislative power — general assembly.",
+      "effective_date": "1945-02-27",
+      "source_sha256": "c90e63fb6c65175e0d88679829271d582a3dfb627b8d32bb813843eab1da7f1d",
+      "gloss_grade_5": "Missouri's lawmakers are two groups, not one. A bill must get a yes from both groups before it can be a law.",
+      "gloss_grade_8": "Missouri vests its lawmaking power in two chambers, a senate and a house of representatives. Together they are called the General Assembly, and a bill has to pass both of them."
+    },
+    "urn:const:us:ne:art-03:sec-01": {
+      "urn": "urn:const:us:ne:art-03:sec-01",
+      "state": "NE",
+      "citation": "Nebraska Constitution, Article III, Section 1",
+      "heading": null,
+      "text": "The legislative authority of the state shall be vested in a Legislature consisting of one chamber. The people reserve for themselves the power to propose laws and amendments to the Constitution and to enact or reject the same at the polls, independent of the Legislature, which power shall be called the power of initiative. The people also reserve power at their own option to approve or reject at the polls any act, item, section, or part of any act passed by the Legislature, which power shall be called the power of referendum.",
+      "text_status": "fetched",
+      "source_url": "https://nebraskalegislature.gov/laws/articles.php?article=III-1",
+      "sensitivity": "none",
+      "section_heading": "Legislative authority; how vested; power of initiative; power of referendum",
+      "effective_date": null,
+      "source_sha256": "88d6533afc7bd35b942aea5d9d7ceabf2a81bb215ee1b5f52a413e3ec4f4ac86",
+      "gloss_grade_5": "Nebraska's lawmakers are one group, not two. Nebraska is the only state that does it this way. The people kept two powers too. They can make a law by voting. They can also undo one.",
+      "gloss_grade_8": "Nebraska puts its lawmaking power in a Legislature of one chamber. It is the only state that does. The same section keeps two powers for the people. Initiative lets them propose a law and pass it at the polls. Referendum lets them approve or reject a law the Legislature passed."
+    },
     "urn:const:us:mo:art-01:sec-05": {
       "urn": "urn:const:us:mo:art-01:sec-05",
       "state": "MO",
-      "citation": "Missouri Constitution, Article 1, Section 5",
+      "citation": "Missouri Constitution, Article I, Section 5",
       "heading": "Bill of Rights",
       "text": "That all men and women have a natural and indefeasible right to worship Almighty God according to the dictates of their own consciences; that no human authority can control or interfere with the rights of conscience; that no person shall, on account of his or her religious persuasion or belief, be rendered ineligible to any public office or trust or profit in this state, be disqualified from testifying or serving as a juror, or be molested in his or her person or estate; that to secure a citizen's right to acknowledge Almighty God according to the dictates of his or her own conscience, neither the state nor any of its political subdivisions shall establish any official religion, nor shall a citizen's right to pray or express his or her religious beliefs be infringed; that the state shall not coerce any person to participate in any prayer or other religious activity, but shall ensure that any person shall have the right to pray individually or corporately in a private or public setting so long as such prayer does not result in disturbance of the peace or disruption of a public meeting or assembly; that citizens as well as elected officials and employees of the state of Missouri and its political subdivisions shall have the right to pray on government premises and public property so long as such prayers abide within the same parameters placed upon any other free speech under similar circumstances; that the General Assembly and the governing bodies of political subdivisions may extend to ministers, clergypersons, and other individuals the privilege to offer invocations or other prayers at meetings or sessions of the General Assembly or governing bodies; that students may express their beliefs about religion in written and oral assignments free from discrimination based on the religious content of their work; that no student shall be compelled to perform or participate in academic assignments or educational presentations that violate his or her religious beliefs; that the state shall ensure public school students their right to free exercise of religious expression without interference, as long as such prayer or other expression is private and voluntary, whether individually or corporately, and in a manner that is not disruptive and as long as such prayers or expressions abide within the same parameters placed upon any other free speech under similar circumstances; and, to emphasize the right to free exercise of religious expression, that all free public schools receiving state appropriations shall display, in a conspicuous and legible manner, the text of the Bill of Rights of the Constitution of the United States; but this section shall not be construed to expand the rights of prisoners in state or local custody beyond those afforded by the laws of the United States, excuse acts of licentiousness, nor to justify practices inconsistent with the good order, peace or safety of the state, or with the rights of others.",
       "text_status": "fetched",
@@ -746,14 +867,14 @@
       "teacher_note_8_10": "This rule is about faith and prayer. Read it together with your teacher.",
       "section_heading": "Religious freedom — liberty of conscience and belief — limitations — right to pray — academic religious freedoms and prayer.",
       "effective_date": "2012-09-06",
-      "source_sha256": "f7e088e734a147cf5c8a58822f7233767e647510978d1df4912c365a8dff8930",
+      "source_sha256": "896d9fc6ab36efda65cd819080644d00bc8970d4d44ed2fc1146325253902694",
       "gloss_grade_5": "Everyone can follow their own faith, or none at all. The state cannot pick a church for you or punish your beliefs. Your beliefs do not let you break fair laws.",
       "gloss_grade_8": "Everyone may worship, or not, by their own conscience. The state cannot control belief or favor one faith. This liberty does not excuse acts that break laws protecting peace and safety."
     },
     "urn:const:us:mo:art-01:sec-08": {
       "urn": "urn:const:us:mo:art-01:sec-08",
       "state": "MO",
-      "citation": "Missouri Constitution, Article 1, Section 8",
+      "citation": "Missouri Constitution, Article I, Section 8",
       "heading": "Bill of Rights",
       "text": "That no law shall be passed impairing the freedom of speech, no matter by what means communicated: that every person shall be free to say, write or publish, or otherwise communicate whatever he will on any subject, being responsible for all abuses of that liberty; and that in all suits and prosecutions for libel or slander the truth thereof may be given in evidence; and in suits and prosecutions for libel the jury, under the direction of the court, shall determine the law and the facts.",
       "text_status": "fetched",
@@ -761,14 +882,14 @@
       "sensitivity": "none",
       "section_heading": "Freedom of speech — evidence of truth in defamation actions — province of jury.",
       "effective_date": "1945-02-27",
-      "source_sha256": "4ef143a78950b101a1cc7b46e98c4391e2ab10733ade46dc79e662ce83ba8521",
+      "source_sha256": "a90028ea14d6fffcb8ac3e8d4aacf1ae356fc3eb365128432445023e15deddf0",
       "gloss_grade_5": "You are free to say and write what you think. No law can take that away. But you still answer for what you say.",
       "gloss_grade_8": "No law may limit free speech, in any form. Every person may speak, write, or publish their views. Each person still answers for abusing that liberty."
     },
     "urn:const:us:mo:art-01:sec-09": {
       "urn": "urn:const:us:mo:art-01:sec-09",
       "state": "MO",
-      "citation": "Missouri Constitution, Article 1, Section 9",
+      "citation": "Missouri Constitution, Article I, Section 9",
       "heading": "Bill of Rights",
       "text": "That the people have the right peaceably to assemble for their common good, and to apply to those invested with the powers of government for redress of grievances by petition or remonstrance.",
       "text_status": "fetched",
@@ -776,14 +897,14 @@
       "sensitivity": "none",
       "section_heading": "Rights of peaceable assembly and petition.",
       "effective_date": "1945-02-27",
-      "source_sha256": "bb28d75408721e3ec980611875997620b8437c184aaf231a32d6d9ba25a698f2",
+      "source_sha256": "e632b0f2c8df3a12a90e2a05664816b144aa7a5436254c51429bed8392a0e697",
       "gloss_grade_5": "People can gather in peace for a shared cause. They can also ask the state to fix something that is wrong.",
       "gloss_grade_8": "The people may gather peaceably for their common good. They may also petition the government to correct wrongs."
     },
     "urn:const:us:mo:art-01:sec-14": {
       "urn": "urn:const:us:mo:art-01:sec-14",
       "state": "MO",
-      "citation": "Missouri Constitution, Article 1, Section 14",
+      "citation": "Missouri Constitution, Article I, Section 14",
       "heading": "Bill of Rights",
       "text": "That the courts of justice shall be open to every person, and certain remedy afforded for every injury to person, property or character, and that right and justice shall be administered without sale, denial or delay.",
       "text_status": "fetched",
@@ -791,14 +912,14 @@
       "sensitivity": "none",
       "section_heading": "Open courts — certain remedies — justice without sale, denial or delay.",
       "effective_date": "1945-02-27",
-      "source_sha256": "fae1dc3eb1ec9dae317a67a7033574ed4e93ea43d5feb0a5ad9cf5a49b55ccc0",
+      "source_sha256": "f3e7c65d6e8dbab015d6e34235b4704e0599ccdee45ac812ade7606ebb7c0009",
       "gloss_grade_5": "The courts are open to every person. If someone harms you, you can ask a court for help. Justice cannot be sold or slowed on purpose.",
       "gloss_grade_8": "Courts must stay open to every person, with a remedy for every injury to person, property, or character. Justice may not be sold, denied, or delayed."
     },
     "urn:const:us:mo:art-04:sec-01": {
       "urn": "urn:const:us:mo:art-04:sec-01",
       "state": "MO",
-      "citation": "Missouri Constitution, Article 4, Section 1",
+      "citation": "Missouri Constitution, Article IV, Section 1",
       "heading": "Executive Department",
       "text": "The supreme executive power shall be vested in a governor.",
       "text_status": "fetched",
@@ -806,14 +927,14 @@
       "sensitivity": "none",
       "section_heading": "Executive power — the governor.",
       "effective_date": "1945-02-27",
-      "source_sha256": "5efc04e0d57351edb8c1b8f20817f51684af2cc2ce4f6324442d785dddb181fe",
+      "source_sha256": "c452d403ad100e2e761b1b48d8ccd0a5e090c0271bfe202cfd329135c98e5a08",
       "gloss_grade_5": "The state's top power to carry out the laws belongs to the governor.",
       "gloss_grade_8": "The supreme executive power, the power to carry out the laws, belongs to the governor."
     },
     "urn:const:us:mo:art-10:sec-01": {
       "urn": "urn:const:us:mo:art-10:sec-01",
       "state": "MO",
-      "citation": "Missouri Constitution, Article 10, Section 1",
+      "citation": "Missouri Constitution, Article X, Section 1",
       "heading": "Taxation",
       "text": "The taxing power may be exercised by the general assembly for state purposes, and by counties and other political subdivisions under power granted to them by the general assembly for county, municipal and other corporate purposes.",
       "text_status": "fetched",
@@ -821,7 +942,7 @@
       "sensitivity": "none",
       "section_heading": "Taxing power — exercise by state and local governments.",
       "effective_date": "1945-02-27",
-      "source_sha256": "1dc9ede5013731bc0c6d8ecfd26958f99fab4b0911741395cc90dcab851a5925",
+      "source_sha256": "e0c5c7da46c4855e53c9d636c32a613a4f7d6f7478105d6ca0d7592d43bf5a54",
       "gloss_grade_5": "The state's lawmakers can collect taxes for the state. Counties and towns can collect taxes too, if the lawmakers let them.",
       "gloss_grade_8": "The general assembly may tax for state purposes. Counties and other local governments may tax only under power the general assembly grants them."
     }

@@ -1,6 +1,15 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+/**
+ * Read from the shipped bundle rather than pinned: adding a decision node should extend these
+ * playthroughs, not break them. The per-node picks below still have to be listed by name.
+ */
+const NODE_COUNT: number = JSON.parse(
+  readFileSync('public/bundles/mo-demo.json', 'utf8'),
+).decisions.length;
+
 
 /**
  * End-to-end + accessibility gate. Plays both band experiences to completion against the
@@ -35,9 +44,10 @@ test('ages 8-10 class mode: full playthrough with mediated history card', async 
     2: 'The state makes sure every school gets enough',
     3: 'Only people who own land', // adopt the historical-harm option to test mediation
     4: 'More than half of people say yes',
+    5: 'Two groups',
   };
 
-  for (let node = 0; node < 5; node++) {
+  for (let node = 0; node < NODE_COUNT; node++) {
     const pick = picks[node]!;
     await page.getByRole('button', { name: pick }).click(); // vote 1: pick
     await expect(page.getByText(/You picked/)).toBeVisible();
@@ -83,6 +93,7 @@ test('ages 11-14 delegate mode: full playthrough with leaving notice', async ({ 
     'The state must fund a minimum for every school',
     'Every adult citizen',
     'A supermajority must say yes',
+    'One group',
   ];
   const optionA = [
     'Only the legislature',
@@ -90,9 +101,10 @@ test('ages 11-14 delegate mode: full playthrough with leaving notice', async ({ 
     'Each town pays for its own',
     'Only people who own land',
     'More than half the voters say yes',
+    'Two groups that both have to agree',
   ];
 
-  for (let node = 0; node < 5; node++) {
+  for (let node = 0; node < NODE_COUNT; node++) {
     for (let vote = 0; vote < 6; vote++) {
       const round = Math.floor(vote / 3);
       const seat = vote % 3;
@@ -130,7 +142,7 @@ test('ages 11-14 delegate mode: full playthrough with leaving notice', async ({ 
   await page.getByRole('button', { name: 'Reject', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Ratified.' })).toBeVisible();
   await expect(page.getByText('The Charter of Missouri')).toBeVisible();
-  await expect(page.getByText(/5 votes changed/)).toBeVisible();
+  await expect(page.getByText(new RegExp(`${NODE_COUNT} votes changed`))).toBeVisible();
   await expect(page.getByRole('button', { name: 'Print the charter' })).toBeVisible();
 });
 
@@ -156,7 +168,7 @@ test('home page orients a newcomer before any choice is made', async ({ page }) 
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Charter' })).toBeVisible();
   // The facts row is built from the bundle, not hard-coded.
-  await expect(page.getByText('5 questions')).toBeVisible();
+  await expect(page.getByText(`${NODE_COUNT} questions`)).toBeVisible();
   // Derived from the bundle, so it grows as states are ingested rather than being pinned.
   await expect(page.getByText(/\d+ real clauses from \d+ states/)).toBeVisible();
   // The differentiator a teacher must see without clicking anything.

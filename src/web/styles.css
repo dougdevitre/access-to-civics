@@ -633,7 +633,14 @@ button:active { transform: translateY(1px); }
   .skip-link, .site-footer, .no-print, .tricky { display: none !important; }
   body { background: white; }
   .convention { background-image: none; padding: 0; }
-  .charter-doc { outline-offset: 5px; margin: 2rem auto; max-width: 40rem; }
+  .charter-doc {
+    outline-offset: 5px;
+    margin: 2rem auto;
+    max-width: 40rem;
+    /* White, not paper. On screen the tint is the page; on a school printer it is a full-bleed
+       beige rectangle and somebody's toner budget. The engrossed look is the rules, not the fill. */
+    background: white;
+  }
 }
 
 .tally { list-style: none; padding: 0; margin: 1rem 0; }
@@ -648,8 +655,42 @@ button:active { transform: translateY(1px); }
   margin-left: .5rem;
 }
 
-details { margin: .75rem 0; }
-details summary { cursor: pointer; color: var(--iron); }
+/*
+  The secret goal card is the whole delegate mechanic and it rendered as a bare browser
+  disclosure triangle. Folded paper now: a bordered card whose marker turns when it opens, and
+  whose border goes from dashed to solid so "closed" and "open" differ by more than an arrow.
+*/
+details {
+  margin: var(--space-3) 0;
+  border: 1.5px dashed var(--rule);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  background: color-mix(in srgb, var(--paper) 90%, white);
+}
+details[open] { border-style: solid; border-color: var(--iron); }
+details summary {
+  cursor: pointer;
+  color: var(--iron);
+  font-weight: 700;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+}
+details summary::-webkit-details-marker { display: none; }
+details summary::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: .5em solid currentColor;
+  border-top: .35em solid transparent;
+  border-bottom: .35em solid transparent;
+  transition: transform .15s ease;
+  flex: none;
+}
+details[open] summary::before { transform: rotate(90deg); }
+.convention details > p { margin: var(--space-2) 0 0; background-color: transparent; }
 
 select {
   font: inherit;

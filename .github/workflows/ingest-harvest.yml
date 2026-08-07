@@ -2,7 +2,7 @@ name: Ingest harvest
 
 # Manual trigger: fetches the targeted constitution pages for one state from its official site
 # (GitHub runners have open egress; the dev sandbox does not) and commits the raw bytes
-# to the ingest/mo-raw branch as the L0 provenance layer. Extraction happens offline
+# to the ingest/<state>-raw branch as the L0 provenance layer. Extraction happens offline
 # against those committed bytes.
 on:
   workflow_dispatch:
@@ -25,6 +25,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      # The harvest script imports @playwright/test for states that render client-side, so the
+      # repo's own dependencies have to be present — npx alone installs a CLI, not node_modules.
+      - run: npm ci
       - name: Install browser (states that render their constitution client-side)
         run: npx playwright install --with-deps chromium
       - run: node scripts/harvest-${{ inputs.state }}.mjs
@@ -34,7 +37,7 @@ jobs:
         with:
           name: ${{ inputs.state }}-raw
           path: data/raw/${{ inputs.state }}
-      - name: Commit harvest to ingest/mo-raw
+      - name: Commit harvest to ingest/<state>-raw
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

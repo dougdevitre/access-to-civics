@@ -1,0 +1,29 @@
+name: Ingest probe
+
+# Diagnostics for a state whose official site we have not figured out yet. Writes nothing and
+# commits nothing — the log is the whole output. Separate from the harvest workflow on purpose:
+# a probe should never be able to touch an ingest/<state>-raw branch.
+on:
+  workflow_dispatch:
+    inputs:
+      state:
+        description: Two-letter state code to probe
+        required: true
+        default: tx
+        type: choice
+        options: [tx]
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/probe-${{ inputs.state }}.mjs

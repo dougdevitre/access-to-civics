@@ -19,11 +19,24 @@ const UA =
 
 const bar = (label) => console.log(`\n${'='.repeat(70)}\n${label}\n${'='.repeat(70)}`);
 
-/** Heuristics for "this is an application shell, not a document". */
-function shellMarkers(body) {
-  return ['data-beasties-container', '<base href="/">', 'ng-state', '__NEXT_DATA__'].filter((m) =>
-    body.includes(m),
-  );
+/**
+ * A response is a shell when it carries almost no prose however many bytes it weighs. Naming
+ * specific frameworks was the first attempt and it gave a false negative on California, whose
+ * JSF pages are 160KB of ViewState around a few hundred characters of navigation. Measuring the
+ * prose is framework-agnostic and does not go stale.
+ */
+function textOf(body) {
+  return body
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&[a-z]+;|&#\d+;/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function titleOf(body) {
+  return /<title[^>]*>([\s\S]*?)<\/title>/i.exec(body)?.[1]?.trim().replace(/\s+/g, ' ') ?? '';
 }
 
 async function probeDns(host) {
@@ -37,7 +50,7 @@ async function probeDns(host) {
   }
 }
 
-async function probeFetch(candidates, marker) {
+async function probeFetch(candidates, marker, altMarkers) {
   bar('Plain fetch of candidate paths');
   const hits = [];
   for (const url of candidates) {
@@ -47,16 +60,24 @@ async function probeFetch(candidates, marker) {
         redirect: 'follow',
       });
       const body = await res.text();
-      const shell = shellMarkers(body);
-      const found = body.toLowerCase().includes(marker.toLowerCase());
+      const text = textOf(body);
+      const found = text.toLowerCase().includes(marker.toLowerCase());
       if (found) hits.push(url);
       console.log(
-        `  ${String(res.status).padEnd(4)} ${String(body.length).padStart(8)}B ` +
-          `${shell.length ? `SHELL(${shell[0]})` : 'document'.padEnd(13)} marker=${found}  ` +
-          `${res.url === url ? url : `${url} -> ${res.url}`}`,
+        `\n  ${url}${res.url === url ? '' : `\n    -> ${res.url}`}` +
+          `\n    ${res.status}  ${body.length}B raw, ${text.length}B prose  marker=${found}` +
+          `\n    title: ${titleOf(body).slice(0, 100)}`,
       );
+      if (!found) {
+        // Why it missed matters more than that it missed: a shell has no prose, a wrong page
+        // has plenty of the wrong prose, and a near-miss means the marker needs loosening.
+        console.log(`    prose head: ${text.slice(0, 220)}`);
+        for (const alt of altMarkers) {
+          console.log(`    alt "${alt}": ${text.toLowerCase().includes(alt.toLowerCase())}`);
+        }
+      }
     } catch (err) {
-      console.log(`  ERR  ${url}: ${err.cause?.code ?? err.message}`);
+      console.log(`\n  ${url}\n    ERR ${err.cause?.code ?? err.message}`);
     }
     await new Promise((r) => setTimeout(r, 1000));
   }
@@ -93,8 +114,10 @@ async function probeBrowser(url, marker) {
     }
 
     // Third-party noise (fonts, analytics) is dropped; what matters is same-org document hosts.
+    // Only obvious media and trackers are dropped. Scripts stay: a document sometimes arrives
+    // as one, and a filter that hides the answer defeats the point of the probe.
     const interesting = requests.filter(
-      (r) => !/googletagmanager|google-analytics|fonts\.(gstatic|googleapis)|\.woff2?|\.(png|jpe?g|svg|ico|css)(\?|$)/i.test(r),
+      (r) => !/googletagmanager|google-analytics|fonts\.(gstatic|googleapis)|\.woff2?|\.(png|gif|jpe?g|svg|ico|css)(\?|$)/i.test(r),
     );
     console.log(`  --- ${interesting.length} of ${requests.length} requests (assets and trackers dropped) ---`);
     for (const r of interesting) console.log(`    ${r}`);
@@ -108,11 +131,12 @@ async function probeBrowser(url, marker) {
  * @param {string} opts.host        the host whose DNS to check
  * @param {string[]} opts.candidates  URLs to try with a plain fetch, in preference order
  * @param {string} opts.marker      a phrase that must appear if the response is the real document
+ * @param {string[]} [opts.altMarkers] looser phrases, reported when the marker misses
  * @param {string} [opts.renderUrl] page to open in a browser; defaults to the first candidate
  */
-export async function probeState({ host, candidates, marker, renderUrl }) {
+export async function probeState({ host, candidates, marker, altMarkers = [], renderUrl }) {
   await probeDns(host);
-  const hits = await probeFetch(candidates, marker);
+  const hits = await probeFetch(candidates, marker, altMarkers);
 
   if (hits.length > 0) {
     console.log(`\n[probe] ${hits.length} candidate(s) returned the real document:`);

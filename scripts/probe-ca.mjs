@@ -16,10 +16,16 @@ const ROOT = 'https://leginfo.legislature.ca.gov/faces';
 await probeState({
   host: 'leginfo.legislature.ca.gov',
   marker: 'the power of the electors to propose statutes',
+  altMarkers: ['initiative', 'electors', 'ARTICLE 2', 'VOTING, INITIATIVE'],
   candidates: [
+    // The first probe showed every leginfo GET returns ~160KB that is almost entirely JSF
+    // ViewState, with a few hundred characters of navigation and no statutory text. These vary
+    // the parameter spelling in case one of them is the form the server will actually render.
     `${ROOT}/codes_displaySection.xhtml?lawCode=CONS&sectionNum=SEC.%208.&articleNum=ARTICLE%202`,
-    `${ROOT}/codes_displayText.xhtml?lawCode=CONS&article=ARTICLE%202`,
-    `${ROOT}/codes_displayexpandedbranch.xhtml?tocCode=CONS&article=ARTICLE%202`,
-    `${ROOT}/codes_displaySection.xhtml?lawCode=CONS&sectionNum=SEC.+8.&articleNum=ARTICLE+2`,
+    `${ROOT}/codes_displayText.xhtml?lawCode=CONS&division=&title=&part=&chapter=&article=ARTICLE%202`,
+    `${ROOT}/codes_displayText.xhtml?lawCode=CONS&article=ARTICLE+2`,
+    // The Legislative Counsel also publishes the codes as downloadable files, which would be a
+    // document rather than an application response.
+    'https://downloads.leginfo.legislature.ca.gov/pubinfo_2025.zip',
   ],
 });

@@ -154,6 +154,12 @@ test('trust pages are reachable and accessible', async ({ page }) => {
   await expectNoSeriousViolations(page, 'privacy promise');
 
   await page.getByRole('button', { name: 'For grown-ups' }).click();
+  // The disclosure a district reviewer needs: the clause text is machine-verified, the
+  // plain-language gloss is not, and the page says which is which rather than letting a green
+  // checkmark on one be read as covering the other.
+  await expect(page.getByRole('heading', { name: 'What is verified, and what is not' })).toBeVisible();
+  await expect(page.getByText(/clause text is verified by machine/i)).toBeVisible();
+  await expect(page.getByText(/has been signed off by a named person/i)).toBeVisible();
   await expect(page.getByText(/question by question/i)).toBeVisible();
   // The collaboration request names the errors we already made, on purpose.
   await expect(page.getByRole('heading', { name: 'Help us get your state right' })).toBeVisible();

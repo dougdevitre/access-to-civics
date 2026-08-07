@@ -43,6 +43,30 @@ export function ingestedPhrase(names: string[]): string {
   return `${names.length} states — ${listStates(names)} — have`;
 }
 
+/** Placeholder strings that look like a reviewer but are not a person. Mirrors scripts/lib/review.mjs. */
+const PLACEHOLDER_REVIEWERS = new Set(['initial-editorial-pass', 'unreviewed', 'tbd', '']);
+
+/**
+ * How much of the editorial layer a named person has actually checked.
+ *
+ * The clause text is byte-verified against a hashed source on every build, so it needs nobody's
+ * word for it. The gloss does not have that property: it is the sentence a child reads and
+ * believes, and no checksum can tell you whether it is a fair account of the clause above it.
+ * A district reviewer is entitled to know which of those two things they are looking at, and
+ * the honest answer today is that nobody outside this repository has checked the second one.
+ */
+export function glossReviewCount(bundle: StateBundle | null): { named: number; total: number } {
+  let named = 0;
+  let total = 0;
+  for (const clause of Object.values(bundle?.clauses ?? {})) {
+    if (clause.gloss_grade_5 == null && clause.gloss_grade_8 == null) continue;
+    total++;
+    const by = clause.gloss_reviewed_by?.trim().toLowerCase() ?? '';
+    if (!PLACEHOLDER_REVIEWERS.has(by)) named++;
+  }
+  return { named, total };
+}
+
 export function PrivacyPromise() {
   return (
     <article>
@@ -81,6 +105,7 @@ export function PrivacyPromise() {
 
 export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
   const states = ingestedStates(bundle);
+  const review = glossReviewCount(bundle);
   return (
     <article>
       <h2>For grown-ups: privacy, safety, and how this app works</h2>
@@ -160,6 +185,33 @@ export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
         <li>All code is open source and auditable; the build is checked in CI so no tracking can be introduced silently — a failing “privacy regression” gate blocks the release.</li>
         <li>Report a vulnerability or concern: open an issue at the repository below.</li>
       </ul>
+
+      <h3>What is verified, and what is not</h3>
+      <p>
+        Two different claims sit on every clause card and they do not carry the same weight.
+      </p>
+      <ul className="promise-list">
+        <li>
+          <strong>The clause text is verified by machine.</strong> It is fetched from the state's
+          official site, stored with a sha256 checksum, and re-checked on every build — the
+          release fails if a single character of rendered text does not byte-match the stored
+          document. Nothing is hand-typed and nothing is paraphrased.
+        </li>
+        <li>
+          <strong>The plain-language explanation is not, yet.</strong>{' '}
+          {review.named === 0
+            ? `None of the ${review.total} glosses has been signed off by a named person; they carry a placeholder.`
+            : `${review.named} of ${review.total} glosses have been signed off by a named person.`}{' '}
+          A gloss is the sentence a child actually reads and believes, and no checksum can tell
+          you whether it fairly describes the clause above it. The same is true of the
+          sensitivity calls that decide whether an eight-year-old sees a clause at all.
+        </li>
+      </ul>
+      <p>
+        We would rather say that plainly than let a green checkmark on one claim be read as
+        covering the other. The review sheets in the repository's <code>review/</code> folder
+        pair every clause with its glosses so this can be worked through and signed.
+      </p>
 
       <h3>Help us get your state right</h3>
       <p>

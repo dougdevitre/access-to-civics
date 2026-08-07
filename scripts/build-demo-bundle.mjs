@@ -209,6 +209,9 @@ if (existsSync('data/published')) {
       if (!publishable || !clause) continue;
       clause.gloss_grade_5 = gloss.grade_5 ?? null;
       clause.gloss_grade_8 = gloss.grade_8 ?? null;
+      // Who signed off on the plain-language layer, carried through so the app can say so.
+      // "initial-editorial-pass" is a placeholder, not a person; see scripts/lib/review.mjs.
+      clause.gloss_reviewed_by = gloss.reviewed_by ?? null;
     }
   }
 }

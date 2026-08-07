@@ -137,6 +137,7 @@ your help:
 | Correct a framing | A citation can be accurate and still misrepresent what a provision means in practice. This is the harder failure and the one we most need help with. |
 | Flag a clause needing care | `data/seed/clause-sensitivity.json` — some history needs adult framing before a child reads it |
 | Add your state | `docs/08-adding-a-state.md` is the recipe; `src/ingest/adapters/` has five worked models, about a hundred lines each |
+| Sign off on a gloss | `npm run review:sheet` generates `review/<state>.md`, pairing every clause's verbatim text with its plain-language glosses and sensitivity call. `docs/09-editorial-review.md` explains what a review involves. **0 of 18 glosses have been checked by a named person** — this is the gap between shipped and classroom-ready |
 
 Open an issue and we will credit you unless you'd rather we didn't. The one thing we cannot
 accept is constitutional text by email or hand-typed: words enter only through the pipeline,

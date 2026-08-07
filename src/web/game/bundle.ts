@@ -71,6 +71,8 @@ export interface BundleClause {
   /** Human-reviewed plain-language rewrites (L2). Present only once frozen. */
   gloss_grade_5?: string | null;
   gloss_grade_8?: string | null;
+  /** Who signed off on the gloss. A placeholder string here means nobody has. */
+  gloss_reviewed_by?: string | null;
   /** Editorial review of record; 'unreviewed' when no human has set a value. */
   sensitivity: 'none' | 'historical_harm' | 'teacher_mediated' | 'unreviewed';
   /** When true, the 8-10 band shows the teacher note instead of the clause card. */

@@ -15,8 +15,10 @@ interface Args { state?: string; dryRun: boolean }
 function parseArgs(argv: string[]): Args {
   const args: Args = { dryRun: false };
   for (let i = 0; i < argv.length; i++) {
-    if (argv[i] === '--state') args.state = argv[++i];
-    else if (argv[i] === '--dry-run') args.dryRun = true;
+    if (argv[i] === '--state') {
+      const value = argv[++i];
+      if (value !== undefined) args.state = value;
+    } else if (argv[i] === '--dry-run') args.dryRun = true;
   }
   return args;
 }

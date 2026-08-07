@@ -1,0 +1,15 @@
+{
+  "$comment": "L2 gloss layer for the ingested Delaware clause. Batch-drafted, then frozen; reviewed_by records the initial editorial pass — a named human reviewer should confirm it against the clause text before classroom use. The nuance worth keeping: the voters never vote on the amendment itself, but the proposal must be published before the next general election, so the election that seats the second General Assembly is the check. Saying only 'no public vote' would be true and still misleading.",
+  "glosses": [
+    {
+      "clause_urn": "urn:const:us:de:art-16:sec-01",
+      "grade_5": "Delaware can change its rules without a public vote. Two-thirds of each group of lawmakers must say yes. The plan must be made public before the next election. Then the new group of lawmakers must say yes too.",
+      "grade_8": "Delaware changes its constitution with no vote of the people on the amendment itself. Two-thirds of each house must agree. The proposal is then made public before the next general election, and the General Assembly chosen at that election must agree again by two-thirds. Then it is part of the Constitution.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
+    }
+  ]
+}

@@ -114,6 +114,66 @@ Nebraska is the third state and the simplest so far. It is in the corpus for one
   one chamber" — Nebraska is the only state that answers that question differently, which is the
   whole reason it is here. The same section also reserves initiative and referendum to the people.
 
+## Delaware — verified source notes, 2026-08
+
+Delaware sprang the quietest trap of the four, and the only one that would have shipped.
+
+- **Canonical:** `https://delcode.delaware.gov/constitution/constitution-<n>.html` — plain HTML,
+  one page per article, no shell, no browser.
+- **The trap: the file numbers are offset from the article numbers.** `constitution-17.html` is
+  ARTICLE XVI; `constitution-16.html` is ARTICLE XV. That page is a real, complete,
+  correctly-served, well-formed document. Nothing about the response is wrong — it is simply a
+  different article. No status code, byte count, or parse check catches that. Only the marker
+  did, and only because the marker was a phrase from the clause rather than the state's name.
+  Consequently the file is named **explicitly per target** in `data/seed/de/ingest-targets.json`
+  rather than computed from the article number, and `extract()` re-reads the document's own
+  `<h2>ARTICLE <ROMAN>.` heading and refuses it if it does not match the target.
+- **Page structure (verified):** the article's content sits between two comment markers
+  (`C O N T E N T   B E L O W / A B O V E   T H I S   L I N E`), which keeps the footer out of
+  reach. Each section opens with `<p class="noStyle section-label">§ N. HEADING.</p>` followed by
+  `<p>` body paragraphs. The session-law citations after each section ("84 Del. Laws, c. 281") are
+  the amendment history; they sit outside any `<p>`, so collecting paragraphs excludes them.
+  Parser: `src/ingest/adapters/delaware.ts`.
+- **No effective dates.** Delaware prints session-law citations, not dates. A chapter number is
+  not a date, so `effective_date` is null.
+- **Scope:** Art. XVI §1 only — the clause that makes Delaware worth citing. Amendments pass by
+  two-thirds of each house in two successive General Assemblies and never go to the voters at all.
+  The proposal must be published before the intervening general election, so that election is the
+  check; the gloss says so, because "no public vote" alone would be true and still misleading.
+
+## California — probed 2026-08, NOT ingested
+
+Recorded because a negative result that took two probe rounds is worth writing down.
+
+California is cited on D01-B (the initiative) and is the Phase-3 stress case for initiative-heavy
+states. `leginfo.legislature.ca.gov` is a JavaServer Faces application, and unlike Texas there is
+no separate document host behind it:
+
+- Every candidate GET answers HTTP 200 with 128–163KB, of which **700–1200 bytes are prose** —
+  the navigation chrome and a code dropdown. The rest is framework view state. `codes_displaySection`,
+  `codes_displayText`, and `codes_displayexpandedbranch` all behave the same way.
+- Rendering in a real browser does not help: `innerText` is 976 characters, still no statutory
+  text, and the page issues **no XHR or JSON request** — only three static scripts. There is no
+  hidden data endpoint to point at.
+- The section text is served only in response to a JSF postback: a form submission carrying a
+  session cookie and a `javax.faces.ViewState` token.
+
+Two paths exist and neither has been taken:
+
+1. **Drive the postback.** Fetch the page, extract the ViewState, POST the form. It would work,
+   and it is the most fragile thing in the repo the day California redeploys. A provenance claim
+   that depends on replaying a session is weaker than one that names a URL.
+2. **Bulk download.** `downloads.leginfo.legislature.ca.gov` publishes the Legislative Counsel's
+   database as archives, which is the officially sanctioned machine-readable route and contains
+   the constitution as `CONS` sections. The obstacle is the L0 model: we commit the raw bytes we
+   hashed, and these archives are far too large to commit. Using them means deciding what "the raw
+   document" is when the source ships a database instead of a page — a real question, and not one
+   to answer in passing.
+
+Until then California stays a **verified citation with its words pending**, recorded in
+`data/seed/citation-verification.json`. That is the honest state of it: we know what Art. II §8
+says, we have not fetched it from a source we can hash, and so the app does not print it.
+
 ## Contrast-state citations (pre-ingest)
 
 Decision options cite states other than the pilot so a Mirror card can show that real

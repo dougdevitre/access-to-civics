@@ -11,7 +11,9 @@
         "https://delcode.delaware.gov/constitution/constitution-17.html",
         "https://codes.findlaw.com/de/constitution-of-the-state-of-delaware/de-const-art-16-sect-1/"
       ],
-      "caveat": "Delaware is the only state where the legislature amends the constitution without a vote of the people. Article XVI Section 2 provides a convention route, also legislature-initiated; neither is a citizen initiative."
+      "caveat": "Delaware is the only state where the legislature amends the constitution without a vote of the people. Article XVI Section 2 provides a convention route, also legislature-initiated; neither is a citizen initiative.",
+      "ingested_on": "2026-08-07",
+      "ingest_note": "Superseded by ingest: the clause text is now fetched from the official source and byte-verified, so the Mirror card shows the state’s own words rather than relying on this research record. Kept as the audit trail of how the citation was chosen. Extracted heading: “Proposal and concurrence of Constitutional amendments in General Assembly; procedure”."
     },
     {
       "urn": "urn:const:us:ca:art-02:sec-08",

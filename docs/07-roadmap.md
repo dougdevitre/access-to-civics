@@ -87,5 +87,22 @@ Legislature of one chamber, and no other state does. That clause is the whole re
 Nebraska, and it is the other side of **D06**, the sixth decision node — which closes the Phase-0
 scope of six nodes with real, byte-verified text on **both** sides of the question.
 
-Remaining Phase-3 stress cases: California (initiative-heavy), Delaware (no popular
-ratification), Vermont (short).
+**Delaware ingested; California probed and deferred (2026-08).** D01 is the first question a
+player sees and was the only node with both sides pending. Delaware — the state that amends its
+constitution with no popular vote at all — is now real text, so D01-A shows the state's own words.
+
+Delaware sprang the quietest failure yet and the only one that would have shipped:
+`constitution-17.html` is ARTICLE XVI, because the file numbers are offset by one. The page at
+the number you would guess is a real, complete, correctly-served document — of the wrong article.
+Only the marker check caught it. That is why a missing marker now **fails** the harvest instead of
+warning, and why the Delaware adapter re-reads the document's own article heading before trusting a
+word of it.
+
+California is a genuine dead end for now and `docs/06-sources.md` records why: leginfo is a
+JSF application that serves the section text only in response to a stateful postback, with no
+JSON endpoint behind it. The two available routes — replaying a ViewState session, or the
+Legislative Counsel's bulk archives — are respectively too fragile to trust and too large to
+commit under the current L0 model. California stays a verified citation with its words pending
+rather than being faked or scraped fragilely.
+
+Remaining Phase-3 stress cases: California (blocked, see above) and Vermont (short).

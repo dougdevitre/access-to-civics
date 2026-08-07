@@ -674,10 +674,15 @@
       "state": "DE",
       "citation": "Delaware Constitution, Article XVI, Section 1",
       "heading": null,
-      "text": null,
-      "text_status": "unfetched",
-      "source_url": null,
-      "sensitivity": "none"
+      "text": "Any amendment or amendments to this Constitution may be proposed in the Senate or House of Representatives; and if the same shall be agreed to by two-thirds of all the members elected to each House, such proposed amendment or amendments shall be entered on their journals, with the yeas and nays taken thereon, and such proposed amendment or amendments must be disseminated to the public not more than 120 days before the next general election and not less than 90 days before the next general election as provided for by an Act of the General Assembly; and if in the General Assembly next after the election such proposed amendment or amendments shall upon yea and nay vote be agreed to by two-thirds of all the members elected to each House, the same shall thereupon become part of the Constitution.",
+      "text_status": "fetched",
+      "source_url": "https://delcode.delaware.gov/constitution/constitution-17.html",
+      "sensitivity": "none",
+      "section_heading": "Proposal and concurrence of Constitutional amendments in General Assembly; procedure",
+      "effective_date": null,
+      "source_sha256": "1e3f63db846d71fa9abfc89418cc2f943732cc5cfc71918a1ce273686720e691",
+      "gloss_grade_5": "Delaware can change its rules without a public vote. Two-thirds of each group of lawmakers must say yes. The plan must be made public before the next election. Then the new group of lawmakers must say yes too.",
+      "gloss_grade_8": "Delaware changes its constitution with no vote of the people on the amendment itself. Two-thirds of each house must agree. The proposal is then made public before the next general election, and the General Assembly chosen at that election must agree again by two-thirds. Then it is part of the Constitution."
     },
     "urn:const:us:ca:art-02:sec-08": {
       "urn": "urn:const:us:ca:art-02:sec-08",

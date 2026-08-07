@@ -465,7 +465,9 @@
       "sensitivity": "none",
       "section_heading": "Free public schools — age limit.",
       "effective_date": "1976-09-02",
-      "source_sha256": "607c7798a67bf9514155d0abf30b100892357993020b9b018e7244e96c09cea5"
+      "source_sha256": "607c7798a67bf9514155d0abf30b100892357993020b9b018e7244e96c09cea5",
+      "gloss_grade_5": "Missouri says learning keeps people free. So the state must run free public schools that anyone up to age 21 can attend.",
+      "gloss_grade_8": "An educated public protects everyone’s rights and freedom. So the constitution requires the state to establish and maintain free public schools, open to everyone up to age twenty-one."
     },
     "urn:const:us:mo:art-03:sec-49": {
       "urn": "urn:const:us:mo:art-03:sec-49",
@@ -478,7 +480,9 @@
       "sensitivity": "none",
       "section_heading": "Reservation of power to enact and reject laws.",
       "effective_date": "1945-02-27",
-      "source_sha256": "63f9722d0824d7c2b1a95e5a538de89be5270ed563e21dd2e9fbf5a5bb7035dd"
+      "source_sha256": "63f9722d0824d7c2b1a95e5a538de89be5270ed563e21dd2e9fbf5a5bb7035dd",
+      "gloss_grade_5": "The people keep two powers for themselves. They can write a new law and put it to a vote. They can also vote yes or no on a law the lawmakers passed.",
+      "gloss_grade_8": "The people keep two powers. By initiative, they can propose a law or an amendment and pass it at the ballot. By referendum, they can approve or reject a law the general assembly passed."
     },
     "urn:const:us:de:art-16:sec-01": {
       "urn": "urn:const:us:de:art-16:sec-01",
@@ -521,7 +525,9 @@
       "sensitivity": "none",
       "section_heading": "Nonpartisan selection of judges — courts subject to plan — appointments to fill vacancies.",
       "effective_date": "1976-09-02",
-      "source_sha256": "72e95b8b3e785592b3b1eae67a2cf65f4cf040cd156bff26c61a8a9b2ab531c0"
+      "source_sha256": "72e95b8b3e785592b3b1eae67a2cf65f4cf040cd156bff26c61a8a9b2ab531c0",
+      "gloss_grade_5": "When a judge's job opens up, a special group picks three people who could do it. The governor must choose one of those three.",
+      "gloss_grade_8": "When a judge's seat on certain courts opens up, a nonpartisan commission picks three candidates. The governor must appoint one of the three."
     },
     "urn:const:us:nh:art-83:sec-01": {
       "urn": "urn:const:us:nh:art-83:sec-01",
@@ -556,7 +562,9 @@
       "sensitivity": "none",
       "section_heading": "Qualifications of voters — disqualifications.",
       "effective_date": "2024-12-05",
-      "source_sha256": "527303e00793941b688556e066e71b6cc8d396a360e94eadb9ddcafc9282e59b"
+      "source_sha256": "527303e00793941b688556e066e71b6cc8d396a360e94eadb9ddcafc9282e59b",
+      "gloss_grade_5": "You can vote in Missouri if you are a citizen of the United States, you are 18 or older, and you live here. The section also says when someone cannot vote.",
+      "gloss_grade_8": "Voters must be United States citizens, at least eighteen, and residents of Missouri and their district. The section also lists times when a person cannot vote, such as while serving a felony sentence."
     }
   }
 }

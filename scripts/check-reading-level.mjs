@@ -6,8 +6,9 @@
  * with the same scorer.
  */
 import { readFileSync } from 'node:fs';
+import { existsSync } from 'node:fs';
 import { parseCsvRecords } from './lib/csv.mjs';
-import { MAX_GRADE, checkString } from './lib/readability.mjs';
+import { GLOSS_MAX, MAX_GRADE, checkString, gradeFor } from './lib/readability.mjs';
 
 let failures = 0;
 let checked = 0;
@@ -42,6 +43,27 @@ const reflections = parseCsvRecords(readFileSync('data/seed/reflections.csv', 'u
 for (const row of reflections) {
   const band = row.age_band === '8-10' ? '8-10' : '11-14';
   check(band, `reflections.csv ${row.node_id}/${row.age_band}`, row.prompt ?? '');
+}
+
+// Glosses have their own ceilings (READING_LEVEL_BANDS): the grade_5 text is what an
+// 8-10 player reads under the clause, grade_8 for 11-14.
+const GLOSS_FILE = 'data/seed/mo/glosses.json';
+if (existsSync(GLOSS_FILE)) {
+  const glosses = JSON.parse(readFileSync(GLOSS_FILE, 'utf8')).glosses ?? [];
+  for (const gloss of glosses) {
+    for (const level of ['grade_5', 'grade_8']) {
+      const text = gloss[level];
+      if (!text) continue;
+      checked++;
+      const grade = gradeFor(text, level === 'grade_5' ? '8-10' : '11-14');
+      if (grade > GLOSS_MAX[level]) {
+        failures++;
+        console.error(
+          `[reading-level] gloss ${gloss.clause_urn} ${level} grade ${grade.toFixed(1)} > max ${GLOSS_MAX[level]}: "${text}"`,
+        );
+      }
+    }
+  }
 }
 
 console.log(`[reading-level] ${checked} strings checked, ${failures} over band limit`);

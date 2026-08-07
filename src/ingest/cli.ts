@@ -8,7 +8,8 @@
  * The published corpus diff is reviewed like any other change — the words in it are the
  * words a child will read, so the PR diff is the human-review step.
  */
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { Gloss, isPublishable } from '../schema/index.js';
 import { getAdapter, registeredStates } from './adapters/registry.js';
 import { verifyExtraction, corpusChecksum } from './pipeline/verify.js';
 
@@ -63,6 +64,21 @@ async function main(): Promise<void> {
     return;
   }
 
+  // L2 glosses ship only if frozen and reviewed (docs/07-roadmap.md gloss-freeze gate).
+  const glossFile = `data/seed/${adapter.state.toLowerCase()}/glosses.json`;
+  const glosses: Gloss[] = [];
+  if (existsSync(glossFile)) {
+    for (const raw of JSON.parse(readFileSync(glossFile, 'utf8')).glosses ?? []) {
+      const gloss = Gloss.parse(raw);
+      if (!isPublishable(gloss)) {
+        console.error(`[ingest] unpublishable gloss for ${gloss.clause_urn} — review and freeze it first`);
+        process.exitCode = 1;
+        return;
+      }
+      glosses.push(gloss);
+    }
+  }
+
   const out = `data/published/${adapter.state.toLowerCase()}.json`;
   mkdirSync('data/published', { recursive: true });
   writeFileSync(
@@ -77,7 +93,7 @@ async function main(): Promise<void> {
         built_at: new Date().toISOString(),
         checksum,
         clauses,
-        glosses: [],
+        glosses,
       },
       null,
       2,

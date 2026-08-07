@@ -33,6 +33,9 @@ export interface Copy {
   mindHeld: string;
   mirrorHeading: string;
   realWords: string;
+  whatThisMeans: string;
+  readAloud: string;
+  readStop: string;
   pendingClause: string;
   sensitiveFraming: string;
   sourceLink: string;
@@ -112,6 +115,9 @@ export const COPY: Record<Band, Copy> = {
     mindHeld: 'Your class stuck with its first pick. That can be right too.',
     mirrorHeading: 'What real states did',
     realWords: 'The real words:',
+    whatThisMeans: 'What it means:',
+    readAloud: 'Read it to me',
+    readStop: 'Stop reading',
     pendingClause:
       'This is a real rule from a real state. The exact words are coming soon. We never make up the words.',
     sensitiveFraming: 'This rule has a hard history. Read it with your teacher.',
@@ -179,6 +185,9 @@ export const COPY: Record<Band, Copy> = {
     mindHeld: 'No delegate changed their mind this round.',
     mirrorHeading: 'What real states did',
     realWords: 'Word for word:',
+    whatThisMeans: 'In plain words:',
+    readAloud: 'Read aloud',
+    readStop: 'Stop reading',
     pendingClause:
       'This citation is real. The exact words appear once they are fetched from the official source — nothing in this app invents constitutional text.',
     sensitiveFraming:
@@ -272,6 +281,13 @@ export const GLOSSARY: GlossaryEntry[] = [
   { term: 'governor', kid: 'The leader of a state.' },
   { term: 'clause', kid: 'One rule inside a constitution.' },
   { term: 'citation', kid: 'The address that tells you where words come from.' },
+  { term: 'initiative', kid: 'A way to start a new law yourself, with signatures.' },
+  { term: 'referendum', kid: 'A public vote on a law.' },
+  { term: 'amendment', kid: 'A change to the official rules.' },
+  { term: 'nonpartisan', kid: 'Not tied to one party or side.', watchOut: 'A party here means a political team, not a birthday party.' },
+  { term: 'assembly', kid: 'A big group of lawmakers.', watchOut: 'The General Assembly is Missouri\u2019s name for its lawmakers.' },
+  { term: 'vacancy', kid: 'An open job that needs to be filled.' },
+  { term: 'felony', kid: 'A serious crime.' },
   {
     term: 'bill',
     kid: 'An idea for a new law.',

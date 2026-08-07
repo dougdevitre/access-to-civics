@@ -46,6 +46,12 @@ export const MAX_GRADE = {
 /** Strings shorter than this many words score unreliably; skip them. */
 export const MIN_WORDS = 4;
 
+/** Gloss ceilings — mirrors READING_LEVEL_BANDS in src/schema/gloss.ts (max only). */
+export const GLOSS_MAX = {
+  grade_5: 6.0,
+  grade_8: 9.0,
+};
+
 /** Terms taught by the in-game glossary — keep in sync with GLOSSARY in src/web/copy.ts. */
 export const TAUGHT_TERMS = [
   'constitution',
@@ -63,6 +69,13 @@ export const TAUGHT_TERMS = [
   'governor',
   'clause',
   'citation',
+  'initiative',
+  'referendum',
+  'amendment',
+  'nonpartisan',
+  'assembly',
+  'vacancy',
+  'felony',
 ];
 
 export function gradeFor(text, band) {

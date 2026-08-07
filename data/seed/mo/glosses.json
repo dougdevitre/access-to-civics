@@ -1,0 +1,45 @@
+{
+  "$comment": "L2 gloss layer for the ingested Missouri clauses: plain-language 'what this means' rewrites at two reading levels (src/schema/gloss.ts). Batch-drafted, then frozen; reviewed_by records the initial editorial pass — a named human reviewer should confirm each gloss against the clause text before classroom use. Reading levels are enforced by scripts/check-reading-level.mjs against READING_LEVEL_BANDS. A gloss explains only its own clause — it never imports rules from neighboring sections.",
+  "glosses": [
+    {
+      "clause_urn": "urn:const:us:mo:art-03:sec-49",
+      "grade_5": "The people keep two powers for themselves. They can write a new law and put it to a vote. They can also vote yes or no on a law the lawmakers passed.",
+      "grade_8": "The people keep two powers. By initiative, they can propose a law or an amendment and pass it at the ballot. By referendum, they can approve or reject a law the general assembly passed.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-05:sec-25a",
+      "grade_5": "When a judge's job opens up, a special group picks three people who could do it. The governor must choose one of those three.",
+      "grade_8": "When a judge's seat on certain courts opens up, a nonpartisan commission picks three candidates. The governor must appoint one of the three.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-08:sec-02",
+      "grade_5": "You can vote in Missouri if you are a citizen of the United States, you are 18 or older, and you live here. The section also says when someone cannot vote.",
+      "grade_8": "Voters must be United States citizens, at least eighteen, and residents of Missouri and their district. The section also lists times when a person cannot vote, such as while serving a felony sentence.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-09:sec-01a",
+      "grade_5": "Missouri says learning keeps people free. So the state must run free public schools that anyone up to age 21 can attend.",
+      "grade_8": "An educated public protects everyone’s rights and freedom. So the constitution requires the state to establish and maintain free public schools, open to everyone up to age twenty-one.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
+    }
+  ]
+}

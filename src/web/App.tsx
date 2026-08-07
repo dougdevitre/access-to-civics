@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { Dispatch, MutableRefObject, ReactNode, SetStateAction } from 'react';
 import type { Band, BundleClause, BundleDecision, StateBundle } from './game/bundle.js';
 import {
+  glossFor,
   labelFor,
   letterFor,
   loadBundle,
@@ -594,6 +595,60 @@ function MirrorScreen({
   );
 }
 
+/**
+ * On-device text-to-speech (docs/05-compliance.md: audio narration of clause text).
+ * Privacy rule: only voices the browser marks localService are used — a network voice
+ * would transmit the clause text to a third party, so with no local voice the button
+ * simply doesn't render.
+ */
+function ReadAloud({ copy, text }: { copy: Copy; text: string }) {
+  const [speaking, setSpeaking] = useState(false);
+  const [available, setAvailable] = useState(false);
+
+  useEffect(() => {
+    if (!('speechSynthesis' in window)) return;
+    const check = () =>
+      setAvailable(
+        window.speechSynthesis.getVoices().some((v) => v.localService && v.lang.startsWith('en')),
+      );
+    check();
+    window.speechSynthesis.addEventListener('voiceschanged', check);
+    return () => {
+      window.speechSynthesis.removeEventListener('voiceschanged', check);
+      window.speechSynthesis.cancel();
+    };
+  }, []);
+
+  if (!available) return null;
+
+  const toggle = () => {
+    const synth = window.speechSynthesis;
+    if (speaking) {
+      synth.cancel();
+      setSpeaking(false);
+      return;
+    }
+    const voice = synth.getVoices().find((v) => v.localService && v.lang.startsWith('en'));
+    if (!voice) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.voice = voice;
+    utterance.rate = 0.92;
+    utterance.onend = () => setSpeaking(false);
+    utterance.onerror = () => setSpeaking(false);
+    synth.cancel();
+    synth.speak(utterance);
+    setSpeaking(true);
+  };
+
+  return (
+    <p className="read-aloud">
+      <button type="button" className="linklike" aria-pressed={speaking} onClick={toggle}>
+        {speaking ? copy.readStop : `🔊 ${copy.readAloud}`}
+      </button>
+    </p>
+  );
+}
+
 /** Only official government sources may render as links, and only over HTTPS. */
 function isAllowedSource(url: string): boolean {
   try {
@@ -635,6 +690,7 @@ function ClauseCard({
   }
 
   const showSource = clause.source_url !== null && isAllowedSource(clause.source_url);
+  const gloss = glossFor(clause, band);
   return (
     <blockquote className="clause">
       {clause.sensitivity === 'historical_harm' && (
@@ -647,6 +703,16 @@ function ClauseCard({
             {clause.section_heading && <> “{clause.section_heading}”</>}
           </p>
           {clause.text}
+          {gloss && (
+            <div className="gloss">
+              <p className="framing">{copy.whatThisMeans}</p>
+              {gloss}
+            </div>
+          )}
+          <ReadAloud
+            copy={copy}
+            text={[clause.section_heading ?? '', clause.text, gloss ?? ''].join('. ')}
+          />
         </>
       ) : (
         <em>{copy.pendingClause}</em>

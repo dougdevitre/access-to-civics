@@ -135,6 +135,20 @@ describe('demo bundle', () => {
     }
   });
 
+  it('carries a reviewed gloss at both reading levels for every ingested clause', () => {
+    const corpus = JSON.parse(readFileSync('data/published/mo.json', 'utf8')) as {
+      glosses: { clause_urn: string; frozen: boolean; reviewed_by: string | null }[];
+    };
+    expect(corpus.glosses).toHaveLength(4);
+    for (const gloss of corpus.glosses) {
+      expect(gloss.frozen).toBe(true);
+      expect(gloss.reviewed_by).toBeTruthy();
+      const clause = bundle.clauses[gloss.clause_urn];
+      expect(clause?.gloss_grade_5, `${gloss.clause_urn} grade_5`).toBeTruthy();
+      expect(clause?.gloss_grade_8, `${gloss.clause_urn} grade_8`).toBeTruthy();
+    }
+  });
+
   it('carries the real ingested Missouri text, byte-equal to the published corpus', () => {
     const corpus = JSON.parse(readFileSync('data/published/mo.json', 'utf8')) as {
       clauses: { urn: string; text: string; source_sha256: string }[];

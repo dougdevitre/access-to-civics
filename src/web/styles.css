@@ -122,6 +122,15 @@ h1:focus, div[tabindex="-1"]:focus { outline: none; }
 .reflect { font-size: var(--step-1); font-family: var(--font-display); }
 
 .clause.mediated { border-left-color: var(--seal); }
+.clause .gloss {
+  font-family: var(--font-body);
+  border-top: 1px solid var(--rule);
+  margin-top: .75rem;
+  padding-top: .5rem;
+  font-style: normal;
+}
+.read-aloud { margin: .5rem 0 0; font-family: var(--font-body); font-style: normal; }
+
 .clause .framing {
   font-family: var(--font-body);
   font-size: .85rem;

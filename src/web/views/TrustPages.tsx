@@ -99,6 +99,15 @@ export function GrownUps() {
         product; all content is fixed at build time and reviewed.
       </p>
 
+      <h3>Read-aloud</h3>
+      <p>
+        The “read it to me” button uses the device’s own built-in voice
+        (the browser’s speech synthesis). We only ever use voices the browser marks as
+        local — if the device offers only network-based voices, the button does not
+        appear, because sending clause text to a third-party voice service would break
+        the promise above. Nothing spoken ever leaves the device.
+      </p>
+
       <h3>External links</h3>
       <p>
         The only outbound links in the game go to official state government sources for the

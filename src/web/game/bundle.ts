@@ -66,6 +66,9 @@ export interface BundleClause {
   source_url: string | null;
   source_sha256?: string | null;
   effective_date?: string | null;
+  /** Human-reviewed plain-language rewrites (L2). Present only once frozen. */
+  gloss_grade_5?: string | null;
+  gloss_grade_8?: string | null;
   /** Editorial review of record; 'unreviewed' when no human has set a value. */
   sensitivity: 'none' | 'historical_harm' | 'teacher_mediated' | 'unreviewed';
   /** When true, the 8-10 band shows the teacher note instead of the clause card. */
@@ -97,6 +100,10 @@ export function promptFor(d: BundleDecision, band: Band): string {
 
 export function labelFor(o: BundleOption, band: Band): string {
   return band === '8-10' ? o.label_8_10 : o.label;
+}
+
+export function glossFor(clause: BundleClause, band: Band): string | null {
+  return (band === '8-10' ? clause.gloss_grade_5 : clause.gloss_grade_8) ?? null;
 }
 
 export function topicLabelFor(bundle: StateBundle, topicId: string, band: Band): string {

@@ -161,6 +161,14 @@ if (existsSync('data/published')) {
       clause.source_url = published.source_url;
       clause.source_sha256 = published.source_sha256 ?? null;
     }
+    for (const gloss of corpus.glosses ?? []) {
+      // Belt and suspenders: the publish path already refuses unreviewed glosses.
+      const publishable = gloss.frozen === true && gloss.reviewed_by != null && gloss.reviewed_at != null;
+      const clause = clauses[gloss.clause_urn];
+      if (!publishable || !clause) continue;
+      clause.gloss_grade_5 = gloss.grade_5 ?? null;
+      clause.gloss_grade_8 = gloss.grade_8 ?? null;
+    }
   }
 }
 

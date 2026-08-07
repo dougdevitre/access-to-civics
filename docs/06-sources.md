@@ -61,6 +61,37 @@ below is for discovery, cross-checking, and the "why" layer.
   raw bytes + sha256 manifest are committed under `data/raw/mo/` (L0), and extraction runs
   offline against those bytes.
 
+## Texas — verified source notes, 2026-08
+
+Texas is the second state ingested, and it is instructive because the obvious source is a dead
+end. Everything below was established empirically by `scripts/probe-tx.mjs`, not assumed.
+
+- **The public site is not fetchable.** `statutes.capitol.texas.gov` is an Angular application:
+  every document URL — including the `/Docs/CN/htm/CN.<art>.htm` paths that used to serve
+  documents, and the old `GetStatute.aspx` entry point — returns the same 250874-byte shell with
+  HTTP 200. A harvester that trusts the status code will happily store the shell for every
+  section and report success. Ours caught it because the manifest records whether an expected
+  marker phrase actually appears in the bytes.
+- **Canonical (machine-readable):** `https://tcss.legis.texas.gov/resources/CN/htm/CN.<article-arabic>.htm`
+  — the documents the application itself loads. Plain static HTML, one file per **article**, so
+  the fetched unit is one level above the cited unit. The article number is arabic in the path
+  even though the citation is roman.
+- **Citation (human-facing):** `https://statutes.capitol.texas.gov/Docs/CN/htm/CN.<article-arabic>.htm`.
+  This is the page a reader should be sent to; it is not the page we hash. The two are kept in
+  separate fields (`source_url` vs `citation_url` in `src/schema/clause.ts`) so the checksum
+  always covers exactly the bytes the text came from.
+- **Page structure (verified):** each section opens with the anchor pair
+  `<a name="<art>.<label>"></a><a name="<recordid>"></a>`, then a heading link back to that same
+  anchor reading `Sec. N.  HEADING.`, then indented paragraphs for the subsections. The
+  parenthetical adoption/amendment history is the one paragraph with no `text-indent` — it is the
+  site's editorial note, not constitutional text, and is captured separately. The last date in it
+  is the section's effective date. Parser: `src/ingest/adapters/texas.ts`.
+- **Rendering is not needed and was not used.** An earlier attempt rendered the SPA in a browser;
+  it worked, but a rendered DOM is a weaker provenance claim than served bytes. Once the document
+  host was found, the browser path became unnecessary for Texas.
+- **Harvest:** same two-stage split as Missouri — `scripts/harvest-tx.mjs` on a GitHub runner,
+  raw bytes + sha256 manifest committed under `data/raw/tx/` (L0), extraction offline.
+
 ## Contrast-state citations (pre-ingest)
 
 Decision options cite states other than the pilot so a Mirror card can show that real

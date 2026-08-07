@@ -5,8 +5,7 @@
  * plan for the content layer; the UI copy registers are enforced by src/web/copy.test.ts
  * with the same scorer.
  */
-import { readFileSync } from 'node:fs';
-import { existsSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { parseCsvRecords } from './lib/csv.mjs';
 import { GLOSS_MAX, MAX_GRADE, checkString, gradeFor } from './lib/readability.mjs';
 
@@ -47,9 +46,16 @@ for (const row of reflections) {
 
 // Glosses have their own ceilings (READING_LEVEL_BANDS): the grade_5 text is what an
 // 8-10 player reads under the clause, grade_8 for 11-14.
-const GLOSS_FILE = 'data/seed/mo/glosses.json';
-if (existsSync(GLOSS_FILE)) {
-  const glosses = JSON.parse(readFileSync(GLOSS_FILE, 'utf8')).glosses ?? [];
+// Every state's glosses, discovered rather than listed — a new state must not be able to ship
+// unreadable glosses just because nobody remembered to add it here.
+const glossFiles = existsSync('data/seed')
+  ? readdirSync('data/seed', { withFileTypes: true })
+      .filter((e) => e.isDirectory())
+      .map((e) => `data/seed/${e.name}/glosses.json`)
+      .filter((f) => existsSync(f))
+  : [];
+for (const glossFile of glossFiles) {
+  const glosses = JSON.parse(readFileSync(glossFile, 'utf8')).glosses ?? [];
   for (const gloss of glosses) {
     for (const level of ['grade_5', 'grade_8']) {
       const text = gloss[level];

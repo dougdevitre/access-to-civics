@@ -1,40 +1,48 @@
 {
-  "fetched_at": "2026-08-07T16:40:39.081Z",
-  "source_root": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.htm",
+  "fetched_at": "2026-08-07T16:57:14.625Z",
+  "source_root": "https://statutes.capitol.texas.gov/",
   "documents": [
     {
-      "file": "index.html",
-      "url": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.htm",
-      "http_status": 200,
-      "sha256": "dbfba8a96dc3cd584157ca66aaafdf67e0ed15dd5a0c8a58f3d4bd0f109fc646",
-      "bytes": 250874
-    },
-    {
-      "file": "art-05-sec-02.html",
+      "file": "art-05.html",
       "urn": "urn:const:us:tx:art-05:sec-02",
-      "url": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.5/CN.5.2.htm",
+      "url": "https://tcss.legis.texas.gov/resources/CN/htm/CN.5.htm",
+      "citation_url": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.5.htm",
       "http_status": 200,
-      "sha256": "dbfba8a96dc3cd584157ca66aaafdf67e0ed15dd5a0c8a58f3d4bd0f109fc646",
-      "bytes": 250874,
-      "marker_found": false
+      "capture": "raw-bytes",
+      "sha256": "52f6a242aad887d49d00bc2863de835962ea6c491870d788e77213374613b50e",
+      "bytes": 69090,
+      "marker_found": true,
+      "candidates_tried": [
+        "https://tcss.legis.texas.gov/resources/CN/htm/CN.5.htm -> 200 (marker found)"
+      ]
     },
     {
-      "file": "art-07-sec-03.html",
+      "file": "art-07.html",
       "urn": "urn:const:us:tx:art-07:sec-03",
-      "url": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.7/CN.7.3.htm",
+      "url": "https://tcss.legis.texas.gov/resources/CN/htm/CN.7.htm",
+      "citation_url": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.7.htm",
       "http_status": 200,
-      "sha256": "dbfba8a96dc3cd584157ca66aaafdf67e0ed15dd5a0c8a58f3d4bd0f109fc646",
-      "bytes": 250874,
-      "marker_found": false
+      "capture": "raw-bytes",
+      "sha256": "76b225cf0205081670a56977a9a79cd9b5ec8916f6b2e2fd91935c27acdc4bb2",
+      "bytes": 84453,
+      "marker_found": true,
+      "candidates_tried": [
+        "https://tcss.legis.texas.gov/resources/CN/htm/CN.7.htm -> 200 (marker found)"
+      ]
     },
     {
-      "file": "art-08-sec-01e.html",
+      "file": "art-08.html",
       "urn": "urn:const:us:tx:art-08:sec-01e",
-      "url": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.8/CN.8.1-e.htm",
+      "url": "https://tcss.legis.texas.gov/resources/CN/htm/CN.8.htm",
+      "citation_url": "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.8.htm",
       "http_status": 200,
-      "sha256": "dbfba8a96dc3cd584157ca66aaafdf67e0ed15dd5a0c8a58f3d4bd0f109fc646",
-      "bytes": 250874,
-      "marker_found": false
+      "capture": "raw-bytes",
+      "sha256": "6e93228ec575ac87a6049064b89f5594e6a9085dade838e053c4de9a37837695",
+      "bytes": 119841,
+      "marker_found": true,
+      "candidates_tried": [
+        "https://tcss.legis.texas.gov/resources/CN/htm/CN.8.htm -> 200 (marker found)"
+      ]
     }
   ]
 }

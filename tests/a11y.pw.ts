@@ -157,7 +157,8 @@ test('home page orients a newcomer before any choice is made', async ({ page }) 
   await expect(page.getByRole('heading', { name: 'Charter' })).toBeVisible();
   // The facts row is built from the bundle, not hard-coded.
   await expect(page.getByText('5 questions')).toBeVisible();
-  await expect(page.getByText('11 real clauses')).toBeVisible();
+  // Derived from the bundle, so it grows as states are ingested rather than being pinned.
+  await expect(page.getByText(/\d+ real clauses from \d+ states/)).toBeVisible();
   // The differentiator a teacher must see without clicking anything.
   await expect(page.getByText(/No accounts\. No ads\. No tracking\./)).toBeVisible();
   // Both audiences have a distinct entry point.

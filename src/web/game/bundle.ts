@@ -64,6 +64,8 @@ export interface BundleClause {
   text: string | null;
   text_status: 'unfetched' | 'fetched' | 'verified';
   source_url: string | null;
+  /** Where to send a reader, when that differs from the document we hashed. See schema/clause.ts. */
+  citation_url?: string | null;
   source_sha256?: string | null;
   effective_date?: string | null;
   /** Human-reviewed plain-language rewrites (L2). Present only once frozen. */

@@ -49,11 +49,12 @@ describe.each(['8-10', '11-14'] as Band[])('copy register %s', (band) => {
   }
 });
 
-/** Sample argument per neutral copy function, so every string can be realized and scored. */
-const NEUTRAL_ARGS: Record<string, unknown> = {
-  pilot: 'Missouri',
-  factQuestions: 5,
-  factClauses: 11,
+/** Sample arguments per neutral copy function, so every string can be realized and scored. */
+const NEUTRAL_ARGS: Record<string, unknown[]> = {
+  pilot: ['Missouri'],
+  factQuestions: [5],
+  // Two states ingested, so the branch that names a state count is the one scored.
+  factClauses: [14, 2],
 };
 
 describe('neutral chrome copy', () => {
@@ -61,7 +62,7 @@ describe('neutral chrome copy', () => {
     it(`"${key}" is readable by the youngest band`, () => {
       const text =
         typeof value === 'function'
-          ? (value as (arg: unknown) => string)(NEUTRAL_ARGS[key] ?? 'Missouri')
+          ? (value as (...args: unknown[]) => string)(...(NEUTRAL_ARGS[key] ?? ['Missouri']))
           : value;
       const result = checkString(text, '8-10');
       expect(

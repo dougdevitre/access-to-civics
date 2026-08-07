@@ -189,6 +189,8 @@ if (existsSync('data/published')) {
       clause.section_heading = published.section_heading ?? null;
       clause.effective_date = published.effective_date ?? null;
       clause.source_url = published.source_url;
+      // Where a reader should be sent, when that is not the document we hashed (Texas).
+      if (published.citation_url) clause.citation_url = published.citation_url;
       clause.source_sha256 = published.source_sha256 ?? null;
     }
     for (const gloss of corpus.glosses ?? []) {

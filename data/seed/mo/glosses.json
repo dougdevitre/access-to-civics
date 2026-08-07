@@ -110,6 +110,16 @@
       "reviewed_at": "2026-08-07",
       "frozen": true,
       "flesch_kincaid": null
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-03:sec-01",
+      "grade_5": "Missouri's lawmakers are two groups, not one. A bill must get a yes from both groups before it can be a law.",
+      "grade_8": "Missouri vests its lawmaking power in two chambers, a senate and a house of representatives. Together they are called the General Assembly, and a bill has to pass both of them.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
     }
   ]
 }

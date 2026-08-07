@@ -1,7 +1,7 @@
 {
   "$comment": "Published clause corpus (L1). Text is verbatim from the cited official source, traceable via source_sha256 to the raw page in data/raw/. Review the diff — these are the words a child reads.",
   "state": "MO",
-  "built_at": "2026-08-07T17:37:30.644Z",
+  "built_at": "2026-08-07T17:39:25.773Z",
   "checksum": "99b29eb393585c542b52b3c72de5e2f7c36624c306b8fc0fcd4035ea6dfdd49c",
   "clauses": [
     {
@@ -375,6 +375,16 @@
       "clause_urn": "urn:const:us:mo:art-12:sec-02b",
       "grade_5": "A change goes to the voters at the next big election. Each change is voted on by itself. If more than half the votes say yes, it starts thirty days later.",
       "grade_8": "Proposed amendments go on the ballot at the next general election, each voted on separately and each limited to one subject. If a majority of the votes cast on it say yes, it takes effect thirty days later.",
+      "lang": "en",
+      "flesch_kincaid": null,
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true
+    },
+    {
+      "clause_urn": "urn:const:us:mo:art-03:sec-01",
+      "grade_5": "Missouri's lawmakers are two groups, not one. A bill must get a yes from both groups before it can be a law.",
+      "grade_8": "Missouri vests its lawmaking power in two chambers, a senate and a house of representatives. Together they are called the General Assembly, and a bill has to pass both of them.",
       "lang": "en",
       "flesch_kincaid": null,
       "reviewed_by": "initial-editorial-pass",

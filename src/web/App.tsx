@@ -15,6 +15,7 @@ import type { ConventionState, Seat } from './game/types.js';
 import { COPY, NEUTRAL, termsIn } from './copy.js';
 import type { Copy } from './copy.js';
 import { GrownUps, PrivacyPromise, TeachersFamilies } from './views/TrustPages.js';
+import { SealMark, TopicMark } from './icons.js';
 
 /**
  * Game shell. Deliberately thin — the content comes from a static per-state bundle produced
@@ -67,7 +68,12 @@ export default function App() {
   const chrome = (children: ReactNode) => (
     <>
       <a className="skip-link" href="#main">{NEUTRAL.skipLink}</a>
-      <main className="convention" id="main">
+      {/*
+        data-band drives the type scale and spacing in styles.css. The bands are eight and
+        thirteen — one stylesheet, but not one size. Trust pages and the rule book are read by
+        grown-ups as often as by children, so before a band is chosen they get the base scale.
+      */}
+      <main className="convention" id="main" data-band={band ?? undefined}>
         {children}
       </main>
       <footer className="site-footer">
@@ -121,7 +127,8 @@ export default function App() {
     return chrome(
       <>
         <header className="hero">
-          <p className="hero-mark" aria-hidden="true">⬤</p>
+          {/* The seal's shape, in ink. The red is not spent here — see the palette note. */}
+          <p className="hero-mark" aria-hidden="true"><SealMark /></p>
           <p className="eyebrow">
             <span className="badge">{NEUTRAL.prototypeBadge}</span>{' '}
             {NEUTRAL.pilot(bundle.state_name)}
@@ -355,7 +362,8 @@ function Game({
 
   return (
     <>
-      <p className="eyebrow">
+      <p className="eyebrow topic-line">
+        <TopicMark topic={node.topic} className="topic-mark" />
         {copy.questionEyebrow(state.nodeIndex + 1, decisions.length, topicLabelFor(bundle, node.topic, band))}
       </p>
       <ProgressDots current={state.nodeIndex} total={decisions.length} done={false} />
@@ -398,6 +406,7 @@ function Game({
             onChoose={chooseOption}
             onLockIn={(id) => { castVote(id); setPendingChoice(null); }}
             onRedo={() => setPendingChoice(null)}
+            showConsequences
           />
         </>
       )}
@@ -456,7 +465,7 @@ function SetupControls({
         </p>
       )}
       <div className="options">
-        <button type="button" onClick={() => onBegin(seatCount)}>{copy.begin}</button>
+        <button type="button" className="primary" onClick={() => onBegin(seatCount)}>{copy.begin}</button>
       </div>
     </>
   );
@@ -487,6 +496,7 @@ function VoteFlow({
   onChoose,
   onLockIn,
   onRedo,
+  showConsequences = false,
 }: {
   node: BundleDecision;
   band: Band;
@@ -499,13 +509,15 @@ function VoteFlow({
   onChoose: (optionId: string) => void;
   onLockIn: (optionId: string) => void;
   onRedo: () => void;
+  /** Second vote only: who each choice helps and hurts, printed on the choice itself. */
+  showConsequences?: boolean;
 }) {
   if (!classMode && handoff) {
     return (
       <section className="handoff" aria-label={copy.handoffTitle(seat.index + 1, seat.constituency)}>
         <p><strong>{copy.handoffTitle(seat.index + 1, seat.constituency)}</strong></p>
         <div className="options">
-          <button type="button" onClick={onHandoffDone}>{copy.handoffReady}</button>
+          <button type="button" className="primary" onClick={onHandoffDone}>{copy.handoffReady}</button>
         </div>
       </section>
     );
@@ -518,7 +530,9 @@ function VoteFlow({
       <section className="handoff" aria-label={`${copy.confirmPick} ${chosenLabel}`}>
         <p><strong>{copy.confirmPick} {chosenLabel}</strong></p>
         <div className="options">
-          <button type="button" onClick={() => onLockIn(pendingChoice)}>{copy.lockIn}</button>
+          <button type="button" className="primary" onClick={() => onLockIn(pendingChoice)}>
+            {copy.lockIn}
+          </button>
           <button type="button" onClick={onRedo}>{copy.redo}</button>
         </div>
       </section>
@@ -536,10 +550,35 @@ function VoteFlow({
           </details>
         </>
       )}
-      <div className="options vote-options">
+      <div className="choices">
         {node.options.map((o) => (
-          <button key={o.option_id} type="button" onClick={() => onChoose(o.option_id)}>
-            {labelFor(o, band)}
+          <button
+            key={o.option_id}
+            type="button"
+            className="choice"
+            onClick={() => onChoose(o.option_id)}
+          >
+            <span className="choice-label">{labelFor(o, band)}</span>
+            {/*
+              The trade-off belongs ON the thing you are choosing. It used to sit in a list above
+              the buttons, which asked a nine-year-old to hold two constituency lists in their
+              head while looking somewhere else. Only shown after the talk, so the first vote is
+              still an instinct and the second one is informed — that gap is the whole mechanic.
+            */}
+            {showConsequences && (
+              <span className="choice-effects">
+                {o.favors.length > 0 && (
+                  <span className="chip favors">
+                    <span aria-hidden="true">+</span> {copy.helps}: {o.favors.join(', ')}
+                  </span>
+                )}
+                {o.harms.length > 0 && (
+                  <span className="chip harms">
+                    <span aria-hidden="true">−</span> {copy.hurts}: {o.harms.join(', ')}
+                  </span>
+                )}
+              </span>
+            )}
           </button>
         ))}
       </div>
@@ -574,12 +613,6 @@ function TallyBoard({
                   <span key={i} className={i < n ? 'meter-unit filled' : 'meter-unit'} />
                 ))}
               </span>
-              {o.favors.length > 0 && (
-                <span className="chip favors">{copy.helps}: {o.favors.join(', ')}</span>
-              )}
-              {o.harms.length > 0 && (
-                <span className="chip harms">{copy.hurts}: {o.harms.join(', ')}</span>
-              )}
             </li>
           );
         })}
@@ -611,8 +644,10 @@ function MirrorScreen({
   const reflection = reflectionFor(bundle, node.node_id, band);
   return (
     <>
-      <p>
-        <strong>{copy.adopted(labelFor(adopted, band))}</strong>{' '}
+      <p><strong>{copy.adopted(labelFor(adopted, band))}</strong></p>
+      {/* Given its own block. This is the number the product is trying to move, and it was a
+          trailing clause in the sentence that announced the winner. */}
+      <p className={changed > 0 ? 'mind-note' : undefined}>
         {changed > 0 ? copy.mindChanged(changed) : copy.mindHeld}
       </p>
       <section aria-labelledby="mirror">
@@ -637,7 +672,7 @@ function MirrorScreen({
         </section>
       )}
       <div className="options">
-        <button type="button" onClick={onContinue}>{copy.next}</button>
+        <button type="button" className="primary" onClick={onContinue}>{copy.next}</button>
       </div>
     </>
   );
@@ -971,7 +1006,7 @@ function RatifyScreen({
         <section className="handoff" aria-label={`${copy.confirmPick} ${pending ? copy.ratifyYes : copy.ratifyNo}`}>
           <p><strong>{copy.confirmPick} {pending ? copy.ratifyYes : copy.ratifyNo}</strong></p>
           <div className="options">
-            <button type="button" onClick={() => { onVote(pending); setPending(null); }}>{copy.lockIn}</button>
+            <button type="button" className="primary" onClick={() => { onVote(pending); setPending(null); }}>{copy.lockIn}</button>
             <button type="button" onClick={() => setPending(null)}>{copy.redo}</button>
           </div>
         </section>
@@ -979,9 +1014,13 @@ function RatifyScreen({
       {seat && !(!classMode && handoff) && !(classMode && pending !== null) && (
         <section aria-label={copy.seatEyebrow(seat.index + 1, seat.constituency)}>
           {!classMode && <p className="eyebrow">{copy.seatEyebrow(seat.index + 1, seat.constituency)}</p>}
-          <div className="options vote-options">
-            <button type="button" onClick={() => choose(true)}>{copy.ratifyYes}</button>
-            <button type="button" onClick={() => choose(false)}>{copy.ratifyNo}</button>
+          <div className="choices">
+            <button type="button" className="choice" onClick={() => choose(true)}>
+              <span className="choice-label">{copy.ratifyYes}</span>
+            </button>
+            <button type="button" className="choice" onClick={() => choose(false)}>
+              <span className="choice-label">{copy.ratifyNo}</span>
+            </button>
           </div>
         </section>
       )}
@@ -1031,7 +1070,7 @@ function CharterScreen({
       </div>
       {state.ratified && (
         <section className="charter-doc" aria-label={copy.charterDocTitle(bundle.state_name)}>
-          <p className="seal seal-mark" aria-hidden="true">⬤</p>
+          <p className="seal seal-mark" aria-hidden="true"><SealMark /></p>
           <h2>{copy.charterDocTitle(bundle.state_name)}</h2>
           <p className="eyebrow">{adoptedDate}</p>
           <ol className="articles">
@@ -1069,7 +1108,7 @@ function CharterScreen({
       {!state.ratified && <p>{copy.mindSummary(totalChanged)}</p>}
       <div className="options no-print">
         {state.ratified && (
-          <button type="button" onClick={() => window.print()}>{copy.printCharter}</button>
+          <button type="button" className="primary" onClick={() => window.print()}>{copy.printCharter}</button>
         )}
         <button type="button" onClick={onReset}>{copy.playAgain}</button>
       </div>

@@ -6,25 +6,123 @@
   Deliberately NOT the cream-and-terracotta editorial look that every AI-generated civics page
   arrives in.
 
-  Palette is ink and iron on unbleached paper, with a single ratification red used exactly once
-  in the whole product — at the seal. Spending boldness in one place.
+  Palette is ink and iron on unbleached paper. Boldness is spent in one place: the ratification
+  seal.
+
+  THE RULE THIS DESIGN HOLDS: the game may be warm, the law may not.
+  Chrome around the game — choices, progress, feedback, the seal — is allowed scale, colour and
+  motion, because a nine-year-old needs those to find their way. The clause cards and the printed
+  charter stay documentary: no colour, no animation, no decoration. The contrast is the teaching.
+  A child should be able to feel, without being told, when they have crossed from the game into
+  the actual words a state wrote down.
+
+  Colour here is never ornament. Every hue below means something, and every hue is paired with a
+  word and a glyph so that meaning survives colour blindness and forced-colors mode.
 */
+
+/*
+  Self-hosted, because the privacy gate forbids a font CDN (scripts/check-privacy-regression.mjs)
+  and because the constitution should not look like a different document on a Chromebook than it
+  does on an iPad. Latin subsets only, ~112KB total, precached with the rest of the app.
+
+  Atkinson Hyperlegible was drawn by the Braille Institute to be legible at low vision — letters
+  are disambiguated rather than harmonised. For a product whose differentiator is that it can be
+  used by everyone in the room, it is the right body face rather than a merely pleasant one.
+*/
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/atkinson-hyperlegible-latin-400-italic.woff2") format("woff2");
+}
+/* Variable weight 200–900 in one file; no italic shipped, see the note on .letter below. */
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url("/fonts/source-serif-4-latin-wght-normal.woff2") format("woff2");
+}
+
 :root {
+  color-scheme: light;
+
   --paper: #EDE8DC;
   --rule: #C9C0AC;
   --ink: #1B1E24;
   --iron: #4A5361;
-  --seal: #9B2226;        /* used ONCE, at ratification */
+  /*
+    The seal was documented as "used ONCE, at ratification", and then quietly used twice — the
+    teacher-mediated clause card had taken it too. Two things that share a colour are claimed to
+    mean the same thing, and "this needs a grown-up first" is not "you ratified your charter".
+    The seal is now genuinely spent once; mediation has --care, and the rule is enforceable
+    because there is a second token to point at.
+  */
+  --seal: #9B2226;        /* ratification. Used ONCE. */
+  --care: #7A4E86;        /* a clause that needs an adult alongside it */
   --focus: #2C5F8A;
+  --action: #1F4E79;      /* the one button on a screen that advances the game */
 
-  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
-  --font-body: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
-  --font-clause: "Iowa Old Style", ui-serif, Georgia, serif;
+  /*
+    Two more inks, as if a second and third pen were on the convention table. They exist to make
+    a trade-off visible: every choice in this game helps someone and costs someone else, and
+    until now both sides rendered as identical grey pills.
+    Never used alone — each is paired with the word "helps"/"hurts" and a + / − glyph.
+  */
+  --thrive: #2F5D3A;      /* helps */
+  --strain: #8A4B10;      /* hurts */
 
+  --font-display: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  --font-body: "Atkinson Hyperlegible", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  /* Was "Iowa Old Style" — a font that does not exist, so clause text silently fell back to
+     Georgia on every machine since the day it was written. */
+  --font-clause: "Source Serif 4", "Iowan Old Style", ui-serif, Georgia, serif;
+
+  --step--1: .8rem;
   --step-0: 1rem;
   --step-1: 1.25rem;
   --step-2: 1.75rem;
   --step-3: 2.5rem;
+  --leading: 1.6;
+
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2.5rem;
+
+  --radius-sm: 3px;
+  --radius-lg: 8px;
+}
+
+/*
+  The bands are eleven and eight, and that is a wide gap. An eight-year-old reading at 1rem in a
+  dense column is working; a thirteen-year-old handed a design built for an eight-year-old stops
+  playing. One stylesheet, one component tree — the shell carries data-band and the scale moves.
+*/
+[data-band="8-10"] {
+  --step--1: .875rem;
+  --step-0: 1.125rem;
+  --step-1: 1.4rem;
+  --step-2: 1.9rem;
+  --step-3: 2.6rem;
+  --leading: 1.7;
 }
 
 * { box-sizing: border-box; }
@@ -35,7 +133,7 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--step-0);
-  line-height: 1.6;
+  line-height: var(--leading);
 }
 
 /*
@@ -50,10 +148,15 @@ body {
   max-width: 46rem;
   margin: 0 auto;
   padding: 3rem 1.5rem 6rem;
+  /* Carried here, not left on body, so the per-band scale actually reaches the running text. */
+  font-size: var(--step-0);
+  line-height: var(--leading);
+  /* The ruling is paper texture, so its pitch follows the type rather than the root em —
+     otherwise the 8-10 band's larger text sits on lines drawn for a smaller one. */
   background-image: repeating-linear-gradient(
     to bottom,
-    transparent 0 2.1rem,
-    color-mix(in srgb, var(--rule) 55%, var(--paper)) 2.1rem 2.15rem
+    transparent 0 2.1em,
+    color-mix(in srgb, var(--rule) 55%, var(--paper)) 2.1em 2.15em
   );
 }
 
@@ -70,8 +173,42 @@ body {
   background-color: var(--paper);
 }
 
+/*
+  ...but a card that paints its OWN background is already blocking the ruling, and its children
+  repainting pure --paper on top of a tinted card produced visible horizontal banding inside
+  every card in the product — most obviously in the charter, which is the artifact a child takes
+  home. Inside a card, text blocks inherit the card.
+*/
+.convention .clause > *,
+.convention .charter-doc > *,
+.convention .charter-doc .articles li > *,
+.convention .handoff > *,
+.convention .home-card > *,
+.convention .leaving > * {
+  /* .convention scoped deliberately: the paper-painting rule above is `.convention p`, and a
+     bare `.handoff > *` loses to it on specificity — which is exactly how the banding survived
+     the first attempt at this fix. */
+  background-color: transparent;
+}
+
 h1 { font-family: var(--font-display); font-size: var(--step-3); font-weight: 600; margin: 0 0 .25rem; }
-.eyebrow { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--iron); }
+/*
+  Was uppercase at .12em tracking. All-caps removes word shape, which is exactly the cue a
+  developing or dyslexic reader leans on hardest; at .8rem it was the least legible text in a
+  product for eight-year-olds. Small caps carry the same editorial signal with the shapes intact,
+  and the 8-10 band drops the effect entirely.
+*/
+.eyebrow {
+  font-size: var(--step--1);
+  letter-spacing: .06em;
+  font-variant-caps: all-small-caps;
+  font-weight: 700;
+  color: var(--iron);
+}
+[data-band="8-10"] .eyebrow {
+  font-variant-caps: normal;
+  letter-spacing: .02em;
+}
 
 .clause {
   font-family: var(--font-clause);
@@ -96,6 +233,87 @@ button {
 button:hover { background: color-mix(in srgb, var(--ink) 8%, var(--paper)); }
 button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
+/* --- Choices --------------------------------------------------------------
+   The most important interaction in the product, and it used to be two text buttons the size
+   of a form control sitting in an otherwise empty page. A choice is a thing you weigh, so it
+   is now a card you can see from across a classroom, with what it costs printed on it. */
+.choices {
+  display: grid;
+  gap: var(--space-3);
+  margin: var(--space-5) 0;
+}
+@media (min-width: 700px) {
+  /* Side by side above tablet width, because the two options are a comparison, not a list. */
+  .choices { grid-template-columns: 1fr 1fr; align-items: stretch; }
+}
+
+.choice {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  min-height: 6.5rem;
+  padding: var(--space-4) var(--space-4) var(--space-4);
+  text-align: left;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--paper) 82%, white);
+  box-shadow: 3px 3px 0 color-mix(in srgb, var(--ink) 12%, transparent);
+  transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+}
+.choice:hover {
+  background: color-mix(in srgb, var(--paper) 70%, white);
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 color-mix(in srgb, var(--ink) 16%, transparent);
+}
+.choice:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 color-mix(in srgb, var(--ink) 16%, transparent); }
+.choice-label {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: 1.25;
+}
+.choice-effects { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: auto; }
+
+/*
+  The trade-off, finally legible. Colour is the third signal here, never the first: the word
+  ("helps" / "hurts") and the +/− glyph both survive colour blindness and forced-colors mode.
+*/
+.chip.favors { color: var(--thrive); border-color: color-mix(in srgb, var(--thrive) 45%, var(--rule)); }
+.chip.harms  { color: var(--strain); border-color: color-mix(in srgb, var(--strain) 45%, var(--rule)); border-style: dashed; }
+
+/*
+  One button per screen moves the game forward. It used to look exactly like "Pick again", so
+  the most consequential tap in the product had no more weight than the undo next to it.
+*/
+button.primary {
+  background: var(--action);
+  color: var(--paper);
+  border-color: var(--action);
+  font-weight: 700;
+}
+button.primary:hover { background: color-mix(in srgb, var(--action) 88%, black); }
+
+/* Marks are inked at the size of the text they sit beside, never larger. */
+.topic-line { display: flex; align-items: center; gap: var(--space-2); }
+.topic-mark { width: 1.7em; height: 1.7em; flex: none; color: var(--iron); }
+.hero-mark svg { width: 2.6rem; height: 2.6rem; }
+.seal-mark svg { width: 3.5rem; height: 3.5rem; }
+
+/*
+  The number this product exists to move: how many people changed their mind after hearing the
+  other side (docs/04-distribution-and-cut-list.md). It has been a sentence in a paragraph. It
+  gets a mark of its own — quiet, because a child changing their mind should feel noticed and
+  not rewarded like a score.
+*/
+.mind-note {
+  border-left: 3px solid var(--thrive);
+  padding: var(--space-2) 0 var(--space-2) var(--space-4);
+  margin: var(--space-4) 0;
+  color: var(--ink);
+}
+.mind-note strong { color: var(--thrive); }
+
 .seal { color: var(--seal); font-family: var(--font-display); font-size: var(--step-2); }
 
 .options { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.5rem 0; }
@@ -118,12 +336,13 @@ h2 { font-family: var(--font-display); font-size: var(--step-1); font-weight: 60
 h3 { font-size: var(--step-0); margin: 1.25rem 0 .25rem; }
 .eyebrow-heading {
   font-family: var(--font-body);
-  font-size: .8rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
+  font-size: var(--step--1);
+  letter-spacing: .06em;
+  font-variant-caps: all-small-caps;
   color: var(--iron);
-  font-weight: 600;
+  font-weight: 700;
 }
+[data-band="8-10"] .eyebrow-heading { font-variant-caps: normal; letter-spacing: .02em; }
 h1:focus, div[tabindex="-1"]:focus { outline: none; }
 
 .band-pick button {
@@ -140,13 +359,21 @@ h1:focus, div[tabindex="-1"]:focus { outline: none; }
   border-left: 3px solid var(--rule);
   padding: .5rem 0 .5rem 1rem;
   margin: 1rem 0;
-  font-style: italic;
+  /*
+    Was italic. Italic serif at running-text size is among the hardest things to decode for a
+    developing reader, and the letters are the emotional beat of the Mirror — the last place to
+    spend legibility on style. The left rule and the signature already say "this is a letter".
+    We ship no serif italic, so this also saves 51KB.
+  */
+  font-style: normal;
 }
 .letter cite { display: block; font-size: .8rem; font-style: normal; color: var(--iron); margin-top: .5rem; }
 
 .reflect { font-size: var(--step-1); font-family: var(--font-display); }
 
-.clause.mediated { border-left-color: var(--seal); }
+/* Not the seal. "A grown-up should be here for this one" and "you ratified your charter" are
+   different messages and must not share a colour. */
+.clause.mediated { border-left-color: var(--care); }
 .clause .gloss {
   font-family: var(--font-body);
   border-top: 1px solid var(--rule);
@@ -155,6 +382,20 @@ h1:focus, div[tabindex="-1"]:focus { outline: none; }
   font-style: normal;
 }
 .read-aloud { margin: .5rem 0 0; font-family: var(--font-body); font-style: normal; }
+
+/*
+  We ship no serif italic, so an <em> in here was being mechanically slanted by the browser.
+  These are the "words still pending" and teacher-mediated notes: our voice, not the state's,
+  which is a distinction worth drawing properly rather than with a fake oblique.
+*/
+.clause em, .letter em {
+  font-style: normal;
+  font-family: var(--font-body);
+  font-size: var(--step--1);
+  color: var(--iron);
+  display: block;
+  line-height: 1.5;
+}
 
 .clause .framing {
   font-family: var(--font-body);
@@ -229,22 +470,34 @@ button:active { transform: translateY(1px); }
 
 .vote-options button { font-weight: 600; }
 
-.dots { display: flex; gap: .4rem; margin: .35rem 0 .75rem; }
+/*
+  Progress was six .6rem circles — about 9px, below the size at which a child glances at
+  something and knows where they are. Doubled, and the current one is doubled again, so
+  "how far in am I" is answerable from across a table.
+*/
+.dots { display: flex; align-items: center; gap: var(--space-2); margin: var(--space-2) 0 var(--space-4); }
 .dot {
-  width: .6rem;
-  height: .6rem;
+  width: .85rem;
+  height: .85rem;
   border-radius: 50%;
-  border: 1.5px solid var(--iron);
+  border: 2px solid var(--iron);
   display: inline-block;
+  transition: background-color .15s ease, transform .15s ease;
 }
 .dot-done { background: var(--iron); }
-.dot-now { border-color: var(--ink); box-shadow: 0 0 0 2px color-mix(in srgb, var(--ink) 25%, var(--paper)); }
+.dot-now {
+  border-color: var(--ink);
+  transform: scale(1.35);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ink) 20%, var(--paper));
+}
 
-.meter { display: inline-flex; gap: .2rem; margin-left: .6rem; vertical-align: middle; }
+/* The vote meter. Same problem as the dots: .7rem squares at 1px are invisible on paper. */
+.meter { display: inline-flex; gap: .25rem; margin-left: var(--space-2); vertical-align: middle; }
 .meter-unit {
-  width: .7rem;
-  height: .7rem;
-  border: 1px solid var(--iron);
+  width: .95rem;
+  height: .95rem;
+  border: 2px solid var(--iron);
+  border-radius: var(--radius-sm);
   display: inline-block;
   background: transparent;
 }
@@ -326,9 +579,10 @@ button:active { transform: translateY(1px); }
   margin: 0;
 }
 .facts li {
-  font-size: .8rem;
+  font-size: var(--step--1);
   letter-spacing: .04em;
-  text-transform: uppercase;
+  font-variant-caps: all-small-caps;
+  font-weight: 700;
   color: var(--iron);
   border: 1px solid var(--rule);
   padding: .2rem .6rem;
@@ -405,6 +659,32 @@ select {
   padding: .3rem .5rem;
 }
 select:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/*
+  Nobody had asked what happens outside a default light browser. Three cases that matter in a
+  school: a district-managed device forcing high contrast, a child who has turned contrast up,
+  and Windows high-contrast mode, where our hand-picked inks are discarded entirely.
+*/
+@media (prefers-contrast: more) {
+  :root {
+    --rule: #9A8F76;
+    --iron: #2F3742;
+    --thrive: #1E4527;
+    --strain: #6A3806;
+  }
+  .clause { border-left-width: 5px; }
+  button { border-width: 2px; }
+}
+
+@media (forced-colors: active) {
+  /* The system owns colour here, so meaning has to survive without ours. Borders and glyphs
+     carry it; the helps/hurts words were never colour-only to begin with. */
+  .chip.favors, .chip.harms { border-width: 2px; }
+  .choice { border: 2px solid CanvasText; }
+  .choice[aria-pressed="true"], .choice.is-picked { outline: 3px solid Highlight; }
+  .dot-done { forced-color-adjust: none; background: CanvasText; }
+  .seal-mark svg { forced-color-adjust: none; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }

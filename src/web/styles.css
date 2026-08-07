@@ -1,0 +1,78 @@
+/*
+  Design notes.
+
+  The subject is a constitutional convention, so the visual vocabulary comes from the artifacts
+  of one: ruled ledger paper, engrossed clause numbering, a wax-seal moment at ratification.
+  Deliberately NOT the cream-and-terracotta editorial look that every AI-generated civics page
+  arrives in.
+
+  Palette is ink and iron on unbleached paper, with a single ratification red used exactly once
+  in the whole product — at the seal. Spending boldness in one place.
+*/
+:root {
+  --paper: #EDE8DC;
+  --rule: #C9C0AC;
+  --ink: #1B1E24;
+  --iron: #4A5361;
+  --seal: #9B2226;        /* used ONCE, at ratification */
+  --focus: #2C5F8A;
+
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  --font-body: ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --font-clause: "Iowa Old Style", ui-serif, Georgia, serif;
+
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.75rem;
+  --step-3: 2.5rem;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+}
+
+/* Ruled ledger, the one ambient device. */
+.convention {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+  background-image: repeating-linear-gradient(
+    to bottom, transparent 0 2.1rem, var(--rule) 2.1rem 2.15rem
+  );
+}
+
+h1 { font-family: var(--font-display); font-size: var(--step-3); font-weight: 600; margin: 0 0 .25rem; }
+.eyebrow { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--iron); }
+
+.clause {
+  font-family: var(--font-clause);
+  border-left: 3px solid var(--iron);
+  padding: .5rem 0 .5rem 1rem;
+  margin: 1.25rem 0;
+  background: color-mix(in srgb, var(--paper) 88%, white);
+}
+.clause cite { display: block; font-size: .8rem; font-style: normal; color: var(--iron); margin-top: .5rem; }
+
+button {
+  font: inherit;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  padding: .6rem 1rem;
+  cursor: pointer;
+}
+button:hover { background: color-mix(in srgb, var(--ink) 8%, var(--paper)); }
+button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+.seal { color: var(--seal); font-family: var(--font-display); font-size: var(--step-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

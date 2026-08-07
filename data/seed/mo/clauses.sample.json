@@ -1,0 +1,36 @@
+{
+  "$comment": "SHAPE REFERENCE ONLY. Every `text` is null on purpose — see data/seed/README.md. Populate via `npm run ingest -- --state MO`. Do not hand-type constitutional text into this file.",
+  "state": "MO",
+  "clauses": [
+    {
+      "urn": "urn:const:us:mo:art-09:sec-01a",
+      "state": "MO",
+      "article": { "num": "IX", "heading": "Education" },
+      "section": "1(a)",
+      "text": null,
+      "text_status": "unfetched",
+      "topics": ["EDUCATION_ESTABLISHMENT", "PUBLIC_FINANCE"],
+      "status": "operative",
+      "effective_date": null,
+      "supersedes": null,
+      "source_url": "https://revisor.mo.gov/main/Home.aspx",
+      "source_sha256": null,
+      "sensitivity": "none"
+    },
+    {
+      "urn": "urn:const:us:mo:art-03:sec-49",
+      "state": "MO",
+      "article": { "num": "III", "heading": "Legislative Department" },
+      "section": "49",
+      "text": null,
+      "text_status": "unfetched",
+      "topics": ["DIRECT_DEMOCRACY"],
+      "status": "operative",
+      "effective_date": null,
+      "supersedes": null,
+      "source_url": "https://revisor.mo.gov/main/Home.aspx",
+      "source_sha256": null,
+      "sensitivity": "none"
+    }
+  ]
+}

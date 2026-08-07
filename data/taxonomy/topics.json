@@ -1,0 +1,19 @@
+{
+  "$comment": "Controlled vocabulary. Append-only — retiring a topic requires a migration because clause records reference it. Starting set adapted from the 32-category scheme in Clouse (2019), ICPSR openicpsr-109444.",
+  "version": "0.1.0",
+  "topics": [
+    { "id": "BILL_OF_RIGHTS", "label": "Rights and liberties", "kid_label": "What the government can't do to you" },
+    { "id": "SUFFRAGE", "label": "Voting and elections", "kid_label": "Who gets to vote" },
+    { "id": "DIRECT_DEMOCRACY", "label": "Initiative, referendum, recall", "kid_label": "Putting a law on the ballot yourself" },
+    { "id": "LEGISLATIVE", "label": "Legislative branch", "kid_label": "Who makes the rules" },
+    { "id": "EXECUTIVE", "label": "Executive branch", "kid_label": "Who runs things day to day" },
+    { "id": "JUDICIAL_SELECTION", "label": "How judges are chosen", "kid_label": "Who picks the judges" },
+    { "id": "EDUCATION_ESTABLISHMENT", "label": "Public education", "kid_label": "Schools" },
+    { "id": "PUBLIC_FINANCE", "label": "Taxation and spending", "kid_label": "Where the money comes from" },
+    { "id": "LOCAL_GOVERNMENT", "label": "Counties, cities, home rule", "kid_label": "Your town" },
+    { "id": "AMENDMENT_PROCESS", "label": "How the constitution changes", "kid_label": "Changing the rules later" },
+    { "id": "ENVIRONMENT_RESOURCES", "label": "Natural resources", "kid_label": "Land, water, and air" },
+    { "id": "LABOR", "label": "Labor and employment", "kid_label": "Work" },
+    { "id": "EMERGENCY_POWERS", "label": "Emergencies and militia", "kid_label": "What happens in a crisis" }
+  ]
+}

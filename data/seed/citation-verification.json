@@ -65,7 +65,7 @@
       "caveat": "Two-thirds is the ratification threshold at the polls. The three-fifths figure sometimes quoted is the separate legislative threshold for proposing. New Hampshire articles have no sections; the URN carries a sec- component only because the grammar requires one."
     },
     {
-      "urn": "urn:const:us:fl:art-11:sec-05e",
+      "urn": "urn:const:us:fl:art-11:sec-05",
       "citation": "Florida Constitution, Article XI, Section 5(e)",
       "subject": "60% voter approval required for a constitutional amendment",
       "verified_on": "2026-08-07",
@@ -74,7 +74,9 @@
         "https://www.flsenate.gov/laws/constitution",
         "https://codes.findlaw.com/fl/florida-constitution1968-revision/fl-const-art-11-sect-5/"
       ],
-      "caveat": "The 60% rule is the general threshold. Article XI Section 7 requires two-thirds for amendments imposing a new state tax or fee."
+      "caveat": "The 60% rule is the general threshold. Article XI Section 7 requires two-thirds for amendments imposing a new state tax or fee.",
+      "ingested_on": "2026-08-07",
+      "ingest_note": "Superseded by ingest: the clause text is now fetched from the official source and byte-verified. Note the citation was narrowed from Art. XI Sec. 5(e) to Art. XI Sec. 5 — subsection (e) carries the sixty-percent threshold, but the section is the citable unit and the gloss names which part matters. Kept as the audit trail of how the citation was chosen. Extracted heading: “Amendment or revision election”."
     },
     {
       "urn": "urn:const:us:va:art-03:sec-14",

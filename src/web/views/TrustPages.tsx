@@ -1,3 +1,4 @@
+import type { StateBundle } from '../game/bundle.js';
 /**
  * The trust layer: a kid-readable privacy promise, a full posture page for adults and
  * district reviewers, and a teachers & families guide. Static content, no data, no forms.
@@ -7,6 +8,40 @@
  */
 
 const REPO_URL = 'https://github.com/dougdevitre/access-to-civics';
+
+/**
+ * How many states have real text, named. This sentence has been hand-edited on every ingest and
+ * has been briefly false in between each one, which is not a claim to leave to memory on a page
+ * whose whole job is being trustworthy. It is derived from the shipped bundle instead.
+ */
+export function ingestedStates(bundle: StateBundle | null): string[] {
+  const names = new Map<string, string>();
+  for (const clause of Object.values(bundle?.clauses ?? {})) {
+    if (clause.text === null) continue;
+    names.set(clause.state, STATE_NAMES[clause.state] ?? clause.state);
+  }
+  return [...names.values()].sort();
+}
+
+const STATE_NAMES: Record<string, string> = {
+  CA: 'California', DE: 'Delaware', FL: 'Florida', MO: 'Missouri',
+  NE: 'Nebraska', NH: 'New Hampshire', TX: 'Texas', VA: 'Virginia',
+};
+
+/** "Missouri, Texas and Nebraska" — an English list, not a comma-joined array. */
+export function listStates(names: string[]): string {
+  if (names.length <= 1) return names[0] ?? '';
+  return `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+}
+
+/**
+ * The subject of the sentence. The bundle can still be loading when a reader opens a trust page
+ * directly, and "0 states —  — have had their text ingested" is worse than a vaguer true sentence.
+ */
+export function ingestedPhrase(names: string[]): string {
+  if (names.length === 0) return 'Several states have';
+  return `${names.length} states — ${listStates(names)} — have`;
+}
 
 export function PrivacyPromise() {
   return (
@@ -44,7 +79,8 @@ export function PrivacyPromise() {
   );
 }
 
-export function GrownUps() {
+export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
+  const states = ingestedStates(bundle);
   return (
     <article>
       <h2>For grown-ups: privacy, safety, and how this app works</h2>
@@ -127,9 +163,8 @@ export function GrownUps() {
 
       <h3>Help us get your state right</h3>
       <p>
-        <strong>Charter is a prototype.</strong> Four states — Missouri, Texas, Nebraska and
-        Delaware — have had their constitutional text ingested; every other state appears as a
-        citation with the words still pending. We are asking the people who would know to check our work,
+        <strong>Charter is a prototype.</strong> {ingestedPhrase(states)} had their constitutional
+        text ingested; every other state appears as a citation with the words still pending. We are asking the people who would know to check our work,
         because we have already been wrong.
       </p>
       <p>
@@ -167,7 +202,7 @@ export function GrownUps() {
         </li>
         <li>
           <strong>Contribute an adapter for your state</strong> so its real words can appear.
-          The four we have are about a hundred lines each, there is a written recipe in the repository, and every state is welcome.
+          The ones we have are about a hundred lines each, there is a written recipe in the repository, and every state is welcome.
         </li>
       </ul>
       <p>
@@ -213,7 +248,8 @@ export function GrownUps() {
   );
 }
 
-export function TeachersFamilies() {
+export function TeachersFamilies({ bundle }: { bundle: StateBundle | null }) {
+  const states = ingestedStates(bundle);
   return (
     <article>
       <h2>Teachers &amp; families</h2>
@@ -287,8 +323,8 @@ export function TeachersFamilies() {
 
       <h3>This is a prototype — please tell us what is wrong</h3>
       <p>
-        Four states — Missouri, Texas, Nebraska and Delaware — have had their constitutional text
-        ingested so far; other states show a citation with the words still pending. We have already found and fixed
+        {ingestedPhrase(states)} had their constitutional text ingested so far; other states show a
+        citation with the words still pending. We have already found and fixed
         two citations that misrepresented a state’s constitution, and we expect there are
         more. If something looks wrong to you — a citation, a framing, a gloss, or a clause
         that needs more care before a child reads it — the grown-ups page explains how to

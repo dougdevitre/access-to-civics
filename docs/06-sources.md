@@ -141,6 +141,56 @@ Delaware sprang the quietest trap of the four, and the only one that would have 
   The proposal must be published before the intervening general election, so that election is the
   check; the gloss says so, because "no public vote" alone would be true and still misleading.
 
+## Florida — verified source notes, 2026-08
+
+The most semantic markup of the five, and the widest gap between the fetched unit and the cited
+unit.
+
+- **Canonical:** `https://www.flsenate.gov/Laws/Constitution` — the Senate publishes the **entire
+  constitution as one 622KB document**. There are no per-article or per-section URLs; navigation
+  is fragment anchors, `#A11S05` being Article XI Section 5. So one fetch and one sha256 cover
+  every Florida clause the game will ever cite.
+- **Citation (human-facing):** the same URL with the anchor, e.g.
+  `https://www.flsenate.gov/Laws/Constitution#A11S05`. `source_url` is the document the checksum
+  covers; `citation_url` carries the fragment so a reader lands on the section.
+- **Page structure (verified):** `div.Section` containing `span.SectionNumber` (with the
+  `<a name>` anchor), `span.Catchline > span.CatchlineText` for the heading, `span.SectionBody`
+  holding `div.Subsection` / `div.Paragraph` blocks, and a sibling `div.History`. Nothing has to
+  be inferred from position. The History block is the Senate's editorial note and is captured
+  separately. Parser: `src/ingest/adapters/florida.ts`.
+- **Hex character references.** Florida uses `&#x2003;` (em space) between a subsection letter and
+  its text and `&#x2014;` after every catchline. `htmlToText` decoded decimal references only, so
+  these survived as the literal string `&#x2003;` inside a clause. Fixed for every state.
+- **No effective dates.** The History line gives adoption years ("adopted 2006"), not dates.
+- **Scope:** Art. XI §5. Subsection (e) carries the sixty-percent ballot threshold that makes
+  Florida worth citing, but the section is the citable unit — the same call as Texas Art. VII §3 —
+  and the gloss names which part matters.
+
+## New Hampshire — probed 2026-08, BLOCKED
+
+New Hampshire is the state we most want and cannot currently reach. It is the only one cited on
+two different questions: Part Second Art. 83, the education duty the *Claremont* cases read as
+placing the funding obligation on the state (D03-B), and Part Second Art. 100, the two-thirds
+ratification requirement (D05-B).
+
+The obstacle is access, not architecture:
+
+- The General Court site was rebuilt. `gencourt.state.nh.us` now redirects to `gc.nh.gov`, and
+  every constitution path there is a **soft 404** — HTTP 200, 18KB of site chrome, no law. Its own
+  navigation links the constitution off-site, to `www.nh.gov/glance/state-constitution`.
+- That page returns **403 Access Denied from Akamai** to our harvest runner, in a plain fetch and
+  in a real browser alike, so it is edge filtering of the datacenter egress rather than anything
+  about how we ask. `sos.nh.gov` returned 503 to the same runner.
+
+We are not going to disguise the harvester as a browser to get around a WAF. The crawler
+identifies itself honestly, and a rule we would break to get one more clause is not a rule. The
+routes that stay open: retry from an egress New Hampshire's edge does not filter, or ask the
+Secretary of State's office directly — which is the sort of contact the collaboration request in
+the README is for anyway.
+
+Until then New Hampshire stays a **verified citation with its words pending**, and its two Mirror
+cards say so.
+
 ## California — probed 2026-08, NOT ingested
 
 Recorded because a negative result that took two probe rounds is worth writing down.

@@ -1,0 +1,15 @@
+{
+  "$comment": "L2 gloss layer for the ingested Florida clause. Batch-drafted, then frozen; reviewed_by records the initial editorial pass — a named human reviewer should confirm it against the clause text before classroom use. The section covers the whole amendment election; subsection (e) is the part the game cites, and the gloss names it rather than pretending the section is only about the sixty percent.",
+  "glosses": [
+    {
+      "clause_urn": "urn:const:us:fl:art-11:sec-05",
+      "grade_5": "In Florida a change to the rules goes to the voters at the next big election. Part (e) sets the bar. More than half is not enough. At least sixty out of every hundred voters must say yes.",
+      "grade_8": "This section covers how Florida puts a proposed change to its constitution on the ballot and when it takes effect. Subsection (e) is the part that matters here: a change passes only if at least sixty percent of the people voting on it say yes. A simple majority is not enough.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
+    }
+  ]
+}

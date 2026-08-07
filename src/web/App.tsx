@@ -115,7 +115,9 @@ export default function App() {
   }
 
   if (!band) {
-    const clauseCount = Object.values(bundle.clauses).filter((c) => c.text !== null).length;
+    const ingested = Object.values(bundle.clauses).filter((c) => c.text !== null);
+    const clauseCount = ingested.length;
+    const stateCount = new Set(ingested.map((c) => c.state)).size;
     return chrome(
       <>
         <header className="hero">
@@ -129,7 +131,7 @@ export default function App() {
           <ul className="facts">
             <li>{NEUTRAL.factQuestions(bundle.decisions.length)}</li>
             <li>{NEUTRAL.factTime}</li>
-            <li>{NEUTRAL.factClauses(clauseCount)}</li>
+            <li>{NEUTRAL.factClauses(clauseCount, stateCount)}</li>
             <li>{NEUTRAL.factGrades}</li>
           </ul>
         </header>
@@ -752,7 +754,10 @@ function ClauseCard({
     );
   }
 
-  const showSource = clause.source_url !== null && isAllowedSource(clause.source_url);
+  // Send a reader to the page meant for readers. For most states that is the page we fetched;
+  // Texas serves its machine-readable documents from a different host than its public site.
+  const readerUrl = clause.citation_url ?? clause.source_url;
+  const showSource = readerUrl !== null && isAllowedSource(readerUrl);
   const gloss = glossFor(clause, band);
   return (
     <blockquote className="clause">
@@ -769,7 +774,7 @@ function ClauseCard({
             {copy.realWords}
             {clause.section_heading && <> “{clause.section_heading}”</>}
           </p>
-          {clause.text}
+          <span className="clause-text">{clause.text}</span>
           {gloss && (
             <div className="gloss">
               <p className="framing">{copy.whatThisMeans}</p>
@@ -800,7 +805,7 @@ function ClauseCard({
           <p><strong>{copy.leavingTitle}</strong> {copy.leavingBody}</p>
           <div className="options">
             <a
-              href={clause.source_url ?? undefined}
+              href={readerUrl ?? undefined}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setConfirming(false)}

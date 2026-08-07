@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { Clause } from '../../schema/index.js';
+import { htmlToText } from './html.js';
 import type { RawDocument, StateAdapter, TableOfContentsEntry } from './types.js';
 
 /**
@@ -51,19 +52,7 @@ const MONTHS: Record<string, string> = {
   Jul: '07', Aug: '08', Sep: '09', Oct: '10', Nov: '11', Dec: '12',
 };
 
-/** HTML → text: decode entities, strip tags, collapse whitespace. No word is altered. */
-export function htmlToText(fragment: string): string {
-  return fragment
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&nbsp;|&thinsp;|&ensp;|&emsp;/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#(\d+);/g, (_, code: string) => String.fromCodePoint(Number(code)))
-    .replace(/\s+/g, ' ')
-    .trim();
-}
+export { htmlToText } from './html.js';
 
 /**
  * Parse one Revisor section page. Verified structure (all four Phase-0 pages identical):

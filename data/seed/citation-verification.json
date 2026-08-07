@@ -1,5 +1,5 @@
 {
-  "$comment": "Audit trail AND display source of truth for clause citations whose state has no ingest adapter yet. These clauses render as honest 'text pending' cards \u2014 the app never shows words for them \u2014 but the citation itself must be right, because a child sees it and a teacher may follow it. The bundle builder uses the `citation` string here in preference to the one it derives mechanically from the URN, because some citations cannot be derived: New Hampshire articles have no sections, and a superseded constitution needs its year. Each entry records how it was verified and when.",
+  "$comment": "Audit trail AND display source of truth for clause citations whose state has no ingest adapter yet. These clauses render as honest 'text pending' cards — the app never shows words for them — but the citation itself must be right, because a child sees it and a teacher may follow it. The bundle builder uses the `citation` string here in preference to the one it derives mechanically from the URN, because some citations cannot be derived: New Hampshire articles have no sections, and a superseded constitution needs its year. Each entry records how it was verified and when.",
   "verified": [
     {
       "urn": "urn:const:us:de:art-16:sec-01",
@@ -34,7 +34,9 @@
         "https://statutes.capitol.texas.gov/Docs/CN/pdf/CN.5/CN.5.2.pdf",
         "https://law.justia.com/constitution/texas/sections/cn000500-000200.html"
       ],
-      "caveat": "Section 2 elects the Supreme Court specifically. Texas elects its other courts under Sections 4, 6, 7, 15 and 18; Section 7 (district judges) would broaden the support if the option is ever reworded beyond the high court."
+      "caveat": "Section 2 elects the Supreme Court specifically. Texas elects its other courts under Sections 4, 6, 7, 15 and 18; Section 7 (district judges) would broaden the support if the option is ever reworded beyond the high court.",
+      "ingested_on": "2026-08-07",
+      "ingest_note": "Superseded by ingest: the clause text is now fetched from the official source and byte-verified, so the Mirror card shows the state’s own words rather than relying on this research record. Kept as the audit trail of how the citation was chosen. Extracted heading: “SUPREME COURT; JUSTICES”."
     },
     {
       "urn": "urn:const:us:nh:art-83:sec-01",
@@ -82,7 +84,7 @@
         "https://archive.wvculture.org/hiStory/government/1830constitution01a.html",
         "https://vagovernmentmatters.org/primary-sources/518.html"
       ],
-      "caveat": "REPLACES urn:const:us:va:art-02:sec-01, which was WRONG: the modern Article II Section 1 sets universal adult suffrage (citizen, eighteen, resident) and contains no property qualification, so it was being cited as authority for the opposite of what it says. The 1830 constitution is the honest source for a freehold franchise; Virginia was the last state to drop one, in 1851. The URN is undated because the exact effective date was not verified \u2014 the vintage is carried in the citation string instead. The clause also restricted the franchise by race and sex, which is why it is flagged historical_harm and never renders raw for the 8-10 band."
+      "caveat": "REPLACES urn:const:us:va:art-02:sec-01, which was WRONG: the modern Article II Section 1 sets universal adult suffrage (citizen, eighteen, resident) and contains no property qualification, so it was being cited as authority for the opposite of what it says. The 1830 constitution is the honest source for a freehold franchise; Virginia was the last state to drop one, in 1851. The URN is undated because the exact effective date was not verified — the vintage is carried in the citation string instead. The clause also restricted the franchise by race and sex, which is why it is flagged historical_harm and never renders raw for the 8-10 band."
     },
     {
       "urn": "urn:const:us:tx:art-07:sec-03",
@@ -94,7 +96,9 @@
         "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.7/CN.7.3.htm",
         "https://law.justia.com/constitution/texas/sections/cn000700-000300.html"
       ],
-      "caveat": "The local school tax authority is subsection (e); we cite the whole section because that is the unit the ingest pipeline can fetch and byte-verify, and the gloss says which part carries the point. Permissive, not mandatory: the legislature MAY authorize the district tax and district voters must approve it. Texas also carries a state-duty clause at Article VII Section 1, which the Edgewood cases read to require substantially equal access to revenue - hence recapture. Texas is a both/and state, cited here because it is the canonical local-property-tax school finance state and its constitution says so in text."
+      "caveat": "The local school tax authority is subsection (e); we cite the whole section because that is the unit the ingest pipeline can fetch and byte-verify, and the gloss says which part carries the point. Permissive, not mandatory: the legislature MAY authorize the district tax and district voters must approve it. Texas also carries a state-duty clause at Article VII Section 1, which the Edgewood cases read to require substantially equal access to revenue - hence recapture. Texas is a both/and state, cited here because it is the canonical local-property-tax school finance state and its constitution says so in text.",
+      "ingested_on": "2026-08-07",
+      "ingest_note": "Superseded by ingest: the clause text is now fetched from the official source and byte-verified, so the Mirror card shows the state’s own words rather than relying on this research record. Kept as the audit trail of how the citation was chosen. Extracted heading: “TAXES FOR BENEFIT OF SCHOOLS; PROVISION OF FREE TEXT BOOKS; SCHOOL DISTRICTS”."
     },
     {
       "urn": "urn:const:us:tx:art-08:sec-01e",
@@ -105,7 +109,9 @@
       "sources": [
         "https://law.justia.com/constitution/texas/sections/cn000800-000100.html"
       ],
-      "caveat": "This is the provision that actually entrenches localism: barred from a state property tax, the state cannot fund schools from that base at all. Cited alongside Article VII Section 3(e) because the permissive grant alone would not carry the point."
+      "caveat": "This is the provision that actually entrenches localism: barred from a state property tax, the state cannot fund schools from that base at all. Cited alongside Article VII Section 3(e) because the permissive grant alone would not carry the point.",
+      "ingested_on": "2026-08-07",
+      "ingest_note": "Superseded by ingest: the clause text is now fetched from the official source and byte-verified, so the Mirror card shows the state’s own words rather than relying on this research record. Kept as the audit trail of how the citation was chosen. Extracted heading: “STATE AD VALOREM TAXES PROHIBITED”."
     }
   ],
   "unverified": [

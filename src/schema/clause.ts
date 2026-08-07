@@ -24,6 +24,15 @@ export const Clause = z.object({
   effective_date: z.string().nullable(),
   supersedes: z.string().nullable().default(null),
   source_url: z.string().url(),
+  /**
+   * Where a person should go to read this clause in context, when that is not the document we
+   * hashed. Usually null — Missouri serves the same page to us and to a reader. Texas does not:
+   * the machine-readable article HTML lives on tcss.legis.texas.gov, while a reader belongs on
+   * statutes.capitol.texas.gov. source_url is always the bytes behind source_sha256; this is the
+   * link we show. Keeping them separate means the citation stays useful without ever weakening
+   * what the checksum covers.
+   */
+  citation_url: z.string().url().nullable().default(null),
   source_sha256: z.string().nullable().default(null),
   sensitivity: Sensitivity.default('none'),
 });

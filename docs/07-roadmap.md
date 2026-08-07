@@ -56,3 +56,25 @@ harvested from revisor.mo.gov, extracted, verified, and published to `data/publi
 with per-section source URLs and sha256 provenance. The quote-integrity, clause-refs,
 sensitivity, reading-level, and privacy gates are implemented and blocking. Scope widens by
 adding entries to `data/seed/mo/ingest-targets.json` and re-running the harvest workflow.
+
+**Texas ingested (2026-08).** The second state is in, which is the one that mattered: it proves
+the pipeline is a pipeline and not a Missouri-shaped script. It also cost more than expected, and
+the reasons are worth carrying into Phase 1:
+
+- The obvious source was a dead end. Texas's public statutes site is now a single-page
+  application that answers HTTP 200 with an identical shell for every document URL. **Status
+  codes are not evidence.** The harvest manifest's marker check — does an expected phrase from
+  this section actually appear in these bytes — is what caught it, and it should be treated as
+  mandatory for every new adapter, not as a nicety.
+- The fetched unit is not always the cited unit. Texas serves one document per article; the
+  citation is a section. `source_url` (what the checksum covers) and `citation_url` (where a
+  reader is sent) are separate fields for exactly this reason.
+- Browser rendering works and is a last resort. It succeeded for Texas before the document host
+  was found, but a rendered DOM is a weaker provenance claim than served bytes. Prefer finding
+  the data the application loads.
+- Two gates were silently single-state and are now state-agnostic: the reading-level gate scored
+  only Missouri's glosses, and the privacy gate's host allowlist was hand-maintained. A third
+  state should require no edit to either.
+
+Remaining Phase-3 stress cases: California (initiative-heavy), Delaware (no popular
+ratification), Vermont (short).

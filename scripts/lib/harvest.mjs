@@ -57,12 +57,34 @@ async function renderPage(url) {
 }
 
 /**
+ * Fetch the first candidate URL that both answers 200 and actually contains the expected
+ * marker. States publish under more than one URL shape and the shapes are not documented;
+ * Texas's own application, for instance, requests a path with a doubled slash in it. Which
+ * candidate won is recorded in the manifest, so provenance stays explicit rather than
+ * depending on whatever the script happened to try first.
+ */
+async function getFirstMatching(get, urls, expect) {
+  const tried = [];
+  let last = null;
+  for (const url of urls) {
+    const result = await get(url);
+    const found = result.body.toLowerCase().includes(String(expect).toLowerCase());
+    tried.push(`${url} -> ${result.status}${found ? ' (marker found)' : ''}`);
+    last = { ...result, url, markerFound: found, tried };
+    if (result.status === 200 && found) return last;
+    if (urls.length > 1) await sleep(1000);
+  }
+  return last;
+}
+
+/**
  * @param {object} opts
  * @param {string} opts.state          two-letter code, lowercase
- * @param {(t: object) => string} opts.sectionUrl  builds the URL for one target
+ * @param {(t: object) => string | string[]} opts.sectionUrl  URL, or candidates in preference order
+ * @param {(t: object) => string} [opts.fileFor]  raw filename for a target; defaults to its URN slug
  * @param {boolean} [opts.render]  render in a browser instead of fetching raw bytes
  */
-export async function harvestState({ state, sectionUrl, render = false }) {
+export async function harvestState({ state, sectionUrl, fileFor, render = false }) {
   const get = render ? renderPage : fetchPage;
   const rawDir = `data/raw/${state}`;
   const config = JSON.parse(readFileSync(`data/seed/${state}/ingest-targets.json`, 'utf8'));
@@ -70,7 +92,7 @@ export async function harvestState({ state, sectionUrl, render = false }) {
   mkdirSync(rawDir, { recursive: true });
   const manifest = {
     fetched_at: new Date().toISOString(),
-    source_root: config.index_url,
+    source_root: config.source_root ?? config.index_url,
     documents: [],
   };
   let failures = 0;
@@ -92,20 +114,25 @@ export async function harvestState({ state, sectionUrl, render = false }) {
   }
 
   for (const target of config.targets) {
-    const url = sectionUrl(target);
-    const { status, body, capture, visible } = await get(url);
-    const file = `${slugFor(target.urn)}.html`;
+    const candidates = [sectionUrl(target)].flat();
+    const { status, body, capture, visible, url, markerFound, tried } = await getFirstMatching(
+      get,
+      candidates,
+      target.expect,
+    );
+    const file = `${fileFor ? fileFor(target) : slugFor(target.urn)}.html`;
     writeFileSync(`${rawDir}/${file}`, body);
-    const markerFound = body.toLowerCase().includes(String(target.expect).toLowerCase());
     manifest.documents.push({
       file,
       urn: target.urn,
       url,
+      ...(target.citation_url ? { citation_url: target.citation_url } : {}),
       http_status: status,
       capture,
       sha256: createHash('sha256').update(body).digest('hex'),
       bytes: Buffer.byteLength(body),
       marker_found: markerFound,
+      ...(candidates.length > 1 ? { candidates_tried: tried } : {}),
       // Recorded so a failed harvest can be diagnosed without another round trip.
       ...(visible ? { visible_head: visible } : {}),
     });

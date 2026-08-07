@@ -81,6 +81,9 @@ h1 { font-family: var(--font-display); font-size: var(--step-3); font-weight: 60
   background: color-mix(in srgb, var(--paper) 88%, white);
 }
 .clause cite { display: block; font-size: .8rem; font-style: normal; color: var(--iron); margin-top: .5rem; }
+/* Texas sections are lettered and numbered lists. The blank lines between subsections come from
+   the official document's own paragraphs, so they are preserved rather than collapsed. */
+.clause-text { display: block; white-space: pre-wrap; }
 
 button {
   font: inherit;

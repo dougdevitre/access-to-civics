@@ -1,0 +1,35 @@
+{
+  "$comment": "L2 gloss layer for the ingested Texas clauses: plain-language 'what this means' rewrites at two reading levels (src/schema/gloss.ts). Batch-drafted, then frozen; reviewed_by records the initial editorial pass — a named human reviewer should confirm each gloss against the clause text before classroom use. Reading levels are enforced by scripts/check-reading-level.mjs. A gloss explains only its own clause: it never imports rules from neighboring sections, even when the neighbor is what makes the clause interesting.",
+  "glosses": [
+    {
+      "clause_urn": "urn:const:us:tx:art-05:sec-02",
+      "grade_5": "Texas has nine judges on its top court. Voters choose them at an election. Each one serves six years. A judge must be 35 or older and must have worked in law for ten years.",
+      "grade_8": "The Texas Supreme Court has a Chief Justice and eight Justices. Voters elect them to six-year terms, three seats every two years. A Justice must be at least 35, licensed to practice law in Texas, and must have ten years of work as a lawyer or judge.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
+    },
+    {
+      "clause_urn": "urn:const:us:tx:art-07:sec-03",
+      "grade_5": "Texas lets each school district raise its own tax money for its own schools. But first the voters who live there must say yes to the tax.",
+      "grade_8": "This section lets the Legislature form school districts and lets those districts levy a local property tax to run their schools and put up school buildings. The tax takes effect only if most of the district's voters approve it at an election.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
+    },
+    {
+      "clause_urn": "urn:const:us:tx:art-08:sec-01e",
+      "grade_5": "The state of Texas may not tax land or buildings. One short line is the whole rule.",
+      "grade_8": "Texas may not levy a statewide ad valorem tax, which is a tax on the value of property. The ban is on the State itself, and this section says nothing about taxes levied by local governments.",
+      "lang": "en",
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true,
+      "flesch_kincaid": null
+    }
+  ]
+}

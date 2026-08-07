@@ -17,9 +17,31 @@ if (!existsSync(DIST)) {
   process.exit(0);
 }
 
+/**
+ * Official source hosts for the states we have ingested, read from the published corpus rather
+ * than listed by hand — otherwise every new state is a manual edit to a privacy gate, which is
+ * exactly the kind of edit that gets rubber-stamped. The rule stays strict: a host earns its way
+ * in only by being cited in a reviewed corpus AND being a .gov. Anything else still fails.
+ */
+function officialSourceHosts() {
+  const hosts = new Set();
+  if (!existsSync('data/published')) return hosts;
+  for (const file of readdirSync('data/published').filter((f) => f.endsWith('.json'))) {
+    const corpus = JSON.parse(readFileSync(join('data/published', file), 'utf8'));
+    for (const clause of corpus.clauses ?? []) {
+      for (const url of [clause.source_url, clause.citation_url]) {
+        if (!url) continue;
+        const { protocol, hostname } = new URL(url);
+        if (protocol === 'https:' && hostname.endsWith('.gov')) hosts.add(hostname);
+      }
+    }
+  }
+  return hosts;
+}
+
 /** Hosts that may legitimately appear as strings in the shipped code. */
 const ALLOWED_HOSTS = new Set([
-  'revisor.mo.gov',        // official Missouri source links (behind the leaving-notice UI)
+  ...officialSourceHosts(),
   'github.com',            // contact / source / issue reporting on the grown-ups page
   'react.dev',             // React production error-decoder URLs (strings, never fetched)
   'reactjs.org',           // ditto, older React error-decoder host in the prod bundle

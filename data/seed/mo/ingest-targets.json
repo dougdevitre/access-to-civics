@@ -103,6 +103,16 @@
       "topics": [
         "PUBLIC_FINANCE"
       ]
+    },
+    {
+      "urn": "urn:const:us:mo:art-12:sec-02b",
+      "article_roman": "XII",
+      "article_heading": "Amending the Constitution",
+      "section_label": "2(b)",
+      "expect": "majority",
+      "topics": [
+        "AMENDMENT_PROCESS"
+      ]
     }
   ]
 }

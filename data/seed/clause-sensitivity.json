@@ -53,6 +53,9 @@
     },
     "urn:const:us:mo:art-10:sec-01": {
       "sensitivity": "none"
+    },
+    "urn:const:us:mo:art-12:sec-02b": {
+      "sensitivity": "none"
     }
   }
 }

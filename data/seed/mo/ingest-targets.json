@@ -43,6 +43,66 @@
         "EDUCATION_ESTABLISHMENT",
         "PUBLIC_FINANCE"
       ]
+    },
+    {
+      "urn": "urn:const:us:mo:art-01:sec-05",
+      "article_roman": "I",
+      "article_heading": "Bill of Rights",
+      "section_label": "5",
+      "expect": "worship",
+      "topics": [
+        "BILL_OF_RIGHTS"
+      ]
+    },
+    {
+      "urn": "urn:const:us:mo:art-01:sec-08",
+      "article_roman": "I",
+      "article_heading": "Bill of Rights",
+      "section_label": "8",
+      "expect": "speech",
+      "topics": [
+        "BILL_OF_RIGHTS"
+      ]
+    },
+    {
+      "urn": "urn:const:us:mo:art-01:sec-09",
+      "article_roman": "I",
+      "article_heading": "Bill of Rights",
+      "section_label": "9",
+      "expect": "assemble",
+      "topics": [
+        "BILL_OF_RIGHTS"
+      ]
+    },
+    {
+      "urn": "urn:const:us:mo:art-01:sec-14",
+      "article_roman": "I",
+      "article_heading": "Bill of Rights",
+      "section_label": "14",
+      "expect": "justice",
+      "topics": [
+        "BILL_OF_RIGHTS"
+      ]
+    },
+    {
+      "urn": "urn:const:us:mo:art-04:sec-01",
+      "article_roman": "IV",
+      "article_heading": "Executive Department",
+      "section_label": "1",
+      "expect": "executive",
+      "topics": [
+        "EXECUTIVE"
+      ]
+    },
+    {
+      "urn": "urn:const:us:mo:art-10:sec-01",
+      "article_roman": "X",
+      "article_heading": "Taxation",
+      "section_label": "1",
+      "expect": "tax",
+      "topics": [
+        "PUBLIC_FINANCE"
+      ]
     }
   ]
 }

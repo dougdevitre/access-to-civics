@@ -1,0 +1,17 @@
+{
+  "fetched_at": "2026-08-07T18:25:55.714Z",
+  "source_root": "https://www.flsenate.gov/Laws/Constitution",
+  "documents": [
+    {
+      "file": "constitution.html",
+      "urn": "urn:const:us:fl:art-11:sec-05",
+      "url": "https://www.flsenate.gov/Laws/Constitution",
+      "citation_url": "https://www.flsenate.gov/Laws/Constitution#A11S05",
+      "http_status": 200,
+      "capture": "raw-bytes",
+      "sha256": "b816e2b83dab6f03bdf1adf90f196609f2ef35e3b250d39ded6de9d992dec637",
+      "bytes": 622806,
+      "marker_found": true
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$comment": "Nebraska ingest scope. VERIFIED 2026-08 by scripts/probe-ne.mjs. The Legislature serves one plain HTML page per section at laws/articles.php?article=<ROMAN>-<section> — note the section is part of the `article` parameter, and that `?article=III` alone returns a 200 with a 37-byte empty body rather than a 404, so a status-code check alone proves nothing. Scope is deliberately one clause: Art. III Sec. 1 is why Nebraska is here at all. It vests the legislative authority in a Legislature of one chamber, adopted by initiative in 1934 and effective 1937, which makes Nebraska the only state that answers the one-group-or-two question differently from the other forty-nine.",
+  "state": "NE",
+  "source_root": "https://nebraskalegislature.gov/laws/browse-constitution.php",
+  "index_url": "https://nebraskalegislature.gov/laws/browse-constitution.php",
+  "targets": [
+    {
+      "urn": "urn:const:us:ne:art-03:sec-01",
+      "article_roman": "III",
+      "article_heading": "Legislative Power",
+      "section_label": "1",
+      "expect": "one chamber",
+      "topics": ["LEGISLATIVE", "DIRECT_DEMOCRACY"]
+    }
+  ]
+}

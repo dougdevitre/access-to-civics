@@ -1,5 +1,5 @@
 {
-  "$comment": "Human editorial review of clause sensitivity, keyed by URN. Values follow src/schema/clause.ts Sensitivity. Per docs/05-compliance.md, historical_harm never surfaces raw in an 8-10 Mirror card; the app shows a teacher-mediated card instead, and the 11-14 band gets framing. This file is the review of record until the L2 gloss pipeline exists. Initial editorial pass drafted 2026-08 \u2014 a named human reviewer should confirm each entry before classroom use.",
+  "$comment": "Human editorial review of clause sensitivity, keyed by URN. Values follow src/schema/clause.ts Sensitivity. Per docs/05-compliance.md, historical_harm never surfaces raw in an 8-10 Mirror card; the app shows a teacher-mediated card instead, and the 11-14 band gets framing. This file is the review of record until the L2 gloss pipeline exists. Initial editorial pass drafted 2026-08 — a named human reviewer should confirm each entry before classroom use.",
   "reviewed_by": "initial-editorial-pass",
   "reviewed_at": "2026-08-07",
   "clauses": {
@@ -67,6 +67,12 @@
       "sensitivity": "none"
     },
     "urn:const:us:tx:art-07:sec-03": {
+      "sensitivity": "none"
+    },
+    "urn:const:us:mo:art-03:sec-01": {
+      "sensitivity": "none"
+    },
+    "urn:const:us:ne:art-03:sec-01": {
       "sensitivity": "none"
     }
   }

@@ -12,7 +12,7 @@ on:
         required: true
         default: mo
         type: choice
-        options: [mo, tx]
+        options: [mo, tx, ne]
 
 permissions:
   contents: write

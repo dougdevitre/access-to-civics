@@ -28,8 +28,13 @@ jobs:
       # The harvest script imports @playwright/test for states that render client-side, so the
       # repo's own dependencies have to be present — npx alone installs a CLI, not node_modules.
       - run: npm ci
-      - name: Install browser (states that render their constitution client-side)
-        run: npx playwright install --with-deps chromium
+      # Only states that render their constitution client-side need this, and none currently
+      # do. --with-deps shells out to apt and has wedged on a runner, so it is bounded and
+      # non-fatal; a state that truly needs a browser will fail loudly in the harvest step.
+      - name: Install browser (best effort; only rendered-DOM states need it)
+        run: npx playwright install chromium
+        continue-on-error: true
+        timeout-minutes: 5
       - run: node scripts/harvest-${{ inputs.state }}.mjs
       - name: Upload raw pages as artifact (debugging aid, kept even on failure)
         if: always()

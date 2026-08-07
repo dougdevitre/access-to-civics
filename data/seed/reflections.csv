@@ -1,11 +1,13 @@
 node_id,age_band,prompt
-D01,8-10,"What would you do if the lawmakers said no to your idea?"
-D01,11-14,"What did the other side say that made the most sense to you?"
-D02,8-10,"What makes a judge fair? Talk it over."
-D02,11-14,"Can a judge be fair if they have to win votes? Can experts be fair if nobody voted for them?"
-D03,8-10,"Is it fair if one school has more than another? Why or why not?"
-D03,11-14,"Who should pay for a school in a town with very little money? Say your reason out loud."
-D04,8-10,"Why should every grown-up get a vote? Tell a partner."
-D04,11-14,"Who did the old voting rules leave out? What did it take to change them?"
-D05,8-10,"Should it be easy or hard to change a rule? Say why."
-D05,11-14,"Whose voice does a high bar protect? Whose voice does it slow down?"
+D01,8-10,What would you do if the lawmakers said no to your idea?
+D01,11-14,What did the other side say that made the most sense to you?
+D02,8-10,What makes a judge fair? Talk it over.
+D02,11-14,Can a judge be fair if they have to win votes? Can experts be fair if nobody voted for them?
+D03,8-10,Is it fair if one school has more than another? Why or why not?
+D03,11-14,Who should pay for a school in a town with very little money? Say your reason out loud.
+D04,8-10,Why should every grown-up get a vote? Tell a partner.
+D04,11-14,Who did the old voting rules leave out? What did it take to change them?
+D05,8-10,Should it be easy or hard to change a rule? Say why.
+D05,11-14,Whose voice does a high bar protect? Whose voice does it slow down?
+D06,8-10,"Is it better when two groups must agree, or when one group can act fast? Talk it over."
+D06,11-14,"When two groups must agree, who gains power and who loses it? Say who, and why."

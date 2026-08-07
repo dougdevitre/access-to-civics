@@ -70,6 +70,11 @@ export interface Copy {
   redo: string;
   exploreTitle: string;
   exploreIntro: string;
+  exploreNoState: string;
+  exploreStatesWords: (n: number) => string;
+  exploreNobodyYet: string;
+  exploreOther: string;
+  exploreOtherIntro: string;
   printCharter: string;
   charterDocTitle: (stateName: string) => string;
   articleLabel: (n: number) => string;
@@ -158,7 +163,16 @@ export const COPY: Record<Band, Copy> = {
     lockIn: 'Lock it in',
     redo: 'Pick again',
     exploreTitle: 'The real rule book',
-    exploreIntro: 'These are real rules from real state constitutions. Each one shows what it means.',
+    exploreIntro:
+      'Real states had to answer the same questions you did. Here is what they wrote down. ' +
+      'Read one question, then look at both answers.',
+    exploreNoState: 'No state here yet.',
+    // Not "n states chose this": a state can have chosen an answer and still have its words
+    // pending, so a count of chosen states would be wrong on the face of the page.
+    exploreStatesWords: (n) => (n === 1 ? '1 state’s real words' : `${n} states’ real words`),
+    exploreNobodyYet: 'We are still looking for the words for this one.',
+    exploreOther: 'More rules in the book',
+    exploreOtherIntro: 'These rules are not part of a question. They are here to read.',
     printCharter: 'Print your rules',
     charterDocTitle: (stateName) => `The Rules of ${stateName}`,
     articleLabel: (n) => `Rule ${n}`,
@@ -230,7 +244,16 @@ export const COPY: Record<Band, Copy> = {
     lockIn: 'Confirm vote',
     redo: 'Change it',
     exploreTitle: 'The real rule book',
-    exploreIntro: 'Each clause below comes from the official source, word for word. Plain-language notes sit under the real text.',
+    exploreIntro:
+      'Real states faced the same questions and answered them differently. Each clause below is ' +
+      'from the official source, word for word, grouped under the question it answers.',
+    exploreNoState: 'No state here yet.',
+    // Counts the states whose words are on this page, not the states that chose the answer —
+    // a citation can be verified while its text is still pending.
+    exploreStatesWords: (n) => (n === 1 ? '1 state, in its own words' : `${n} states, in their own words`),
+    exploreNobodyYet: 'We have the citation for this one. We do not have the words yet.',
+    exploreOther: 'More rules in the book',
+    exploreOtherIntro: 'These clauses are not attached to a question. They are here to read.',
     printCharter: 'Print the charter',
     charterDocTitle: (stateName) => `The Charter of ${stateName}`,
     articleLabel: (n) => `Article ${n}`,
@@ -271,7 +294,7 @@ export const NEUTRAL = {
   trustStrip: 'No accounts. No ads. No tracking. Works with no wifi.',
   exploreCardTitle: 'The real rule book',
   exploreCardBody:
-    'Read the real rules that real states wrote. See what each one means.',
+    'See the same question answered by real states, in their own words.',
   exploreCardCta: 'Open the rule book',
   teacherLead: 'Teaching with this?',
   teacherCta: 'Start with the teacher guide',

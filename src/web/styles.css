@@ -409,3 +409,54 @@ select:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* --- The rule book, grouped by question ---------------------------------
+   The comparison is the point, so each question is a bordered block and each answer is
+   indented under it. The state tally sits beside the answer label rather than under it, so
+   "2 states wrote this" reads as part of the answer and not as a caption on the clause. */
+.rulebook-question {
+  border-top: 2px solid var(--ink);
+  margin: 2rem 0 0;
+  padding-top: .75rem;
+}
+.rulebook-question > h3 {
+  display: flex;
+  align-items: baseline;
+  gap: .6rem;
+  background-color: var(--paper);
+}
+.rulebook-question .q-number {
+  font-family: var(--font-clause);
+  font-size: .85em;
+  color: var(--iron);
+  border: 1.5px solid var(--iron);
+  border-radius: 50%;
+  min-width: 1.9em;
+  height: 1.9em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+.rulebook-answer {
+  margin: 1rem 0 1.25rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--rule);
+}
+.rulebook-answer > h4 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .5rem .75rem;
+  margin: 0 0 .35rem;
+  background-color: var(--paper);
+}
+.rulebook-answer .tally {
+  font-family: var(--font-body);
+  font-weight: normal;
+  font-size: .78rem;
+  color: var(--iron);
+  border: 1px solid var(--rule);
+  padding: .1rem .45rem;
+  white-space: nowrap;
+}

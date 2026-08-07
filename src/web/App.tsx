@@ -644,18 +644,82 @@ function MirrorScreen({
 }
 
 /** Browse every ingested clause — the corpus is bigger than the decision graph. */
+/**
+ * The rule book, grouped by the question each clause answers.
+ *
+ * This is the one view that shows the whole thesis at once: the same question, answered
+ * differently by different states, in their own words. A flat list of clauses sorted by URN
+ * hid that — the comparison was only ever visible one node at a time during play, and only to
+ * someone already playing. A teacher deciding whether to use this needs to see it in ten
+ * seconds without starting a game.
+ *
+ * Clauses that no decision node cites still appear, under their own heading. Nothing ingested
+ * is hidden.
+ */
 function Explore({ bundle, band }: { bundle: StateBundle; band: Band }) {
   const copy = COPY[band];
-  const ingested = Object.values(bundle.clauses)
-    .filter((c) => c.text !== null)
+  const cited = new Set<string>();
+  for (const decision of bundle.decisions) {
+    for (const option of decision.options) {
+      for (const ref of option.clause_refs) cited.add(ref);
+    }
+  }
+  const uncited = Object.values(bundle.clauses)
+    .filter((c) => c.text !== null && !cited.has(c.urn))
     .sort((a, b) => a.urn.localeCompare(b.urn));
+
   return (
-    <article>
+    <article className="rulebook">
       <h2>{copy.exploreTitle}</h2>
       <p>{copy.exploreIntro}</p>
-      {ingested.map((clause) => (
-        <ClauseCard key={clause.urn} clause={clause} urn={clause.urn} band={band} copy={copy} />
+
+      {bundle.decisions.map((decision, i) => (
+        <section key={decision.node_id} className="rulebook-question">
+          <h3>
+            <span className="q-number" aria-hidden="true">{i + 1}</span>
+            {promptFor(decision, band)}
+          </h3>
+          {decision.options.map((option) => {
+            const clauses = option.clause_refs
+              .map((ref) => bundle.clauses[ref])
+              .filter((c): c is BundleClause => c !== undefined);
+            const withText = clauses.filter((c) => c.text !== null);
+            const states = [...new Set(withText.map((c) => c.state))];
+            return (
+              <div key={option.option_id} className="rulebook-answer">
+                <h4>
+                  {labelFor(option, band)}
+                  <span className="tally">
+                    {states.length > 0
+                      ? copy.exploreStatesWords(states.length)
+                      : copy.exploreNoState}
+                  </span>
+                </h4>
+                {clauses.length === 0 && <p className="framing">{copy.exploreNobodyYet}</p>}
+                {clauses.map((clause) => (
+                  <ClauseCard
+                    key={clause.urn}
+                    clause={clause}
+                    urn={clause.urn}
+                    band={band}
+                    copy={copy}
+                  />
+                ))}
+              </div>
+            );
+          })}
+        </section>
       ))}
+
+      {uncited.length > 0 && (
+        <section className="rulebook-question">
+          <h3>{copy.exploreOther}</h3>
+          <p>{copy.exploreOtherIntro}</p>
+          {uncited.map((clause) => (
+            <ClauseCard key={clause.urn} clause={clause} urn={clause.urn} band={band} copy={copy} />
+          ))}
+        </section>
+      )}
     </article>
   );
 }

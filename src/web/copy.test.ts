@@ -22,6 +22,7 @@ const SAMPLE_ARGS: Record<string, unknown[]> = {
   phaseName: ['negotiate'],
   handoffTitle: [2, 'The big city'],
   charterDocTitle: ['Missouri'],
+  exploreStatesWords: [3],
   articleLabel: [1],
 };
 

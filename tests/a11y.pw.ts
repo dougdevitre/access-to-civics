@@ -6,9 +6,10 @@ import { readFileSync } from 'node:fs';
  * Read from the shipped bundle rather than pinned: adding a decision node should extend these
  * playthroughs, not break them. The per-node picks below still have to be listed by name.
  */
-const NODE_COUNT: number = JSON.parse(
+const DECISIONS: { prompt_8_10: string }[] = JSON.parse(
   readFileSync('public/bundles/mo-demo.json', 'utf8'),
-).decisions.length;
+).decisions;
+const NODE_COUNT: number = DECISIONS.length;
 
 
 /**
@@ -186,7 +187,23 @@ test('rule book explorer shows the full ingested corpus', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Open the rule book' }).click();
   await expect(page.getByRole('heading', { name: 'The real rule book' })).toBeVisible();
-  // Browse-only clause, not part of any decision node:
+
+  // Grouped by question, which is the whole point of the view: a reader sees the same question
+  // answered differently by different states without starting a game.
+  for (const decision of DECISIONS) {
+    await expect(page.getByRole('heading', { name: decision.prompt_8_10, exact: true })).toBeVisible();
+  }
+  // The comparison itself: judicial selection has real text on both sides, from two states.
+  const judges = page.getByRole('heading', { name: /How do we pick judges/ });
+  await expect(judges).toBeVisible();
+  await expect(page.getByText(/Texas Constitution, Article V, Section 2/)).toBeVisible();
+  await expect(page.getByText(/Missouri Constitution, Article V, Section 25\(a\)/)).toBeVisible();
+  // A tally beside each answer. It counts states whose WORDS are here, not states that
+  // chose the answer — California chose this one and its text is still pending.
+  await expect(page.getByText(/state.s real words/).first()).toBeVisible();
+
+  // Browse-only clauses still appear, under their own heading — nothing ingested is hidden.
+  await expect(page.getByRole('heading', { name: 'More rules in the book' })).toBeVisible();
   await expect(page.getByText(/no law shall be passed impairing the freedom of speech/)).toBeVisible();
   // Teacher-mediated clause never renders raw at the default (8-10) band:
   await expect(page.getByText(/faith and prayer/)).toBeVisible();

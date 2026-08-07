@@ -15,6 +15,7 @@
     "test": "vitest run",
     "test:a11y": "playwright test",
     "ingest": "vite-node src/ingest/cli.ts --",
+    "review:neutrality": "node scripts/analyze-neutrality.mjs",
     "gates": "node scripts/check-clause-refs.mjs && node scripts/check-reading-level.mjs && node scripts/check-sensitivity.mjs && node scripts/check-quote-integrity.mjs && node scripts/check-gloss-freeze.mjs && node scripts/check-privacy-regression.mjs"
   },
   "dependencies": {

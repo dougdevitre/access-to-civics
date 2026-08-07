@@ -117,7 +117,7 @@
             "voters"
           ],
           "harms": [
-            "court-neutrality"
+            "court neutrality"
           ]
         },
         {
@@ -128,7 +128,7 @@
             "urn:const:us:mo:art-05:sec-25a"
           ],
           "favors": [
-            "court-neutrality"
+            "court neutrality"
           ],
           "harms": [
             "voters"
@@ -151,10 +151,10 @@
             "urn:const:us:nh:art-83:sec-01"
           ],
           "favors": [
-            "wealthy-towns"
+            "wealthy towns"
           ],
           "harms": [
-            "poor-towns",
+            "poor towns",
             "kids"
           ]
         },
@@ -166,7 +166,7 @@
             "urn:const:us:mo:art-09:sec-01a"
           ],
           "favors": [
-            "poor-towns",
+            "poor towns",
             "kids"
           ],
           "harms": [
@@ -193,7 +193,7 @@
             "landowners"
           ],
           "harms": [
-            "most-people"
+            "most people"
           ]
         },
         {
@@ -204,7 +204,7 @@
             "urn:const:us:mo:art-08:sec-02"
           ],
           "favors": [
-            "most-people"
+            "most people"
           ],
           "harms": []
         }

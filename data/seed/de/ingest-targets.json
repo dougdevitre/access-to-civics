@@ -1,0 +1,17 @@
+{
+  "$comment": "Delaware ingest scope. VERIFIED 2026-08 by scripts/probe-de.mjs. delcode.delaware.gov serves one plain HTML page per ARTICLE, and the file numbers are offset by one from the article numbers — constitution-17.html is ARTICLE XVI, constitution-16.html is ARTICLE XV. A correct-looking URL returning a real document from the wrong article is the quietest failure of the three states so far, so the file is named explicitly per target rather than computed from the article number. Scope is one clause: Art. XVI Sec. 1 is why Delaware is cited. Amendments pass by two-thirds of each house in two successive General Assemblies and never go to the voters at all, which makes Delaware the honest other side of 'who can put a law on the ballot'.",
+  "state": "DE",
+  "source_root": "https://delcode.delaware.gov/constitution/index.html",
+  "index_url": "https://delcode.delaware.gov/constitution/index.html",
+  "targets": [
+    {
+      "urn": "urn:const:us:de:art-16:sec-01",
+      "article_roman": "XVI",
+      "article_heading": "Amendments and Conventions",
+      "section_label": "1",
+      "source_file": "constitution-17",
+      "expect": "two-thirds of all the members elected to each House",
+      "topics": ["AMENDMENT_PROCESS"]
+    }
+  ]
+}

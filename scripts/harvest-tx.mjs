@@ -2,18 +2,27 @@
 /**
  * Texas L0 harvest.
  *
- * The Legislature's site is a JavaScript application as of 2026: every URL returns the same
- * shell and the constitutional text is rendered client-side, so a static fetch returns the
- * index for every section. We render instead. The path itself is still deterministic — the
- * article is arabic in the URL and roman in the citation, and the section label goes through
- * verbatim, including forms like "1-e".
+ * The public site (statutes.capitol.texas.gov) is an Angular application: every document URL
+ * returns the same shell and the text is fetched client-side. scripts/probe-tx.mjs recorded
+ * the requests that application makes and found the real documents on a separate static host,
+ * tcss.legis.texas.gov, one HTML file per article. Those are plain bytes, so no browser is
+ * needed and the provenance claim stays as strong as Missouri's.
+ *
+ * Two URL forms are tried in order. The application itself requests the doubled-slash form
+ * (resources//CN/...), which is what we know works; the clean form is preferred if the server
+ * accepts it, and the manifest records which one answered.
  */
 import { harvestState } from './lib/harvest.mjs';
 
+const DOC_HOST = 'https://tcss.legis.texas.gov';
+
 const failures = await harvestState({
   state: 'tx',
-  render: true,
-  sectionUrl: (t) =>
-    `https://statutes.capitol.texas.gov/Docs/CN/htm/CN.${t.article_arabic}/CN.${t.article_arabic}.${t.section_label}.htm`,
+  sectionUrl: (t) => [
+    `${DOC_HOST}/resources/CN/htm/CN.${t.article_arabic}.htm`,
+    `${DOC_HOST}/resources//CN/htm/CN.${t.article_arabic}.htm`,
+  ],
+  // One document per article, so the raw file is named for the article, not the section.
+  fileFor: (t) => `art-${t.article_arabic.padStart(2, '0')}`,
 });
 process.exit(failures > 0 ? 1 : 0);

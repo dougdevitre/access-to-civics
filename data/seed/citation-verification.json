@@ -46,7 +46,7 @@
         "https://www.nh.gov/glance/state-constitution/encouragement-literature-trade-etc",
         "https://law.justia.com/cases/new-hampshire/supreme-court/1997/school.html"
       ],
-      "caveat": "CORRECTED 2026-08-07. This clause was previously attached to the local-funding option, which inverted it. Claremont v. Governor (1997, 2002) holds that Article 83 places the duty to fund an adequate education on the STATE, and struck down reliance on local property taxes. It belongs with the state-funding option, alongside Missouri Article IX Section 1(a). New Hampshire articles have no sections; the URN carries a sec- component only because the URN grammar requires one."
+      "caveat": "CORRECTED 2026-08-07. This clause was previously attached to the local-funding option, which inverted its meaning. Claremont v. Governor (1997, 2002) holds that Article 83 places the duty to fund an adequate education on the STATE, and that a local property tax raised for that purpose is in substance a state tax. It now sits with the state-funding option alongside Missouri Article IX Section 1(a), which is its doctrinal twin. New Hampshire articles have no sections; the URN carries a sec- component only because the URN grammar requires one."
     },
     {
       "urn": "urn:const:us:nh:art-100:sec-01",
@@ -83,6 +83,29 @@
         "https://vagovernmentmatters.org/primary-sources/518.html"
       ],
       "caveat": "REPLACES urn:const:us:va:art-02:sec-01, which was WRONG: the modern Article II Section 1 sets universal adult suffrage (citizen, eighteen, resident) and contains no property qualification, so it was being cited as authority for the opposite of what it says. The 1830 constitution is the honest source for a freehold franchise; Virginia was the last state to drop one, in 1851. The URN is undated because the exact effective date was not verified \u2014 the vintage is carried in the citation string instead. The clause also restricted the franchise by race and sex, which is why it is flagged historical_harm and never renders raw for the 8-10 band."
+    },
+    {
+      "urn": "urn:const:us:tx:art-07:sec-03e",
+      "citation": "Texas Constitution, Article VII, Section 3(e)",
+      "subject": "authority for school districts to levy local property taxes to maintain their own schools",
+      "verified_on": "2026-08-07",
+      "method": "web research against the official Texas Legislature page and Justia; page fetch blocked from the build environment, wording matched across three independent extractions",
+      "sources": [
+        "https://statutes.capitol.texas.gov/Docs/CN/htm/CN.7/CN.7.3.htm",
+        "https://law.justia.com/constitution/texas/sections/cn000700-000300.html"
+      ],
+      "caveat": "Permissive, not mandatory: the legislature MAY authorize the district tax, and district voters must approve it. Texas also carries a state-duty clause at Article VII Section 1, which the Edgewood cases read to require substantially equal access to revenue - hence recapture. Texas is a both/and state, cited here because it is the canonical local-property-tax school finance state and its constitution says so in text."
+    },
+    {
+      "urn": "urn:const:us:tx:art-08:sec-01e",
+      "citation": "Texas Constitution, Article VIII, Section 1-e",
+      "subject": "no state ad valorem tax, which leaves the school property tax base district by district",
+      "verified_on": "2026-08-07",
+      "method": "web research against Justia; page fetch blocked, corroborated across independent extractions",
+      "sources": [
+        "https://law.justia.com/constitution/texas/sections/cn000800-000100.html"
+      ],
+      "caveat": "This is the provision that actually entrenches localism: barred from a state property tax, the state cannot fund schools from that base at all. Cited alongside Article VII Section 3(e) because the permissive grant alone would not carry the point."
     }
   ],
   "unverified": [

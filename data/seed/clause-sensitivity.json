@@ -62,6 +62,12 @@
       "note": "1830 Virginia freehold franchise. The clause restricted voting by property, race and sex; it needs adult framing and never renders raw for the youngest band.",
       "mediated_8_10": true,
       "teacher_note_8_10": "This is an old rule from long ago. It let only some men vote. Your teacher can tell you more."
+    },
+    "urn:const:us:tx:art-07:sec-03e": {
+      "sensitivity": "none"
+    },
+    "urn:const:us:tx:art-08:sec-01e": {
+      "sensitivity": "none"
     }
   }
 }

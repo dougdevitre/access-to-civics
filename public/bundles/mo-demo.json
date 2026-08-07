@@ -148,7 +148,8 @@
           "label": "Each town pays for its own",
           "label_8_10": "Each town pays for its own schools",
           "clause_refs": [
-            "urn:const:us:nh:art-83:sec-01"
+            "urn:const:us:tx:art-07:sec-03e",
+            "urn:const:us:tx:art-08:sec-01e"
           ],
           "favors": [
             "wealthy towns"
@@ -163,7 +164,8 @@
           "label": "The state must fund a minimum for every school",
           "label_8_10": "The state makes sure every school gets enough",
           "clause_refs": [
-            "urn:const:us:mo:art-09:sec-01a"
+            "urn:const:us:mo:art-09:sec-01a",
+            "urn:const:us:nh:art-83:sec-01"
           ],
           "favors": [
             "poor towns",
@@ -620,6 +622,26 @@
       "source_sha256": "5d5e2b6c5cb99e89190c9d6f978ed288e4aa0e3a03112afafd62ecfeca08aca3",
       "gloss_grade_5": "When a judge's job opens up, a special group picks three people who could do it. The governor must choose one of those three.",
       "gloss_grade_8": "When a judge's seat on certain courts opens up, a nonpartisan commission picks three candidates. The governor must appoint one of the three."
+    },
+    "urn:const:us:tx:art-07:sec-03e": {
+      "urn": "urn:const:us:tx:art-07:sec-03e",
+      "state": "TX",
+      "citation": "Texas Constitution, Article VII, Section 3(e)",
+      "heading": null,
+      "text": null,
+      "text_status": "unfetched",
+      "source_url": null,
+      "sensitivity": "none"
+    },
+    "urn:const:us:tx:art-08:sec-01e": {
+      "urn": "urn:const:us:tx:art-08:sec-01e",
+      "state": "TX",
+      "citation": "Texas Constitution, Article VIII, Section 1-e",
+      "heading": null,
+      "text": null,
+      "text_status": "unfetched",
+      "source_url": null,
+      "sensitivity": "none"
     },
     "urn:const:us:nh:art-83:sec-01": {
       "urn": "urn:const:us:nh:art-83:sec-01",

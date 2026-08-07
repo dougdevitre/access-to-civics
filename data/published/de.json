@@ -1,0 +1,42 @@
+{
+  "$comment": "Published clause corpus (L1). Text is verbatim from the cited official source, traceable via source_sha256 to the raw page in data/raw/. Review the diff — these are the words a child reads.",
+  "state": "DE",
+  "built_at": "2026-08-07T18:12:56.241Z",
+  "checksum": "06519363a6c604d405f592cbe98edda8355b471466abedecbb2742294d8d18c8",
+  "clauses": [
+    {
+      "urn": "urn:const:us:de:art-16:sec-01",
+      "state": "DE",
+      "article": {
+        "num": "XVI",
+        "heading": "Amendments and Conventions"
+      },
+      "section": "1",
+      "section_heading": "Proposal and concurrence of Constitutional amendments in General Assembly; procedure",
+      "text": "Any amendment or amendments to this Constitution may be proposed in the Senate or House of Representatives; and if the same shall be agreed to by two-thirds of all the members elected to each House, such proposed amendment or amendments shall be entered on their journals, with the yeas and nays taken thereon, and such proposed amendment or amendments must be disseminated to the public not more than 120 days before the next general election and not less than 90 days before the next general election as provided for by an Act of the General Assembly; and if in the General Assembly next after the election such proposed amendment or amendments shall upon yea and nay vote be agreed to by two-thirds of all the members elected to each House, the same shall thereupon become part of the Constitution.",
+      "text_status": "fetched",
+      "topics": [
+        "AMENDMENT_PROCESS"
+      ],
+      "status": "operative",
+      "effective_date": null,
+      "supersedes": null,
+      "source_url": "https://delcode.delaware.gov/constitution/constitution-17.html",
+      "citation_url": null,
+      "source_sha256": "1e3f63db846d71fa9abfc89418cc2f943732cc5cfc71918a1ce273686720e691",
+      "sensitivity": "none"
+    }
+  ],
+  "glosses": [
+    {
+      "clause_urn": "urn:const:us:de:art-16:sec-01",
+      "grade_5": "Delaware can change its rules without a public vote. Two-thirds of each group of lawmakers must say yes. The plan must be made public before the next election. Then the new group of lawmakers must say yes too.",
+      "grade_8": "Delaware changes its constitution with no vote of the people on the amendment itself. Two-thirds of each house must agree. The proposal is then made public before the next general election, and the General Assembly chosen at that election must agree again by two-thirds. Then it is part of the Constitution.",
+      "lang": "en",
+      "flesch_kincaid": null,
+      "reviewed_by": "initial-editorial-pass",
+      "reviewed_at": "2026-08-07",
+      "frozen": true
+    }
+  ]
+}

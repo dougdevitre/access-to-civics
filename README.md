@@ -4,7 +4,7 @@ A civic education game for kids (ages 8–14) built on the primary text of all 5
 constitutions. Kids run a constitutional convention, negotiate a charter, ratify it by vote,
 and then see the real clauses from real states that made the same choice.
 
-Part of the **Access To** open civic tech initiative.
+> Part of **[Access To](https://dougdevitre.org)** — open-source tools for the access gaps that matter most. [See all projects →](https://dougdevitre.org/#pillars)
 
 ## Thesis
 

@@ -154,6 +154,8 @@ async function expectHeadingOutline(page: Page, screen: string) {
 
 test('every page has one h1 and an unbroken heading outline', async ({ page }) => {
   await page.goto('/');
+  // Wait for the state bundle: until it loads, the screen is "Getting ready…".
+  await expect(page.getByRole('heading', { name: 'Charter' })).toBeVisible();
   await expectHeadingOutline(page, 'home');
   for (const [nav, screen] of [
     ['Our privacy promise', 'privacy'],
@@ -185,6 +187,7 @@ test('tap targets are 44px at 320 and 375 wide, read-aloud and source links incl
   for (const width of [320, 375]) {
     await page.setViewportSize({ width, height: 812 });
     await page.goto('/');
+    await expect(page.getByRole('button', { name: 'Open the rule book' })).toBeVisible();
     await expectTapTargets(page, `home @${width}`);
     await page.getByRole('button', { name: 'Read the rule book' }).click();
     await expect(page.getByRole('button', { name: /Read it to me/ }).first()).toBeVisible();
@@ -229,6 +232,7 @@ test('long file names wrap at 200% zoom on a 375px phone', async ({ page }) => {
   // 375 CSS px at 200% zoom leaves 188 CSS px of layout width.
   await page.setViewportSize({ width: 188, height: 812 });
   await page.goto('/');
+  await expect(page.getByRole('heading', { name: 'Charter' })).toBeVisible();
   await page.getByRole('button', { name: 'For grown-ups' }).click();
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth - document.documentElement.clientWidth,

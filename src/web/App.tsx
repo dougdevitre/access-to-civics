@@ -14,7 +14,8 @@ import { mindChangeCount, ratify, tally, winningOption } from './game/engine.js'
 import type { ConventionState, Seat } from './game/types.js';
 import { COPY, NEUTRAL, termsIn } from './copy.js';
 import type { Copy } from './copy.js';
-import { GrownUps, PrivacyPromise, TeachersFamilies } from './views/TrustPages.js';
+import { Disclaimer, GrownUps, PrivacyPromise, TeachersFamilies } from './views/TrustPages.js';
+import { SafetyNotice } from './views/SafetyNotice.js';
 import { SealMark, TopicMark } from './icons.js';
 
 /**
@@ -30,7 +31,7 @@ import { SealMark, TopicMark } from './icons.js';
 
 const BUNDLE_URL = `${import.meta.env.BASE_URL}bundles/mo-demo.json`;
 
-type View = 'game' | 'privacy' | 'grownups' | 'teachers' | 'explore';
+type View = 'game' | 'privacy' | 'grownups' | 'teachers' | 'explore' | 'disclaimer';
 
 const FRESH: ConventionState = {
   phase: 'draft',
@@ -77,6 +78,8 @@ export default function App() {
         {children}
       </main>
       <footer className="site-footer">
+        {/* On every screen, before the wayfinding: 911 and 988 never sit behind a click. */}
+        <SafetyNotice onReadMore={() => setView('disclaimer')} />
         <nav aria-label="About Charter">
           {view !== 'game' && (
             <button type="button" onClick={() => setView('game')}>{NEUTRAL.navGame}</button>
@@ -104,6 +107,7 @@ export default function App() {
         {view === 'grownups' && <GrownUps bundle={bundle} />}
         {view === 'teachers' && <TeachersFamilies bundle={bundle} />}
         {view === 'explore' && bundle && <Explore bundle={bundle} band={band ?? '8-10'} />}
+        {view === 'disclaimer' && <Disclaimer />}
       </div>,
     );
   }

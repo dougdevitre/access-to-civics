@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.js';
 import { NEUTRAL } from './copy.js';
+import { SafetyNotice } from './views/SafetyNotice.js';
 import './styles.css';
 
 /**
@@ -22,11 +23,18 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { crashed: boolea
 
   override render() {
     if (this.state.crashed) {
+      // The crash screen is a screen too, so it keeps the safety note — without the link to
+      // the full disclaimer, because there is no working app left to open it in.
       return (
-        <main className="convention">
-          <h1>{NEUTRAL.crashTitle}</h1>
-          <p role="alert">{NEUTRAL.crashBody}</p>
-        </main>
+        <>
+          <main className="convention">
+            <h1>{NEUTRAL.crashTitle}</h1>
+            <p role="alert">{NEUTRAL.crashBody}</p>
+          </main>
+          <footer className="site-footer">
+            <SafetyNotice />
+          </footer>
+        </>
       );
     }
     return this.props.children;

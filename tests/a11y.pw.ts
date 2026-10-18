@@ -227,6 +227,58 @@ test('rule book explorer shows the full ingested corpus', async ({ page }) => {
   await expectNoSeriousViolations(page, 'explore');
 });
 
+/**
+ * The safety notice is chrome, not content: 911 and 988 must be on every screen a child can
+ * reach, readable without opening anything, and tappable as phone numbers. Checked at phone
+ * width, because a classroom tablet in portrait is the narrowest place this runs.
+ */
+async function expectSafetyNotice(page: Page, screen: string) {
+  const notice = page.getByRole('note', { name: 'Safety note' });
+  await expect(notice, `${screen}: safety note missing`).toBeVisible();
+  for (const number of ['911', '988']) {
+    const link = notice.locator(`a[href="tel:${number}"]`);
+    await expect(link, `${screen}: tel:${number} link missing`).toBeVisible();
+    const box = await link.boundingBox();
+    expect(box?.height ?? 0, `${screen}: tel:${number} touch target too short`).toBeGreaterThanOrEqual(44);
+    expect(box?.width ?? 0, `${screen}: tel:${number} touch target too narrow`).toBeGreaterThanOrEqual(44);
+  }
+  // Nothing wider than the phone: the notice must not cause sideways scrolling.
+  const overflow = await page.evaluate(
+    () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+  );
+  expect(overflow, `${screen}: page scrolls sideways`).toBeLessThanOrEqual(0);
+}
+
+test('safety notice with 911 and 988 is on every screen', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('/');
+  await expectSafetyNotice(page, 'home');
+
+  for (const [nav, screen] of [
+    ['Our privacy promise', 'privacy'],
+    ['For grown-ups', 'grown-ups'],
+    ['Teachers & families', 'teachers'],
+    ['Read the rule book', 'explore'],
+  ] as const) {
+    await page.getByRole('button', { name: nav }).click();
+    await expectSafetyNotice(page, screen);
+  }
+  await page.getByRole('button', { name: 'Back to the game' }).click();
+
+  await page.getByRole('button', { name: /Ages 8–10/ }).click();
+  await expectSafetyNotice(page, '8-10 setup');
+  await page.getByRole('button', { name: 'Start', exact: true }).click();
+  await expectSafetyNotice(page, '8-10 question');
+
+  // The grown-up wording sits one tap away, on its own page, and that page has the notice too.
+  await page.getByRole('button', { name: 'Read the full disclaimer' }).click();
+  await expect(page.getByRole('heading', { name: /For parents and teachers/ })).toBeVisible();
+  await expect(page.getByText(/Using it does not create an attorney-client/)).toBeVisible();
+  await expect(page.getByText(/Provided .as is,. without warranties of any kind/)).toBeVisible();
+  await expectSafetyNotice(page, 'disclaimer');
+  await expectNoSeriousViolations(page, 'disclaimer');
+});
+
 test('keyboard-only entry works', async ({ page }) => {
   await page.goto('/');
   await page.keyboard.press('Tab'); // skip link

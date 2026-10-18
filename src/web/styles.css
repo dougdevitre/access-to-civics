@@ -454,6 +454,54 @@ h1:focus, div[tabindex="-1"]:focus { outline: none; }
   color: var(--iron);
 }
 
+/* --- Safety note ----------------------------------------------------------
+   At the foot of every screen. Calm on purpose: something a child can find, not an alarm. So no
+   seal red (spent once, at ratification) and no --care (that means a clause needs an adult
+   alongside it). Ink on paper, and the two phone numbers get full-size tap targets because they
+   are the only thing in this product a child might need in a hurry. */
+.safety-notice {
+  border: 1.5px solid var(--rule);
+  border-left: 3px solid var(--ink);
+  background: color-mix(in srgb, var(--paper) 88%, white);
+  padding: var(--space-3) var(--space-4);
+  margin: 0 0 var(--space-4);
+  font-size: .95rem;
+  line-height: 1.5;
+}
+.safety-notice p { margin: 0 0 var(--space-2); }
+.safety-notice > :last-child { margin-bottom: 0; }
+.safety-lines {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-3) 0;
+  display: grid;
+  gap: var(--space-2);
+}
+.safety-lines li { font-weight: 700; }
+.safety-notice a[href^="tel:"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 var(--space-3);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 700;
+  text-underline-offset: .15em;
+}
+.safety-notice a[href^="tel:"]:hover { background: color-mix(in srgb, var(--ink) 8%, var(--paper)); }
+.safety-notice a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+/* Specificity has to beat `.site-footer button`, which is wayfinding styling, not a link. */
+.site-footer .safety-notice button.linklike {
+  min-height: 44px;
+  padding: 0;
+  color: var(--focus);
+  font-size: inherit;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

@@ -1,0 +1,31 @@
+# Exclusions for the Link check workflow (.github/workflows/link-check.yml).
+# One regular expression per line. Every entry says why it is skipped.
+
+# tel: and mailto: are phone numbers and email addresses, not web pages, so
+# there is nothing to fetch. (Also passed as --exclude in the workflow.)
+^tel:
+^mailto:
+
+# The SVG XML namespace identifies a format; it is not a link.
+^https?://www\.w3\.org/2000/svg
+
+# Elided example in docs/02-knowledge-base.md ("OneSection.aspx?..."): it shows
+# the shape of a source_url, not a page to visit.
+^https?://revisor\.mo\.gov/main/OneSection\.aspx\??(\.\.\.)?$
+
+# The Missouri Revisor's constitution index (the harvester's index_url in
+# data/seed/mo/ingest-targets.json) answers 404 to the link checker, but the
+# same URL loads the full Article I-XIV index for a browser-like fetch (checked
+# 2026-10-18). The section pages on the same site pass. Bot filtering, not a
+# dead page; only this exact URL is skipped.
+^https://revisor\.mo\.gov/main/Home\.aspx\?constit=y$
+
+# BROKEN — needs a human (found 2026-10-18). Connection reset by the server on
+# every retry; a replacement could not be confirmed. It is one of two archival
+# sources for the 1830 Virginia constitution in data/seed/citation-verification.json
+# (the other, vagovernmentmatters.org, still loads).
+^https://archive\.wvculture\.org/hiStory/government/1830constitution01a\.html$
+
+# dougdevitre.org is down: the Access To hub's CNAME was deleted on 2026-04-07.
+# Temporary — remove when the domain is reattached.
+^https?://(www\.)?dougdevitre\.org

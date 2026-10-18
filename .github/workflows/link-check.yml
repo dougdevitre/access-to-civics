@@ -1,0 +1,117 @@
+name: Link check
+
+# Checks every external link a person can see with lychee. The most important
+# ones are the "See the real page" links to each state's official constitution
+# text: children follow them, so a dead or moved page must be caught here.
+#   - pull requests that touch the docs or the app's copy: fails on a broken
+#     link and prints each one
+#   - monthly schedule (and manual runs): opens or updates ONE issue titled
+#     "Broken links (monthly check)" instead of failing silently
+# Scanned: the Markdown docs and review sheets, the game content that holds the
+# "See the real page" links (public/bundles/*.json, data/published/*.json), the
+# seed data (data/seed) and the web app's strings (src/web). Not scanned:
+# data/raw (archived snapshots of the source pages, kept byte-for-byte for the
+# quote-integrity check), scripts/ and src/ingest (harvester code and URL
+# templates), and tests. localhost is skipped with --exclude-loopback.
+# Exclusions live in .lycheeignore, each with a comment saying why.
+on:
+  pull_request:
+    paths:
+      - "**/*.md"
+      - "**/*.html"
+      - "public/bundles/**"
+      - "data/published/**"
+      - "data/seed/**"
+      - "src/web/**"
+      - ".lycheeignore"
+      - ".github/workflows/link-check.yml"
+  schedule:
+    - cron: "19 15 5 * *" # 15:19 UTC on the 5th of each month
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: link-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lychee:
+    name: Check external links
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write # only used on schedule/manual runs, to open or update the issue
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: Run lychee
+        id: lychee
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          # 403 and 429 are accepted because they are bot-blocking and rate
+          # limiting, not dead links. 404, 410, DNS/connection errors and
+          # 5xx that persist after 3 retries still fail.
+          # --root-dir resolves index.html's root-relative icon and manifest
+          # links (/icons/..., /manifest.json) against public/, as Vite does.
+          args: >-
+            --no-progress
+            --max-concurrency 8
+            --max-retries 3
+            --timeout 20
+            --accept 200..=299,403,429
+            --exclude-loopback
+            --root-dir ${{ github.workspace }}/public
+            --exclude '^tel:'
+            --exclude '^mailto:'
+            --exclude-path '(^|/)(node_modules|dist|build|coverage|tests|test-results|playwright-report)/'
+            --exclude-path '(^|/)data/raw/'
+            --exclude-path '\.test\.tsx?$'
+            --exclude-path 'CHANGELOG\.md$'
+            './**/*.md'
+            './index.html'
+            './public/bundles/*.json'
+            './data/published/*.json'
+            './data/seed/**/*.json'
+            './data/seed/**/*.csv'
+            './src/web/**/*.ts'
+            './src/web/**/*.tsx'
+          output: lychee/report.md
+          fail: false
+          jobSummary: true
+
+      - name: Fail the pull request on broken links
+        if: github.event_name == 'pull_request' && steps.lychee.outputs.exit_code != '0'
+        run: |
+          echo "Broken links found. Fix each one, or add a commented line to .lycheeignore."
+          echo
+          cat lychee/report.md
+          # One annotation per broken link, readable from the PR checks tab.
+          grep -E '^\* \[' lychee/report.md | while IFS= read -r line; do
+            echo "::error title=Broken link::${line}"
+          done
+          exit 1
+
+      - name: Open or update the "Broken links (monthly check)" issue
+        if: github.event_name != 'pull_request' && steps.lychee.outputs.exit_code != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          title="Broken links (monthly check)"
+          {
+            echo "The link check found broken links on $(date -u +%Y-%m-%d) ([run]($RUN_URL))."
+            echo
+            echo "Fix or replace each link with a page you have confirmed loads. If a site only blocks bots, add a commented line to \`.lycheeignore\`. Never delete crisis, legal or benefits information to make the check pass."
+            echo
+            cat lychee/report.md
+          } > lychee/issue.md
+          number="$(gh issue list --state open --search "\"$title\" in:title" --json number,title \
+            --jq "map(select(.title == \"$title\")) | .[0].number // empty")"
+          if [ -n "$number" ]; then
+            gh issue edit "$number" --body-file lychee/issue.md
+            gh issue comment "$number" --body "Updated by the link check on $(date -u +%Y-%m-%d): $RUN_URL"
+          else
+            gh issue create --title "$title" --body-file lychee/issue.md
+          fi

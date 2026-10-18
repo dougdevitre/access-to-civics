@@ -1,0 +1,14 @@
+# Exclusions for the Link check workflow (.github/workflows/link-check.yml).
+# One regular expression per line. Every entry says why it is skipped.
+
+# tel: and mailto: are phone numbers and email addresses, not web pages, so
+# there is nothing to fetch. (Also passed as --exclude in the workflow.)
+^tel:
+^mailto:
+
+# The SVG XML namespace identifies a format; it is not a link.
+^https?://www\.w3\.org/2000/svg
+
+# Elided example in docs/02-knowledge-base.md ("OneSection.aspx?..."): it shows
+# the shape of a source_url, not a page to visit.
+^https?://revisor\.mo\.gov/main/OneSection\.aspx\??(\.\.\.)?$

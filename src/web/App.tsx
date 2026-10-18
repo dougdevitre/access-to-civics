@@ -42,6 +42,24 @@ const FRESH: ConventionState = {
   ratified: null,
 };
 
+/**
+ * Focus a panel when it appears. The game swaps one panel for another in place — a choice for
+ * its confirmation, a hand-off card for the next seat's choices — and the button that was
+ * pressed goes with it. Left alone, focus falls back to <body>: a keyboard user starts again at
+ * the top of the page and a screen reader says nothing. The panel takes focus instead, so its
+ * label is announced and the next Tab reaches its first button.
+ *
+ * When a whole new question or phase appears, App's heading effect runs after this one and the
+ * heading wins, which is the right starting point for a new screen.
+ */
+function useFocusOnMount<T extends HTMLElement>() {
+  const ref = useRef<T | null>(null);
+  useEffect(() => {
+    ref.current?.focus();
+  }, []);
+  return ref;
+}
+
 export default function App() {
   const [bundle, setBundle] = useState<StateBundle | null>(null);
   const [loadError, setLoadError] = useState(false);
@@ -56,10 +74,11 @@ export default function App() {
   }, []);
 
   // Keep keyboard and screen-reader users oriented: focus the page heading on every
-  // phase, question, or view change.
+  // phase, question, or view change — and when the convention opens, which changes the screen
+  // without changing the phase.
   useEffect(() => {
     headingRef.current?.focus();
-  }, [view, band, state.phase, state.nodeIndex]);
+  }, [view, band, state.phase, state.nodeIndex, state.seats.length]);
 
   const reset = () => {
     setState(FRESH);
@@ -418,12 +437,7 @@ function Game({
       {tied && (
         <>
           <TallyBoard node={node} band={band} copy={copy} state={state} />
-          <p role="status">
-            <strong>{copy.tieTitle}</strong> {copy.tieBody}
-          </p>
-          <div className="options">
-            <button type="button" onClick={revoteAfterTie}>{copy.tieButton}</button>
-          </div>
+          <TiePanel copy={copy} onRevote={revoteAfterTie} />
         </>
       )}
 
@@ -516,14 +530,20 @@ function VoteFlow({
   /** Second vote only: who each choice helps and hurts, printed on the choice itself. */
   showConsequences?: boolean;
 }) {
+  // Each panel is keyed so React mounts a fresh one rather than re-labelling the old element,
+  // which is what lets FocusPanel move focus to it.
   if (!classMode && handoff) {
     return (
-      <section className="handoff" aria-label={copy.handoffTitle(seat.index + 1, seat.constituency)}>
+      <FocusPanel
+        key={`handoff-${seat.index}`}
+        className="handoff"
+        label={copy.handoffTitle(seat.index + 1, seat.constituency)}
+      >
         <p><strong>{copy.handoffTitle(seat.index + 1, seat.constituency)}</strong></p>
         <div className="options">
           <button type="button" className="primary" onClick={onHandoffDone}>{copy.handoffReady}</button>
         </div>
-      </section>
+      </FocusPanel>
     );
   }
 
@@ -531,7 +551,7 @@ function VoteFlow({
     const chosen = node.options.find((o) => o.option_id === pendingChoice);
     const chosenLabel = chosen ? labelFor(chosen, band) : '';
     return (
-      <section className="handoff" aria-label={`${copy.confirmPick} ${chosenLabel}`}>
+      <FocusPanel key="confirm" className="handoff" label={`${copy.confirmPick} ${chosenLabel}`}>
         <p><strong>{copy.confirmPick} {chosenLabel}</strong></p>
         <div className="options">
           <button type="button" className="primary" onClick={() => onLockIn(pendingChoice)}>
@@ -539,12 +559,12 @@ function VoteFlow({
           </button>
           <button type="button" onClick={onRedo}>{copy.redo}</button>
         </div>
-      </section>
+      </FocusPanel>
     );
   }
 
   return (
-    <section aria-label={copy.seatEyebrow(seat.index + 1, seat.constituency)}>
+    <FocusPanel key={`choose-${seat.index}`} label={copy.seatEyebrow(seat.index + 1, seat.constituency)}>
       {!classMode && (
         <>
           <p className="eyebrow">{copy.seatEyebrow(seat.index + 1, seat.constituency)}</p>
@@ -586,7 +606,41 @@ function VoteFlow({
           </button>
         ))}
       </div>
+    </FocusPanel>
+  );
+}
+
+/** A labelled region that takes focus when it appears. See useFocusOnMount. */
+function FocusPanel({
+  label,
+  className,
+  role,
+  children,
+}: {
+  label: string;
+  className?: string;
+  role?: 'group';
+  children: ReactNode;
+}) {
+  const ref = useFocusOnMount<HTMLElement>();
+  return (
+    <section ref={ref} tabIndex={-1} className={className} role={role} aria-label={label}>
+      {children}
     </section>
+  );
+}
+
+function TiePanel({ copy, onRevote }: { copy: Copy; onRevote: () => void }) {
+  const ref = useFocusOnMount<HTMLDivElement>();
+  return (
+    <div ref={ref} tabIndex={-1}>
+      <p role="status">
+        <strong>{copy.tieTitle}</strong> {copy.tieBody}
+      </p>
+      <div className="options">
+        <button type="button" onClick={onRevote}>{copy.tieButton}</button>
+      </div>
+    </div>
   );
 }
 
@@ -709,15 +763,15 @@ function Explore({ bundle, band }: { bundle: StateBundle; band: Band }) {
 
   return (
     <article className="rulebook">
-      <h2>{copy.exploreTitle}</h2>
+      <h1>{copy.exploreTitle}</h1>
       <p>{copy.exploreIntro}</p>
 
       {bundle.decisions.map((decision, i) => (
         <section key={decision.node_id} className="rulebook-question">
-          <h3>
+          <h2>
             <span className="q-number" aria-hidden="true">{i + 1}</span>
             {promptFor(decision, band)}
-          </h3>
+          </h2>
           {decision.options.map((option) => {
             const clauses = option.clause_refs
               .map((ref) => bundle.clauses[ref])
@@ -726,14 +780,14 @@ function Explore({ bundle, band }: { bundle: StateBundle; band: Band }) {
             const states = [...new Set(withText.map((c) => c.state))];
             return (
               <div key={option.option_id} className="rulebook-answer">
-                <h4>
+                <h3>
                   {labelFor(option, band)}
                   <span className="tally">
                     {states.length > 0
                       ? copy.exploreStatesWords(states.length)
                       : copy.exploreNoState}
                   </span>
-                </h4>
+                </h3>
                 {clauses.length === 0 && <p className="framing">{copy.exploreNobodyYet}</p>}
                 {clauses.map((clause) => (
                   <ClauseCard
@@ -752,7 +806,7 @@ function Explore({ bundle, band }: { bundle: StateBundle; band: Band }) {
 
       {uncited.length > 0 && (
         <section className="rulebook-question">
-          <h3>{copy.exploreOther}</h3>
+          <h2>{copy.exploreOther}</h2>
           <p>{copy.exploreOtherIntro}</p>
           {uncited.map((clause) => (
             <ClauseCard key={clause.urn} clause={clause} urn={clause.urn} band={band} copy={copy} />
@@ -810,8 +864,11 @@ function ReadAloud({ copy, text }: { copy: Copy; text: string }) {
 
   return (
     <p className="read-aloud">
-      <button type="button" className="linklike" aria-pressed={speaking} onClick={toggle}>
-        {speaking ? copy.readStop : `🔊 ${copy.readAloud}`}
+      {/* The label itself flips between "Read it to me" and "Stop reading", so the button is
+          not also a pressed/unpressed toggle — a screen reader would announce "Stop reading,
+          pressed". The speaker glyph is decoration and stays out of the accessible name. */}
+      <button type="button" className="linklike" onClick={toggle}>
+        {speaking ? copy.readStop : <><span aria-hidden="true">🔊</span> {copy.readAloud}</>}
       </button>
     </p>
   );
@@ -839,6 +896,15 @@ function ClauseCard({
   copy: Copy;
 }) {
   const [confirming, setConfirming] = useState(false);
+  // "Stay here" removes the notice it sits in; focus goes back to the link that opened it.
+  const sourceButton = useRef<HTMLButtonElement | null>(null);
+  const returnFocus = useRef(false);
+  useEffect(() => {
+    if (!confirming && returnFocus.current) {
+      returnFocus.current = false;
+      sourceButton.current?.focus();
+    }
+  }, [confirming]);
   if (!clause) {
     return (
       <blockquote className="clause">
@@ -897,14 +963,19 @@ function ClauseCard({
         {showSource && !confirming && (
           <>
             {' · '}
-            <button type="button" className="linklike" onClick={() => setConfirming(true)}>
-              {copy.sourceLink} ↗
+            <button
+              ref={sourceButton}
+              type="button"
+              className="linklike"
+              onClick={() => setConfirming(true)}
+            >
+              {copy.sourceLink} <span aria-hidden="true">↗</span>
             </button>
           </>
         )}
       </cite>
       {showSource && confirming && (
-        <div className="leaving" role="group" aria-label={copy.leavingTitle}>
+        <FocusPanel className="leaving" role="group" label={copy.leavingTitle}>
           <p><strong>{copy.leavingTitle}</strong> {copy.leavingBody}</p>
           <div className="options">
             <a
@@ -913,11 +984,19 @@ function ClauseCard({
               rel="noopener noreferrer"
               onClick={() => setConfirming(false)}
             >
-              {copy.leavingGo} ↗
+              {copy.leavingGo} <span aria-hidden="true">↗</span>
             </a>
-            <button type="button" onClick={() => setConfirming(false)}>{copy.leavingStay}</button>
+            <button
+              type="button"
+              onClick={() => {
+                returnFocus.current = true;
+                setConfirming(false);
+              }}
+            >
+              {copy.leavingStay}
+            </button>
           </div>
-        </div>
+        </FocusPanel>
       )}
     </blockquote>
   );
@@ -999,24 +1078,28 @@ function RatifyScreen({
         })}
       </ul>
       {seat && !classMode && handoff && (
-        <section className="handoff" aria-label={copy.handoffTitle(seat.index + 1, seat.constituency)}>
+        <FocusPanel
+          key={`handoff-${seat.index}`}
+          className="handoff"
+          label={copy.handoffTitle(seat.index + 1, seat.constituency)}
+        >
           <p><strong>{copy.handoffTitle(seat.index + 1, seat.constituency)}</strong></p>
           <div className="options">
             <button type="button" onClick={() => setHandoff(false)}>{copy.handoffReady}</button>
           </div>
-        </section>
+        </FocusPanel>
       )}
       {seat && classMode && pending !== null && (
-        <section className="handoff" aria-label={`${copy.confirmPick} ${pending ? copy.ratifyYes : copy.ratifyNo}`}>
+        <FocusPanel key="confirm" className="handoff" label={`${copy.confirmPick} ${pending ? copy.ratifyYes : copy.ratifyNo}`}>
           <p><strong>{copy.confirmPick} {pending ? copy.ratifyYes : copy.ratifyNo}</strong></p>
           <div className="options">
             <button type="button" className="primary" onClick={() => { onVote(pending); setPending(null); }}>{copy.lockIn}</button>
             <button type="button" onClick={() => setPending(null)}>{copy.redo}</button>
           </div>
-        </section>
+        </FocusPanel>
       )}
       {seat && !(!classMode && handoff) && !(classMode && pending !== null) && (
-        <section aria-label={copy.seatEyebrow(seat.index + 1, seat.constituency)}>
+        <FocusPanel key={`choose-${seat.index}`} label={copy.seatEyebrow(seat.index + 1, seat.constituency)}>
           {!classMode && <p className="eyebrow">{copy.seatEyebrow(seat.index + 1, seat.constituency)}</p>}
           <div className="choices">
             <button type="button" className="choice" onClick={() => choose(true)}>
@@ -1026,7 +1109,7 @@ function RatifyScreen({
               <span className="choice-label">{copy.ratifyNo}</span>
             </button>
           </div>
-        </section>
+        </FocusPanel>
       )}
       {!classMode && (
         <p aria-live="polite" className="eyebrow">{copy.ratifyTally(votesSoFar.yes, votesSoFar.no)}</p>

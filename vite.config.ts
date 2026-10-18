@@ -22,7 +22,9 @@ export default defineConfig({
         lang: 'en-US',
         categories: ['education'],
         background_color: '#EDE8DC',
-        theme_color: '#1B1E24',
+        // Paper, not ink. The app is light-only, and an ink-dark theme colour tints the phone's
+        // browser bar and status bar near-black above a paper page: a dark band.
+        theme_color: '#EDE8DC',
         icons: [
           // SVG first for platforms that take it; PNGs because many still do not. The maskable
           // entry is a separate drawing with a 22% safe-zone inset — Android crops adaptive icons

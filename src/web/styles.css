@@ -541,7 +541,7 @@ section[tabindex="-1"]:focus { outline: none; }
   The full disclaimer quotes the canonical wording, so its 911 and 988 sit inside sentences and
   were 20px tall. The sentence keeps its spacing; an invisible 44px hit area is laid over each.
 */
-.convention a[href^="tel:"] { position: relative; font-weight: 700; }
+.convention a[href^="tel:"] { position: relative; }
 .convention a[href^="tel:"]::after {
   content: "";
   position: absolute;

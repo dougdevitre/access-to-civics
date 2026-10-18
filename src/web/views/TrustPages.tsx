@@ -103,6 +103,87 @@ export function PrivacyPromise() {
   );
 }
 
+/**
+ * The full disclaimer, in the canonical Access To wording, for the adults responsible for the
+ * room. Children see a kid-language version of the short notice at the foot of every screen
+ * (SafetyNotice.tsx); this page is what it is a simplification of, word for word — the
+ * paragraphs are pinned in src/web/safety-notice.test.tsx, so they cannot be quietly reworded.
+ *
+ * The canonical text names the project, "Access to Civics"; children know the game as Charter.
+ * The intro says they are the same thing rather than editing the canonical sentences.
+ */
+export function Disclaimer() {
+  return (
+    <article>
+      <h2>For parents and teachers: the full disclaimer</h2>
+      <p className="eyebrow">What Charter is, what it is not, and who to call</p>
+
+      <p>
+        Charter is the game made by the Access to Civics project. Children see a short version
+        of this notice, in simpler words, at the bottom of every screen. Below is the wording
+        it is based on.
+      </p>
+
+      <h3>The short notice</h3>
+      <p>
+        Educational information only. Access to Civics is not legal, medical, mental health,
+        financial or safety advice, and using it creates no professional relationship. In danger
+        now? Call <a href="tel:911">911</a>. For crisis support, call or text{' '}
+        <a href="tel:988">988</a>. Confirm anything important with the official source or a
+        licensed professional.
+      </p>
+
+      <h3>The full disclaimer</h3>
+      <ul className="promise-list">
+        <li>
+          Access to Civics provides general educational information only. It is not legal,
+          medical, mental health, financial or safety advice. Using it does not create an
+          attorney-client, clinician-patient or any other professional relationship with Doug
+          Devitre, CoTrackPro or any contributor.
+        </li>
+        <li>
+          <strong>Not for emergencies.</strong> If anyone is in danger, call{' '}
+          <a href="tel:911">911</a>. For crisis support, call or text <a href="tel:988">988</a>.
+        </li>
+        <li>
+          <strong>Not a substitute for a professional.</strong> Talk with a licensed attorney,
+          clinician or trained advocate about your situation.
+        </li>
+        <li>
+          <strong>Information can be wrong or out of date.</strong> Laws, programs, phone
+          numbers, eligibility rules and deadlines change. Confirm everything with the official
+          source before you rely on it.
+        </li>
+        <li>
+          <strong>AI output can be incorrect.</strong> Review everything it produces. You are
+          responsible for the decisions you make and anything you file or send.
+        </li>
+        <li>
+          <strong>Protect privacy.</strong> Do not enter names, case numbers, addresses or other
+          details that identify a person.
+        </li>
+        <li>
+          <strong>No endorsement.</strong> Not affiliated with or endorsed by any court, agency
+          or organization it mentions.
+        </li>
+        <li>
+          <strong>No warranty.</strong> Provided “as is,” without warranties of any kind. To the
+          fullest extent the law allows, the maintainers and contributors are not liable for
+          damages arising from its use.
+        </li>
+      </ul>
+
+      <h3>How this applies to Charter</h3>
+      <p>
+        Two of those points describe things Charter does not do. No AI service is called while a
+        child plays — every word on screen is fixed at build time and reviewed. And there is
+        nothing to type into: the game is buttons and one dropdown, so no names or other details
+        can be entered. The privacy pages here describe that in full.
+      </p>
+    </article>
+  );
+}
+
 export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
   const states = ingestedStates(bundle);
   const review = glossReviewCount(bundle);

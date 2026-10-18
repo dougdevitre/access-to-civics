@@ -300,6 +300,22 @@ export const NEUTRAL = {
   teacherCta: 'Start with the teacher guide',
   changeBand: 'Switch age group',
   noscript: 'Charter needs JavaScript to run. Nothing is tracked either way.',
+  /*
+    The safety note at the foot of every screen. It carries the meaning of the Access To
+    canonical notice (educational only, not advice, no professional relationship, 911, 988,
+    check with the real source or an expert) in words a ten-year-old can read — these strings
+    are scored by the same reading-level test as the rest of this object. The canonical adult
+    wording, unchanged, is on the "For parents and teachers" page (views/TrustPages.tsx).
+  */
+  safetyLabel: 'Safety note',
+  safetyAbout:
+    'Charter is a game for learning. It is not advice about the law, health, feelings, money or safety. We are not your lawyer, doctor or counselor.',
+  safetyDangerLead: 'In danger right now? Call',
+  safetyCrisisLead: 'Feeling very upset and need help? Call or text',
+  safetyCheck:
+    'Check big things with a grown-up you trust. Look at the real source, or ask an expert like a lawyer or doctor.',
+  safetyMoreLead: 'For parents and teachers:',
+  safetyMore: 'Read the full disclaimer',
 };
 
 /**

@@ -345,6 +345,40 @@ h3 { font-size: var(--step-0); margin: 1.25rem 0 .25rem; }
 [data-band="8-10"] .eyebrow-heading { font-variant-caps: normal; letter-spacing: .02em; }
 h1:focus, div[tabindex="-1"]:focus { outline: none; }
 
+/*
+  The grown-up pages and the rule book were outlined from h2, with no h1, so a screen reader's
+  "jump to heading level 1" found nothing on them. Their headings moved up one level; their look
+  did not — the title keeps the section-heading size it always had and the subsections keep the
+  plain bold of the old h3s.
+*/
+.trust-page > h1,
+.rulebook > h1 {
+  font-size: var(--step-1);
+  margin: 1.5rem 0 .25rem;
+}
+.trust-page > h2,
+.rulebook-question > h2 {
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  font-weight: 700;
+  margin: 1.25rem 0 .25rem;
+}
+
+/*
+  A panel that replaces the button just pressed (a confirmation, a hand-off card, the leaving
+  notice) takes focus so it is announced. It is not itself a control, so it shows no ring; the
+  next Tab lands on its first button, which does.
+*/
+section[tabindex="-1"]:focus { outline: none; }
+
+/*
+  Long file names on the grown-ups page (data/seed/citation-verification.json) are one unbroken
+  word. At 200% zoom on a phone that word was wider than the screen and the page scrolled
+  sideways.
+*/
+.convention { overflow-wrap: break-word; }
+.convention code { overflow-wrap: anywhere; }
+
 .band-pick button {
   display: flex;
   flex-direction: column;
@@ -406,10 +440,18 @@ h1:focus, div[tabindex="-1"]:focus { outline: none; }
   margin: 0 0 .5rem;
 }
 
+/*
+  Text-styled buttons ("Read it to me", "See the real page", the teacher-guide link) were
+  24-31px tall — under the 44px a child's finger needs. The text stays where it was; the box
+  around it grows.
+*/
 .linklike {
   background: none;
   border: none;
-  min-height: 24px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: .3em;
   padding: 0;
   color: var(--focus);
   text-decoration: underline;
@@ -494,6 +536,22 @@ h1:focus, div[tabindex="-1"]:focus { outline: none; }
 }
 .safety-notice a[href^="tel:"]:hover { background: color-mix(in srgb, var(--ink) 8%, var(--paper)); }
 .safety-notice a:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/*
+  The full disclaimer quotes the canonical wording, so its 911 and 988 sit inside sentences and
+  were 20px tall. The sentence keeps its spacing; an invisible 44px hit area is laid over each.
+*/
+.convention a[href^="tel:"] { position: relative; font-weight: 700; }
+.convention a[href^="tel:"]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, 44px);
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+.convention a[href^="tel:"]:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 /* Specificity has to beat `.site-footer button`, which is wayfinding styling, not a link. */
 .site-footer .safety-notice button.linklike {
   min-height: 44px;
@@ -788,7 +846,7 @@ select:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
   margin: 2rem 0 0;
   padding-top: .75rem;
 }
-.rulebook-question > h3 {
+.rulebook-question > h2 {
   display: flex;
   align-items: baseline;
   gap: .6rem;
@@ -812,7 +870,7 @@ select:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
   padding-left: 1rem;
   border-left: 1px solid var(--rule);
 }
-.rulebook-answer > h4 {
+.rulebook-answer > h3 {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;

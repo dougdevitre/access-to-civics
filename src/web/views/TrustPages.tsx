@@ -69,17 +69,17 @@ export function glossReviewCount(bundle: StateBundle | null): { named: number; t
 
 export function PrivacyPromise() {
   return (
-    <article>
-      <h2>Our privacy promise</h2>
+    <article className="trust-page">
+      <h1>Our privacy promise</h1>
       <p className="eyebrow">Written for you, the player. Short version: we don’t know you exist.</p>
 
-      <h3>What stays with you</h3>
+      <h2>What stays with you</h2>
       <p>
         Your votes and your rules live only on this device. When you close the page, the game
         forgets them. We never see them. No one does.
       </p>
 
-      <h3>What we never do</h3>
+      <h2>What we never do</h2>
       <ul className="promise-list">
         <li>No accounts. You never sign up or log in.</li>
         <li>No names. We never ask who you are.</li>
@@ -91,13 +91,13 @@ export function PrivacyPromise() {
         <li>No selling data. There is no data to sell.</li>
       </ul>
 
-      <h3>Want to erase everything?</h3>
+      <h2>Want to erase everything?</h2>
       <p>
         Clear this site’s data in your browser, or just close the page. That’s it. There is
         nothing on our side to delete.
       </p>
 
-      <h3>Something feels wrong?</h3>
+      <h2>Something feels wrong?</h2>
       <p>Tell a parent or teacher. They can read the grown-ups page and reach us from there.</p>
     </article>
   );
@@ -114,8 +114,8 @@ export function PrivacyPromise() {
  */
 export function Disclaimer() {
   return (
-    <article>
-      <h2>For parents and teachers: the full disclaimer</h2>
+    <article className="trust-page">
+      <h1>For parents and teachers: the full disclaimer</h1>
       <p className="eyebrow">What Charter is, what it is not, and who to call</p>
 
       <p>
@@ -124,7 +124,7 @@ export function Disclaimer() {
         it is based on.
       </p>
 
-      <h3>The short notice</h3>
+      <h2>The short notice</h2>
       <p>
         Educational information only. Access to Civics is not legal, medical, mental health,
         financial or safety advice, and using it creates no professional relationship. In danger
@@ -133,7 +133,7 @@ export function Disclaimer() {
         licensed professional.
       </p>
 
-      <h3>The full disclaimer</h3>
+      <h2>The full disclaimer</h2>
       <ul className="promise-list">
         <li>
           Access to Civics provides general educational information only. It is not legal,
@@ -173,7 +173,7 @@ export function Disclaimer() {
         </li>
       </ul>
 
-      <h3>How this applies to Charter</h3>
+      <h2>How this applies to Charter</h2>
       <p>
         Two of those points describe things Charter does not do. No AI service is called while a
         child plays — every word on screen is fixed at build time and reviewed. And there is
@@ -188,8 +188,8 @@ export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
   const states = ingestedStates(bundle);
   const review = glossReviewCount(bundle);
   return (
-    <article>
-      <h2>For grown-ups: privacy, safety, and how this app works</h2>
+    <article className="trust-page">
+      <h1>For grown-ups: privacy, safety, and how this app works</h1>
       <p className="eyebrow">Last updated August 2026 · applies to the web app at this address</p>
 
       <p>
@@ -199,7 +199,7 @@ export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
         privacy reviewers and district staff ask, explicitly.
       </p>
 
-      <h3>Data practices, question by question</h3>
+      <h2>Data practices, question by question</h2>
       <ul className="promise-list">
         <li><strong>Personal information collected:</strong> none. No names, emails, accounts, or identifiers.</li>
         <li><strong>Free-text input from children:</strong> none exists. The interface is buttons and one dropdown.</li>
@@ -214,7 +214,7 @@ export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
         <li><strong>Data retention and deletion:</strong> we retain nothing because we receive nothing. To remove the cached app, clear the site’s data in the browser.</li>
       </ul>
 
-      <h3>The one honest caveat: web hosting</h3>
+      <h2>The one honest caveat: web hosting</h2>
       <p>
         Like every website, the pages are delivered by a hosting provider (Vercel Inc., our
         only subprocessor). Delivering a page briefly involves your device’s IP address, and
@@ -225,7 +225,7 @@ export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
         anything about you” rather than an absolute “zero data.”
       </p>
 
-      <h3>COPPA and student-privacy posture</h3>
+      <h2>COPPA and student-privacy posture</h2>
       <ul className="promise-list">
         <li><strong>COPPA:</strong> notice-and-consent obligations attach to the collection of children’s personal information. Charter does not collect it — no accounts, no persistent identifiers set by us, no tracking. There is nothing to consent to.</li>
         <li><strong>FERPA:</strong> Charter never receives student education records, so no school-official relationship or data agreement is ever needed to use it.</li>
@@ -233,7 +233,7 @@ export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
         <li><strong>Districts that require a signed data-privacy agreement:</strong> we will gladly sign one listing zero collected data elements. Contact us via the repository below.</li>
       </ul>
 
-      <h3>Offline by design</h3>
+      <h2>Offline by design</h2>
       <p>
         Charter is an installable web app. After the first load it runs from the device cache,
         so a classroom session can run with no network at all — on a Chromebook cart, with bad
@@ -241,7 +241,7 @@ export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
         product; all content is fixed at build time and reviewed.
       </p>
 
-      <h3>Read-aloud</h3>
+      <h2>Read-aloud</h2>
       <p>
         The “read it to me” button uses the device’s own built-in voice
         (the browser’s speech synthesis). We only ever use voices the browser marks as
@@ -250,7 +250,7 @@ export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
         the promise above. Nothing spoken ever leaves the device.
       </p>
 
-      <h3>External links</h3>
+      <h2>External links</h2>
       <p>
         The only outbound links in the game go to official state government sources for the
         constitutional text we cite — a state revisor, legislature, or code office. Links open behind a
@@ -259,7 +259,7 @@ export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
         wrong link through the repository below.
       </p>
 
-      <h3>Security</h3>
+      <h2>Security</h2>
       <ul className="promise-list">
         <li>Static site: no database, no server-side code, no user data at rest anywhere.</li>
         <li>HTTPS only, with strict security headers (content security policy, frame denial, referrer suppression, camera/microphone/location denied).</li>
@@ -267,7 +267,7 @@ export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
         <li>Report a vulnerability or concern: open an issue at the repository below.</li>
       </ul>
 
-      <h3>What is verified, and what is not</h3>
+      <h2>What is verified, and what is not</h2>
       <p>
         Two different claims sit on every clause card and they do not carry the same weight.
       </p>
@@ -294,7 +294,7 @@ export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
         pair every clause with its glosses so this can be worked through and signed.
       </p>
 
-      <h3>Help us get your state right</h3>
+      <h2>Help us get your state right</h2>
       <p>
         <strong>Charter is a prototype.</strong> {ingestedPhrase(states)} had their constitutional
         text ingested; every other state appears as a citation with the words still pending. We are asking the people who would know to check our work,
@@ -346,7 +346,7 @@ export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
         it applies to us too.
       </p>
 
-      <h3>Content integrity and nonpartisanship</h3>
+      <h2>Content integrity and nonpartisanship</h2>
       <p>
         No constitutional text is ever hand-typed, paraphrased, or generated: the words of a
         clause enter the app only from an official source, with a citation, and a validator
@@ -358,14 +358,14 @@ export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
         hearing the other side. It is never transmitted.
       </p>
 
-      <h3>Accessibility</h3>
+      <h2>Accessibility</h2>
       <p>
         We target WCAG 2.2 AA: full keyboard play, visible focus, no time limits, reduced-motion
         support, and semantic structure, with an automated accessibility scan in CI. Found a
         barrier? Please open an issue — accessibility reports are treated as bugs, not requests.
       </p>
 
-      <h3>Who pays for this</h3>
+      <h2>Who pays for this</h2>
       <p>
         Charter is free and open source (MIT license). There is no revenue: nothing is sold,
         no ads run, and no data is monetized. The project is developed in the open at the
@@ -384,11 +384,11 @@ export function GrownUps({ bundle }: { bundle: StateBundle | null }) {
 export function TeachersFamilies({ bundle }: { bundle: StateBundle | null }) {
   const states = ingestedStates(bundle);
   return (
-    <article>
-      <h2>Teachers &amp; families</h2>
+    <article className="trust-page">
+      <h1>Teachers &amp; families</h1>
       <p className="eyebrow">How to run Charter in one class period — and what it teaches</p>
 
-      <h3>What the game teaches</h3>
+      <h2>What the game teaches</h2>
       <p>
         Players draft their state’s rules, negotiate them, and ratify (or reject) their own
         constitution. Then the game shows them what real states actually wrote, cited clause
@@ -396,7 +396,7 @@ export function TeachersFamilies({ bundle }: { bundle: StateBundle | null }) {
         celebrates is how many players changed their mind after hearing the other side.
       </p>
 
-      <h3>Two ways to play</h3>
+      <h2>Two ways to play</h2>
       <ul className="promise-list">
         <li>
           <strong>Ages 8–10 (grades 3–5), about 20 minutes:</strong> whole-class mode. No
@@ -412,7 +412,7 @@ export function TeachersFamilies({ bundle }: { bundle: StateBundle | null }) {
         </li>
       </ul>
 
-      <h3>Discussion guide</h3>
+      <h2>Discussion guide</h2>
       <p>
         Every question ends with a turn-and-talk prompt, answered out loud or on paper —
         never typed into the app. Good closers for either band: <em>What did the other side
@@ -420,7 +420,7 @@ export function TeachersFamilies({ bundle }: { bundle: StateBundle | null }) {
         at our table who should have been?</em>
       </p>
 
-      <h3>Standards alignment</h3>
+      <h2>Standards alignment</h2>
       <ul className="promise-list">
         <li>
           <strong>C3 Framework (NCSS):</strong> strongest in Dimension 3 (evaluating sources
@@ -444,7 +444,7 @@ export function TeachersFamilies({ bundle }: { bundle: StateBundle | null }) {
         </li>
       </ul>
 
-      <h3>Sensitive history, handled deliberately</h3>
+      <h2>Sensitive history, handled deliberately</h2>
       <p>
         Some real clauses carry hard history — property tests for voting, for example. Every
         clause in the game carries an editorial sensitivity review. Clauses flagged
@@ -454,7 +454,7 @@ export function TeachersFamilies({ bundle }: { bundle: StateBundle | null }) {
         cold.
       </p>
 
-      <h3>This is a prototype — please tell us what is wrong</h3>
+      <h2>This is a prototype — please tell us what is wrong</h2>
       <p>
         {ingestedPhrase(states)} had their constitutional text ingested so far; other states show a
         citation with the words still pending. We have already found and fixed
@@ -465,7 +465,7 @@ export function TeachersFamilies({ bundle }: { bundle: StateBundle | null }) {
         valuable thing that can happen to this project right now.
       </p>
 
-      <h3>Practical notes</h3>
+      <h2>Practical notes</h2>
       <ul className="promise-list">
         <li>Works offline after the first load — install it from the browser menu for a wifi-proof class set.</li>
         <li>No accounts to provision and no student data to review: the privacy pages here are the whole story.</li>

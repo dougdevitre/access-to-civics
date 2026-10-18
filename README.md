@@ -1,5 +1,10 @@
 # access-to-civics — **Charter**
 
+<!-- BEGIN DISCLAIMER: synced from dougdevitre/access-to, edit it there -->
+> [!IMPORTANT]
+> **Educational information only.** Access to Civics is not legal, medical, mental health, financial or safety advice, and using it creates no professional relationship. **In danger now? Call 911. For crisis support, call or text 988.** Confirm anything important with the official source or a licensed professional. Read the full [disclaimer](DISCLAIMER.md).
+<!-- END DISCLAIMER -->
+
 A civic education game for kids (ages 8–14) built on the primary text of all 50 U.S. state
 constitutions. Kids run a constitutional convention, negotiate a charter, ratify it by vote,
 and then see the real clauses from real states that made the same choice.

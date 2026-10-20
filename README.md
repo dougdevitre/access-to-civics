@@ -10,6 +10,10 @@ constitutions. Kids run a constitutional convention, negotiate a charter, ratify
 and then see the real clauses from real states that made the same choice.
 
 > Part of **[Access To](https://dougdevitre.org)** — open-source tools for the access gaps that matter most. [See all projects →](https://dougdevitre.org/#pillars)
+>
+> Maintained by **Doug Devitre, Community Development Catalyst** · [dougdevitre.org](https://dougdevitre.org)
+
+**Live site:** https://civics.dougdevitre.org
 
 ## Thesis
 
